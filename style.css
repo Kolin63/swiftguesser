@@ -1,0 +1,37 @@
+/* https://colorhunt.co/palette/3b1e549b7ebdd4bee4eeeeee */
+
+.playbutton {
+    background-color: #9B7EBD;
+    border-radius: .5in;
+    margin-top: 1.5in;
+    padding: .5in;
+    border: none;
+    cursor: pointer;
+}
+
+.timecode {
+    color: #EEE;
+    font-size: .75in;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #D4BEE4;
+    border-radius: .3in;
+    margin-top: 0.3in;
+    padding: .1in;
+    padding-left: .5in;
+    padding-right: .5in;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+
+button {
+}
+
+body {
+    background-color: #3B1E54;
+}
