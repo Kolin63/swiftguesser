@@ -9,7 +9,7 @@
     cursor: pointer;
 }
 
-.timecode {
+.stopwatch {
     color: #EEE;
     font-size: .75in;
     font-family: Arial, Helvetica, sans-serif;
@@ -20,6 +20,8 @@
     padding: .1in;
     padding-left: .5in;
     padding-right: .5in;
+
+    cursor: default;
 }
 
 .flex-container {
@@ -29,7 +31,56 @@
     text-align: center;
 }
 
-button {
+.search {
+    background-color: #9B7EBD;
+    border-radius: .5in;
+    padding: .5in;
+    border: none;
+
+    height: .5in;
+    font-size: .5in;
+    color: #EEE;
+
+    cursor: text;
+}
+
+.search-result {
+    background: #F00; 
+    border-radius: .5in;
+    padding: .5in;
+    border: none;
+
+    font-size: .5in;
+    text-align: left;
+    color: #111;
+
+    cursor: pointer;
+}
+
+.search-background img {
+    width: .5in;
+    height: .5in;
+    border-radius: .125in;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+
+    margin-top: .8in;
+}
+
+.search-background {
+    background-color: #D4BEE4;
+    border-radius: .5in;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    flex-direction: column;
 }
 
 body {

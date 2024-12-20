@@ -10,12 +10,29 @@
 
 <body>
     <div class="flex-container">
-        <button class="playbutton">
-            <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in;">
+        <button class="playbutton" id="playbutton">
+            <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in;" id="playbuttontexture">
+            <audio id="audio"></audio>
         </button>
     </div>
     <div class="flex-container">
-        <p class="timecode">0:00.00</p>
+        <time class="stopwatch" id="stopwatch">0:00.000</time>
+    </div>
+
+    <div class="search-container">
+        <div class="search-background">
+            <input class="search">
+            <button class="search-result">
+                <img src="music/taylorswift/speaknow/cover.jpg" alt="cover"> 
+                Result 1</button>
+            <button class="search-result">
+                <img src="music/taylorswift/speaknow/cover.jpg" alt="cover"> 
+                Result 1</button>
+            <button class="search-result">
+                <img src="music/taylorswift/speaknow/cover.jpg" alt="cover"> 
+                Result 1</button>
+
+        </div>
     </div>
 </body>
 
