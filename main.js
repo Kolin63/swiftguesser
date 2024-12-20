@@ -24,25 +24,27 @@ document.addEventListener('DOMContentLoaded', init);
 async function init() {
     configData = await getConfig();
     weightData = await getWeight();
+    totalSongs = await getTotalSongs();
     songList = getSongList();
     songListAlbums = getSongListAlbums();
 
-    console.log(songList, albumCovers);
+    console.log(songList);
 }
 
 search.addEventListener('input', function () {
     const searchValue = search.value.toLowerCase();
     const searchResults = songList.filter(song => song.toLowerCase().includes(searchValue));
+    console.log(albumCovers);
 
     for (let i = 0; i < 3; i++) {
         if (searchResults[i] != undefined) {
             searchResultBoxes[i].textContent = searchResults[i];
             albumCovers[i].src = songListAlbums[songList.indexOf(searchResults[i])];
-            console.log(albumCovers[i].src);
         } else {
             searchResultBoxes[i].textContent = "";
-            albumCovers[i].src = "";
-        }
+            albumCovers[i].src = "favicon.ico";
+        } 
+        console.log(albumCovers[i].src);
     }
 });
 
@@ -53,7 +55,6 @@ playbutton.addEventListener('click', async function () {
         if (!audio.src) {
             audio.src = await getSong(); // Set the source only once
             audio.load();
-            console.log(audio.src);
         }
         audio.play();
         playbuttontexture.src = pausetexture;
