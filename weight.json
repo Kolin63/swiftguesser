@@ -1,0 +1,58 @@
+{
+    "taylorswift":
+    {
+        "speaknow": 
+        {
+            "amount": 22,
+            "songs": 
+            [
+                "Mine",
+                "Sparks Fly",
+                "Back to December",
+                "Speak Now",
+                "Dear John",
+                "Mean",
+                "The Story of Us",
+                "Never Grow Up",
+                "Enchanted",
+                "Better Than Revenge",
+                "Innocent",
+                "Haunted",
+                "Last Kiss",
+                "Long Live",
+                "Ours",
+                "Superman",
+                "Electric Touch",
+                "When Emma Falls in Love",
+                "I Can See You",
+                "Castles Crumbling",
+                "Foolish One",
+                "Timeless"
+            ]
+        },
+        "folklore": 
+        {
+            "amount": 17,
+            "songs": 
+            [
+                "the 1",
+                "cardigan",
+                "the last great american dynasty",
+                "exile",
+                "my tears ricochet",
+                "mirrorball",
+                "seven",
+                "august",
+                "this is me trying",
+                "illicit affairs",
+                "invisible string",
+                "mad women",
+                "epiphany",
+                "betty",
+                "peace",
+                "hoax",
+                "the lakes"
+            ]
+        }
+    }
+}
