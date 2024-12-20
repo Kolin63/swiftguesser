@@ -1,6 +1,10 @@
 const playbutton = document.getElementById("playbutton");
 const audio = document.getElementById("audio");
 const stopwatch = document.getElementById("stopwatch");
+const search = document.getElementById("search");
+const searchResultBoxes = document.getElementsByClassName("search-result")
+const albumCovers = Array.from(document.getElementsByClassName("album-cover"));
+
 let stopwatchMS = 0;
 let playing = false;
 let stopwatchInterval;
@@ -13,17 +17,34 @@ let configData;
 let weightData;
 let totalSongs;
 let songList;
+let songListAlbums;
 
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
     configData = await getConfig();
     weightData = await getWeight();
-    totalSongs = await getTotalSongs();
     songList = getSongList();
+    songListAlbums = getSongListAlbums();
 
-    console.log(songList);
+    console.log(songList, albumCovers);
 }
+
+search.addEventListener('input', function () {
+    const searchValue = search.value.toLowerCase();
+    const searchResults = songList.filter(song => song.toLowerCase().includes(searchValue));
+
+    for (let i = 0; i < 3; i++) {
+        if (searchResults[i] != undefined) {
+            searchResultBoxes[i].textContent = searchResults[i];
+            albumCovers[i].src = songListAlbums[songList.indexOf(searchResults[i])];
+            console.log(albumCovers[i].src);
+        } else {
+            searchResultBoxes[i].textContent = "";
+            albumCovers[i].src = "";
+        }
+    }
+});
 
 // Event listener for the play button
 playbutton.addEventListener('click', async function () {
@@ -102,6 +123,20 @@ function getSongList() {
         }
     }
     return list;
+}
+
+function getSongListAlbums() {
+    let albums = [];
+    for (let artist in configData) {
+        for (let album in configData[artist]) {
+            if (configData[artist][album]) {
+                const albumSongs = weightData[artist][album].songs;
+                const albumCoverPath = 'music/' + artist + '/' + album + '/cover.jpg';
+                albums = albums.concat(albumSongs.map(() => albumCoverPath));
+            }
+        }
+    }
+    return albums;
 }
 
 async function getConfig() {
