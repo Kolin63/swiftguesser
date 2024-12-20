@@ -2,8 +2,8 @@ const playbutton = document.getElementById("playbutton");
 const audio = document.getElementById("audio");
 const stopwatch = document.getElementById("stopwatch");
 const search = document.getElementById("search");
-const searchResultBoxes = document.getElementsByClassName("search-result")
-const albumCovers = Array.from(document.getElementsByClassName("album-cover"));
+const searchResultBoxes = document.getElementsByClassName("search-result");
+const albumCovers = Array.from(document.getElementsByClassName("album-cover")); // Convert to array
 
 let stopwatchMS = 0;
 let playing = false;
@@ -28,23 +28,24 @@ async function init() {
     songList = getSongList();
     songListAlbums = getSongListAlbums();
 
-    console.log(songList);
+    console.log(songList, albumCovers);
 }
 
 search.addEventListener('input', function () {
     const searchValue = search.value.toLowerCase();
     const searchResults = songList.filter(song => song.toLowerCase().includes(searchValue));
-    console.log(albumCovers);
 
     for (let i = 0; i < 3; i++) {
+        searchResultBoxes[i].textContent = ""; // Clear previous content
         if (searchResults[i] != undefined) {
-            searchResultBoxes[i].textContent = searchResults[i];
-            albumCovers[i].src = songListAlbums[songList.indexOf(searchResults[i])];
+            const img = document.createElement("img");
+            img.src = songListAlbums[songList.indexOf(searchResults[i])];
+            img.className = "album-cover";
+            searchResultBoxes[i].appendChild(img);
+            searchResultBoxes[i].appendChild(document.createTextNode(searchResults[i]));
         } else {
             searchResultBoxes[i].textContent = "";
-            albumCovers[i].src = "favicon.ico";
-        } 
-        console.log(albumCovers[i].src);
+        }
     }
 });
 

@@ -36,6 +36,7 @@
     border-radius: .5in;
     padding: .5in;
     border: none;
+    transition-duration: 0.4s;
 
     height: .5in;
     font-size: .5in;
@@ -44,23 +45,38 @@
     cursor: text;
 }
 
+.search:hover {
+    background-color: #B49ED4;
+}
+
+::placeholder {
+    color: #EEE;
+}
+
 .search-result {
     background-color: #D4BEE4;
     border-radius: .5in;
     padding: .5in;
     border: none;
+    transition-duration: 0.4s;
 
     font-size: .5in;
     text-align: left;
     color: #111;
 
     cursor: pointer;
+    display: flex;
+}
+
+.search-result:hover {
+    background-color: #EEE;
 }
 
 .search-background img {
-    width: .5in;
-    height: .5in;
+    width: .6in;
+    height: .6in;
     border-radius: .125in;
+    margin-right: .3in;
 }
 
 .search-container {
