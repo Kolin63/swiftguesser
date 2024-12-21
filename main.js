@@ -79,6 +79,22 @@ playbutton.addEventListener('click', async function () {
     }
 
     playing = !playing; // Toggle the playing state
+// Function called when a search result box is clicked
+Array.from(searchResultBoxes).forEach(box => {
+    box.addEventListener('click', function () {
+        const boxSong = box.textContent;
+
+        if (boxSong == "") return;
+
+        if (boxSong == randomSongName) {
+            alert("Correct!");
+        }
+        else {
+            alert("Incorrect! The correct song was " + randomSongName);
+        }
+        location.reload();
+    });
+});
 });
 
 // Gets a random song
