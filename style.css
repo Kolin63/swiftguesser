@@ -79,7 +79,7 @@
     border: none;
 }
 
-.search-background img {
+.album-cover {
     width: .6in;
     height: .6in;
     border-radius: .125in;
@@ -91,6 +91,7 @@
     justify-content: center;
     align-self: center;
     text-align: center;
+    flex-direction: column;
 
     margin-top: .8in;
 }

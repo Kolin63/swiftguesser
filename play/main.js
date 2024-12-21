@@ -2,7 +2,8 @@ const playbutton = document.getElementById("playbutton");
 const audio = document.getElementById("audio");
 const stopwatch = document.getElementById("stopwatch");
 const search = document.getElementById("search");
-const searchResultBoxes = document.getElementsByClassName("search-result");
+const searchBackground = document.getElementById("search-background");
+let searchResultBoxes = document.getElementsByClassName("search-result");
 const albumCovers = Array.from(document.getElementsByClassName("album-cover")); // Convert to array
 
 let stopwatchMS = 0;
@@ -46,21 +47,53 @@ search.addEventListener('input', function () {
     const searchValue = search.value.toLowerCase().replace(/[^\w\s]/gi, ''); // Remove punctuation
     const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s]/gi, '').includes(searchValue));
 
-    for (let i = 0; i < 3; i++) {
-        searchResultBoxes[i].textContent = ""; // Clear previous content
-        if (searchResults[i] != undefined) {
-            // Create an image element for the album cover
-            const img = document.createElement("img");
-            img.src = songListAlbums[songList.indexOf(searchResults[i])];
-            img.className = "album-cover";
-            searchResultBoxes[i].appendChild(img);
-
-            // Create a text node for the song name
-            searchResultBoxes[i].appendChild(document.createTextNode(searchResults[i]));
-        } else {
-            searchResultBoxes[i].textContent = "";
+    // Clear previous search result boxes
+    searchResultBoxes = []; 
+    var searchBackgroundChildren = searchBackground.children;
+    for (let i = 0; i < searchBackgroundChildren.length; i++) {
+        if (searchBackgroundChildren[i].className == "search-result") {
+            searchBackground.removeChild(searchBackgroundChildren[i]);
+            i--;
         }
     }
+
+    if (searchValue == "") return;
+
+    for (let i = 0; i < searchResults.length; i++) {
+        // Create a search result box
+        const box = document.createElement("button");
+        box.className = "search-result";
+
+        // Create an image element for the album cover
+        const img = document.createElement("img");
+        img.src = songListAlbums[songList.indexOf(searchResults[i])];
+        img.className = "album-cover";
+        box.appendChild(img);
+
+        // Create a text node for the song name
+        box.appendChild(document.createTextNode(searchResults[i]));
+
+        // Append the search result box to the search background
+        searchResultBoxes.push(box);
+        searchBackground.appendChild(box);
+    }
+
+    // Function called when a search result box is clicked
+    Array.from(searchResultBoxes).forEach(box => {
+        box.addEventListener('click', function () {
+            const boxSong = box.textContent;
+
+            if (boxSong == "") return;
+
+            if (boxSong == randomSongName) {
+                alert("Correct!");
+            }
+            else {
+                alert("Incorrect! The correct song was " + randomSongName);
+            }
+            location.reload();
+        });
+    });
 });
 
 // Event listener for the play button
@@ -91,23 +124,6 @@ function togglePlay() {
     playing = !playing; // Toggle the playing state
 }
 
-// Function called when a search result box is clicked
-Array.from(searchResultBoxes).forEach(box => {
-    box.addEventListener('click', function () {
-        const boxSong = box.textContent;
-
-        if (boxSong == "") return;
-
-        if (boxSong == randomSongName) {
-            alert("Correct!");
-        }
-        else {
-            alert("Incorrect! The correct song was " + randomSongName);
-        }
-        location.reload();
-    });
-});
-
 document.addEventListener('keydown', event => {
     const key = event.key;
 
@@ -121,7 +137,7 @@ document.addEventListener('keydown', event => {
 
     }
     else if (key === 'ArrowDown') {
-        selectedIndex = Math.min(selectedIndex+1, 2); 
+        selectedIndex = Math.min(selectedIndex+1, searchResultBoxes.length-1); 
         searchResultBoxes[selectedIndex].focus();
     }
     else if (event.ctrlKey && key === ' ') {
