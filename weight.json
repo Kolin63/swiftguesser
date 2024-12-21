@@ -1,6 +1,59 @@
 {
     "taylorswift":
     {
+        "taylorswift": 
+        {
+            "amount": 14,
+            "songs": 
+            [
+                "Tim McGraw",
+                "Picture to Burn",
+                "Teardrops on My Guitar",
+                "A Place in This World",
+                "Cold as You",
+                "The Outside",
+                "Tied Together with a Smile",
+                "Stay Beautiful",
+                "Should've Said No",
+                "Mary's Song",
+                "Our Song",
+                "I'm Only Me When I'm With You",
+                "Invisible",
+                "A Perfectly Good Heart"
+            ]
+        },
+        "fearless": 
+        {
+            "amount": 25,
+            "songs": 
+            [
+                "Fearless",
+                "Fifteen",
+                "Love Story",
+                "Hey Stephen",
+                "White Horse",
+                "You Belong with Me",
+                "Breathe",
+                "Tell Me Why",
+                "You're Not Sorry",
+                "The Way I Loved You",
+                "Forever & Always",
+                "The Best Day",
+                "Change",
+                "Jump Then Fall",
+                "Untouchable",
+                "Come In with the Rain",
+                "Superstar",
+                "The Other Side of the Door",
+                "Today Was a Fairytale",
+                "You All Over Me",
+                "Mr. Perfectly Fine",
+                "We Were Happy",
+                "That's When",
+                "Don't You",
+                "Bye Bye Baby"
+            ]
+        },
         "speaknow": 
         {
             "amount": 22,
@@ -30,12 +83,122 @@
                 "Timeless"
             ]
         },
-        "folklore": 
+        "red":
         {
-            "amount": 17,
+            "amount": 28,
             "songs": 
             [
-                "the 1",
+                "State of Grace",
+                "Red",
+                "Treacherous",
+                "I Knew You Were Trouble",
+                "22",
+                "I Almost Do",
+                "We Are Never Ever Getting Back Together",
+                "Stay Stay Stay",
+                "The Last Time",
+                "Holy Ground",
+                "Sad Beautiful Tragic",
+                "The Lucky One",
+                "Everything Has Changed",
+                "Starlight",
+                "Begin Again",
+                "The Moment I Knew",
+                "Come Back...Be Here",
+                "Girl At Home",
+                "Ronan",
+                "Better Man",
+                "Nothing New",
+                "Babe",
+                "Message In A Bottle",
+                "I Bet You Think About Me",
+                "Forever Winter",
+                "Run",
+                "The Very First Night",
+                "All Too Well"
+            ]
+        },
+        "1989":
+        {
+            "amount": 21,
+            "songs": 
+            [
+                "Welcome to New York",
+                "Blank Space",
+                "Style",
+                "Out Of The Woods",
+                "All You Had To Do Was Stay",
+                "Shake It Off",
+                "I Wish You Would",
+                "Bad Blood",
+                "Wildest Dreams",
+                "How You Get The Girl",
+                "This Love",
+                "I Know Places",
+                "Clean",
+                "Wonderland",
+                "You Are In Love",
+                "New Romantics",
+                "Slut!",
+                "Say Don't Go",
+                "Now That We Don't Talk",
+                "Suburban Legends",
+                "Is It Over Now"
+            ]
+        },
+        "lover":
+        {
+            "amount": 18,
+            "songs":
+            [
+                "I Forgot That You Existed",
+                "Cruel Summer",
+                "Lover",
+                "The Man",
+                "The Archer",
+                "I Think He Knows",
+                "Miss Americana & The Heartbreak Prince",
+                "Paper Rings",
+                "Cornelia Street",
+                "Death By A Thousand Cuts",
+                "London Boy",
+                "Soon You'll Get Better",
+                "False God",
+                "You Need To Calm Down",
+                "Afterglow",
+                "ME!",
+                "It's Nice To Have A Friend",
+                "Daylight"
+            ]
+        },
+        "reputation":
+        {
+            "amount": 15,
+            "songs":
+            [
+                "...Ready For It",
+                "End Game",
+                "I Did Something Bad",
+                "Don't Blame Me",
+                "Delicate",
+                "Look What You Made Me Do",
+                "So It Goes",
+                "Gorgeous",
+                "Getaway Car",
+                "King Of My Heart",
+                "Dancing With Our Hands Tied",
+                "Dress",
+                "This Is Why We Can't Have Nice Things",
+                "Call It What You Want",
+                "New Year's Day"
+            ]
+        },
+        "folklore": 
+        {
+            "amount": 16,
+            "songs": 
+            [
+                "the 0",
                 "cardigan",
                 "the last great american dynasty",
                 "exile",
@@ -52,6 +215,97 @@
                 "peace",
                 "hoax",
                 "the lakes"
+            ]
+        },
+        "evermore":
+        {
+            "amount": 17,
+            "songs":
+            [
+                "willow",
+                "champagne problems",
+                "gold rush",
+                "'tis the damn season",
+                "tolerate it",
+                "no body, no crime",
+                "happiness",
+                "dorothea",
+                "coney island",
+                "ivy",
+                "cowboy like me",
+                "long story short",
+                "marjorie",
+                "closure",
+                "evermore",
+                "right where you left me",
+                "it's time to go"
+            ]
+        },
+        "midnights":
+        {
+            "amount": 21,
+            "songs": 
+            [
+                "Anti-Hero",
+                "Bejeweled",
+                "Bigger Than The Whole Sky",
+                "Dear Reader",
+                "Glitch",
+                "High Infidelity",
+                "Hits Different",
+                "Karma",
+                "Labyrinth",
+                "Lavender Haze",
+                "Maroon",
+                "Mastermind",
+                "Midnight Rain",
+                "Paris",
+                "Question...",
+                "Snow On The Beach",
+                "Sweet Nothing",
+                "The Great War",
+                "Vigilante Shit",
+                "Would've, Could've, Should've",
+                "You're On Your Own, Kid"
+            ]
+        },
+        "tpd":
+        {
+            "amount": 31,
+            "songs":
+            [
+                "But Daddy I Love Him",
+                "Cassandra",
+                "Chloe or Sam or Sophia or Marcus",
+                "Clara Bow",
+                "cover.jpg",
+                "Down Bad",
+                "Florida!!!",
+                "Fortnight",
+                "Fresh Out The Slammer",
+                "Guilty as Sin",
+                "How Did It End",
+                "I Can Do It With a Broken Heart",
+                "I Can Fix Him",
+                "I Hate It Here",
+                "I Look in People's Windows",
+                "imgonnagetyouback",
+                "loml",
+                "My Boy Only Breaks His Favorite Toys",
+                "Peter",
+                "Robin",
+                "So High School",
+                "So Long, London",
+                "thanK you aIMee",
+                "The Albatross",
+                "The Alchemy",
+                "The Black Dog",
+                "The Bolter",
+                "The Manuscript",
+                "The Prophecy",
+                "The Smallest Man Who Ever Lived",
+                "The Tortured Poets Department",
+                "Who's Afraid of Little Old Me"
             ]
         }
     }

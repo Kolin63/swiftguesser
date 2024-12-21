@@ -1,16 +1,16 @@
 {
     "taylorswift": 
     {
-        "taylorswift": false,
-        "fearless": false,
+        "taylorswift": true,
+        "fearless": true,
         "speaknow": true,
-        "red": false,
-        "1989": false,
-        "reputation": false,
-        "lover": false,
+        "red": true,
+        "1989": true,
+        "reputation": true,
+        "lover": true,
         "folklore": true,
-        "evermore": false,
-        "midnights": false,
-        "tpd": false
+        "evermore": true,
+        "midnights": true,
+        "tpd": true
     }
 }
