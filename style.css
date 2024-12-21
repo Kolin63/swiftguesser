@@ -72,6 +72,11 @@
     background-color: #EEE;
 }
 
+.search-result:focus {
+    background-color: #EEE;
+    border: none;
+}
+
 .search-background img {
     width: .6in;
     height: .6in;

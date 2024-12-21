@@ -18,6 +18,10 @@ let weightData;
 let totalSongs;
 let songList;
 let songListAlbums;
+let randomSong;
+let randomSongName;
+
+let selectedIndex = -1;
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -29,6 +33,10 @@ async function init() {
     totalSongs = await getTotalSongs();
     songList = getSongList();
     songListAlbums = getSongListAlbums();
+    randomSong = await getSong();
+    
+    audio.src = randomSong; 
+    audio.load();
 
     console.log(songList);
 }
@@ -57,12 +65,11 @@ search.addEventListener('input', function () {
 
 // Event listener for the play button
 playbutton.addEventListener('click', async function () {
+    togglePlay();
+});
+
+function togglePlay() {
     if (!playing) {
-        // Start or resume playback
-        if (!audio.src) {
-            audio.src = await getSong(); // Set the source only once
-            audio.load();
-        }
         audio.play();
         playbuttontexture.src = pausetexture;
 
@@ -82,6 +89,8 @@ playbutton.addEventListener('click', async function () {
     }
 
     playing = !playing; // Toggle the playing state
+}
+
 // Function called when a search result box is clicked
 Array.from(searchResultBoxes).forEach(box => {
     box.addEventListener('click', function () {
@@ -98,11 +107,45 @@ Array.from(searchResultBoxes).forEach(box => {
         location.reload();
     });
 });
+
+document.addEventListener('keydown', event => {
+    const key = event.key;
+
+    if (key === 'ArrowUp') {
+        selectedIndex = Math.max(selectedIndex-1, -1);
+
+        if (selectedIndex == -1) 
+            search.focus();
+        else
+            searchResultBoxes[selectedIndex].focus();
+
+    }
+    else if (key === 'ArrowDown') {
+        selectedIndex = Math.min(selectedIndex+1, 2); 
+        searchResultBoxes[selectedIndex].focus();
+    }
+    else if (event.ctrlKey && key === ' ') {
+        // Ctrl+Space
+        togglePlay();
+    }
+    else if (key === 'Enter') {
+        // Handle Enter key to select the highlighted search result
+        if (selectedIndex == -1) {
+            searchResultBoxes[0].click();
+        }
+        if (selectedIndex >= 0 && selectedIndex <= 2) {
+            searchResultBoxes[selectedIndex].click();
+        }
+    }
+    else {
+        selectedIndex = -1;
+        search.focus();
+    }
 });
 
 // Gets a random song
 async function getSong() {
-    const randomSong = getRandomInt(1, totalSongs);
+    randomSong = getRandomInt(1, totalSongs);
 
     let songIndex = 1;
     for (artist in configData) {
@@ -113,6 +156,7 @@ async function getSong() {
 
             for (song in weightData[artist][album].songs) {
                 if (songIndex == randomSong) {
+                    randomSongName = weightData[artist][album].songs[song];
                     return 'music/' + artist + '/' + album + '/' + weightData[artist][album].songs[song] + '.mp3';
                 }
 
@@ -120,6 +164,7 @@ async function getSong() {
             }
         }
     }
+
 }
 
 // Gets the total number of songs
