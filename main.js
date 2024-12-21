@@ -21,6 +21,8 @@ let songListAlbums;
 
 document.addEventListener('DOMContentLoaded', init);
 
+// This function is called when the page is loaded
+// It fetches the configuration and weight data, and initializes the song list
 async function init() {
     configData = await getConfig();
     weightData = await getWeight();
@@ -28,9 +30,10 @@ async function init() {
     songList = getSongList();
     songListAlbums = getSongListAlbums();
 
-    console.log(songList, albumCovers);
+    console.log(songList);
 }
 
+// Event listener for the search bar being typed in
 search.addEventListener('input', function () {
     const searchValue = search.value.toLowerCase().replace(/[^\w\s]/gi, ''); // Remove punctuation
     const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s]/gi, '').includes(searchValue));
@@ -78,6 +81,7 @@ playbutton.addEventListener('click', async function () {
     playing = !playing; // Toggle the playing state
 });
 
+// Gets a random song
 async function getSong() {
     const randomSong = getRandomInt(1, totalSongs);
 
@@ -99,6 +103,7 @@ async function getSong() {
     }
 }
 
+// Gets the total number of songs
 async function getTotalSongs() {
     let totalSongs = 0;
 
@@ -115,6 +120,7 @@ async function getTotalSongs() {
     return totalSongs;
 }
 
+// Gets all song names in a list
 function getSongList() {
     let list = [];
     for (let artist in configData) {
@@ -127,6 +133,7 @@ function getSongList() {
     return list;
 }
 
+// Gets the album cover paths for all songs in a list
 function getSongListAlbums() {
     let albums = [];
     for (let artist in configData) {
@@ -153,6 +160,7 @@ async function getWeight() {
     return weightData;
 }
 
+// Formats stopwatch
 function makeTimeCode() {
     let minute = Math.floor(stopwatchMS / 60000);
     let second = Math.floor(stopwatchMS / 1000);
