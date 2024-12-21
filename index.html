@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html>
-
-
-<header>
+<head>
     <title>Swift Guesser</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
-</header>
-
-
+</head>
 <body>
-    <div class="flex-container">
-        <button class="playbutton" id="playbutton">
-            <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in;" id="playbuttontexture">
-            <!-- Please don't use this to cheat thanks 👍 -->
-            <audio id="audio"></audio>
-        </button>
-    </div>
-    <div class="flex-container">
-        <time class="stopwatch" id="stopwatch">00:00.000</time>
+    <div class="text-box">
+        <h1>Swift Guesser</h1>
+        <h3>By Kolin63</h3>
+        <p>
+            Guess the Taylor Swift Song as quickly as possible!
+        </p>
     </div>
 
-    <div class="search-container">
-        <div class="search-background">
-            <input class="search" id="search" autocomplete="off" placeholder="Search">
-            <button class="search-result"></button>
-            <button class="search-result"></button>
-            <button class="search-result"></button>
-        </div>
+
+    <div class="flex-container">
+        <a href="play/" class="playbutton">
+            <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in; margin: 0;" class="playbutton">
+            <h1 style="margin:0;padding-top: 0in;font-size: .5in;text-decoration: underline;">Play</h1>
+        </a>
+    </div>
+
+
+    <div class="text-box">
+        <h2>Config</h2>
     </div>
 </body>
-
-
-<script src="main.js"></script>
-
-
 </html>

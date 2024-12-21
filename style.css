@@ -7,6 +7,8 @@
     padding: .5in;
     border: none;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .stopwatch {
@@ -102,6 +104,52 @@
     align-self: center;
     text-align: center;
     flex-direction: column;
+}
+
+p {
+    margin: 1in;
+    margin-top: 0in;
+    margin-bottom: 0in;
+    padding: .5in;
+
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+}
+
+h1 {
+    margin: 1in;
+    margin-bottom: 0in;
+    padding: .3in;
+
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0in;
+    padding: .5in;
+
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 0in;
+
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.text-box {
+    background-color: #9B7EBD;
+    border-radius: 1in;
+
+    margin: auto;
+    margin-top: 1in;
 }
 
 body {
