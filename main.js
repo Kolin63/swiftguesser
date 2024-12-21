@@ -41,10 +41,13 @@ search.addEventListener('input', function () {
     for (let i = 0; i < 3; i++) {
         searchResultBoxes[i].textContent = ""; // Clear previous content
         if (searchResults[i] != undefined) {
+            // Create an image element for the album cover
             const img = document.createElement("img");
             img.src = songListAlbums[songList.indexOf(searchResults[i])];
             img.className = "album-cover";
             searchResultBoxes[i].appendChild(img);
+
+            // Create a text node for the song name
             searchResultBoxes[i].appendChild(document.createTextNode(searchResults[i]));
         } else {
             searchResultBoxes[i].textContent = "";
