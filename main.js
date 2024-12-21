@@ -32,8 +32,8 @@ async function init() {
 }
 
 search.addEventListener('input', function () {
-    const searchValue = search.value.toLowerCase();
-    const searchResults = songList.filter(song => song.toLowerCase().includes(searchValue));
+    const searchValue = search.value.toLowerCase().replace(/[^\w\s]/gi, ''); // Remove punctuation
+    const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s]/gi, '').includes(searchValue));
 
     for (let i = 0; i < 3; i++) {
         searchResultBoxes[i].textContent = ""; // Clear previous content
