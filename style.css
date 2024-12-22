@@ -118,6 +118,20 @@ p {
     font-size: 150%;
 }
 
+ul {
+    margin: 1in;
+    margin-top: .1in;
+    padding: .5in;
+
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+}
+
+li {
+    margin-top: .1in;
+}
+
 h1 {
     margin: 1in;
     margin-bottom: 0in;
@@ -148,10 +162,26 @@ h3 {
 .text-box {
     background-color: #9B7EBD;
     border-radius: 1in;
+    max-width: 10in;
 
     margin: auto;
     margin-top: 1in;
 }
+
+label {
+    color: #EEE;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.config-box * {
+    margin-left: 1in;
+}
+
+li::marker {
+    color: #EEE;
+}
+
+
 
 body {
     background-color: #3B1E54;

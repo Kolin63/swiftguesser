@@ -9,22 +9,29 @@
     <div class="text-box">
         <h1>Swift Guesser</h1>
         <h3>By Kolin63</h3>
-        <p>
-            Guess the Taylor Swift Song as quickly as possible!
-        </p>
+        <ul style="margin-bottom: 0;">
+            <li>Guess the Taylor Swift Song as quickly as possible!</li>
+            <li>In the game, press play to start the song (or ctrl+space)</li>
+            <li>Pause it as soon as you can figure out what song it is</li>
+            <li>Search for the song in the search box</li>
+            <li>Finally, select your answer!</li>
+        </ul>
+        <p style="text-align: center;margin: 0;padding-top: 0.1in;"><a href="https://github.com/Kolin63/swift-guesser" target="_blank">GitHub</a></p>
     </div>
 
 
     <div class="flex-container">
-        <a href="play/" class="playbutton">
-            <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in; margin: 0;" class="playbutton">
-            <h1 style="margin:0;padding-top: 0in;font-size: .5in;text-decoration: underline;">Play</h1>
-        </a>
+        <img src="art/playbutton.png" alt=">" style="width: 1in; height: 1in; margin: 0;margin-top: 1in;" class="playbutton" id="playbutton">
     </div>
 
 
     <div class="text-box">
         <h2>Config</h2>
+        <div class="text-box" id="config" style="margin-left: 1in;margin-top: 0;font-size: 120%;padding-bottom: 1in;background:none;">
+        </div>
     </div>
+
+
+    <script src="main.js"></script>
 </body>
 </html>

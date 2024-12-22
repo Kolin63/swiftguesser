@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', init);
 // This function is called when the page is loaded
 // It fetches the configuration and weight data, and initializes the song list
 async function init() {
-    configData = await getConfig();
+    configData = JSON.parse(localStorage.getItem('config'));
     weightData = await getWeight();
     totalSongs = await getTotalSongs();
     songList = getSongList();
@@ -39,7 +39,8 @@ async function init() {
     audio.src = randomSong; 
     audio.load();
 
-    console.log(songList);
+    console.log("song list", songList);
+    console.log("config", configData);
 }
 
 // Event listener for the search bar being typed in
@@ -83,7 +84,7 @@ search.addEventListener('input', function () {
         box.addEventListener('click', function () {
             const boxSong = box.textContent;
 
-            if (boxSong == "") return;
+            if (boxSong == "" || stopwatchMS == 0) return;
 
             if (boxSong == randomSongName) {
                 alert("Correct!");
@@ -226,12 +227,6 @@ function getSongListAlbums() {
         }
     }
     return albums;
-}
-
-async function getConfig() {
-    const response = await fetch('../config.json');
-    const configData = await response.json();
-    return configData;
 }
 
 async function getWeight() {
