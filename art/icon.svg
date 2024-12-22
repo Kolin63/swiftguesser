@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24.029352mm"
+   height="24.029364mm"
+   viewBox="0 0 24.029352 24.029364"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect15-14-1">
+      <path
+         id="path74-4"
+         style="display:none;fill:#ea00c0;fill-opacity:0.357553;stroke:#000000;stroke-width:0"
+         d="m 103.29872,73.870225 h 41.2562 v 41.256195 h -31.59523 a 9.6609667,9.6609667 0 0 1 -9.66097,-9.66097 z" />
+      <path
+         id="lpe_path-effect15-14-3"
+         style="fill:#ea00c0;fill-opacity:0.357553;stroke:#000000;stroke-width:0"
+         class="powerclip"
+         d="M 94.925385,68.870224 H 149.55492 V 123.49976 H 94.925385 Z m 8.373335,5.000001 v 31.595225 a 9.6609667,9.6609667 0 0 0 9.66097,9.66097 h 31.59523 V 73.870225 Z" />
+    </clipPath>
+  </defs>
+  <g
+     id="layer5"
+     transform="translate(-17.601644,-259.84972)">
+    <g
+       id="g16-59-2"
+       transform="matrix(0.53841815,0,0,0.53841815,-36.199997,220.07666)"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#eeeeee;fill-opacity:1;stroke:#000000;stroke-width:0"
+         id="rect3-5-32-3"
+         width="44.629528"
+         height="44.629528"
+         x="99.925385"
+         y="73.870224"
+         ry="11.517296" />
+      <path
+         id="rect12-8-4"
+         style="fill:#ead8c0;stroke:#000000;stroke-width:0"
+         d="m 111.44268,73.870224 h 33.11224 v 33.112236 a 11.517295,11.517295 135 0 1 -11.51729,11.5173 l -21.59495,0 a 11.517295,11.517295 45 0 1 -11.517295,-11.5173 l 0,-21.594941 A 11.517295,11.517295 135 0 1 111.44268,73.870224 Z"
+         clip-path="url(#clipath_lpe_path-effect15-14-1)" />
+      <text
+         xml:space="preserve"
+         style="font-size:38.4416px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.88;stroke-dasharray:none"
+         x="111.55862"
+         y="105.84314"
+         id="text16-7-0"><tspan
+           id="tspan16-4-2"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Courier New';-inkscape-font-specification:'Courier New';fill:#000000;fill-opacity:1;stroke-width:0.88;stroke-dasharray:none"
+           x="111.55862"
+           y="105.84314">S</tspan></text>
+    </g>
+  </g>
+</svg>
