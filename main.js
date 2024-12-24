@@ -107,9 +107,3 @@ async function fetchConfig() {
     if (configData.version != currentConfig.version)
         configData = currentConfig;
 }
-
-function genLeaderboardDir() {
-    for (artist in config) {
-
-    }
-}
