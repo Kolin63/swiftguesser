@@ -15,17 +15,24 @@ document.getElementById('makeleaderboard').addEventListener('click', function() 
     makeLeaderboardJSON();
 });
 
+// This function is here for developer purposes
 function makeLeaderboardJSON() {
     for (artist in weightData) {
-        leaderboardData[artist] = {};
+        // Create a new object for the artist
+        if (leaderboardData[artist] == undefined) leaderboardData[artist] = {};
+
         for (album in weightData[artist]) {
-            leaderboardData[artist][album] = {};
+            // Create a new object for the album
+            if (leaderboardData[artist][album] == undefined) leaderboardData[artist][album] = {};
+
             for (song in weightData[artist][album].songs) {
+                // Create a new object for the song
                 const songName = weightData[artist][album].songs[song];
-                leaderboardData[artist][album][songName] = getEmptyLeaderboard();
+                if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = getEmptyLeaderboard();
             }
         } 
     }
+    updateLeaderboard(leaderboardData);
     console.log("makeLeaderboardJSON() finished", leaderboardData);
 }
 
