@@ -5,7 +5,7 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     getLeaderboard()
-    // makeLeaderboardJSON();
+    makeLeaderboardJSON();
 
     console.log("weight", weightData);
     console.log("leaderboard", leaderboardData);
@@ -25,6 +25,7 @@ function makeLeaderboardJSON() {
         for (album in weightData[artist]) {
             for (song in weightData[artist][album].songs) {
                 const songName = weightData[artist][album].songs[song];
+                console.log("songName", songName);
                 leaderboardData[artist][album][songName] = getEmptyLeaderboard();
             }
         } 
