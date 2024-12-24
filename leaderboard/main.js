@@ -38,7 +38,7 @@ async function getConfig() {
 }
 
 function getLeaderboard() {
-    fetch('http://localhost:3000/api/leaderboard')
+    fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
         return data;
