@@ -20,7 +20,6 @@ document.getElementById('makeleaderboard').addEventListener('click', function() 
 });
 
 function makeLeaderboardJSON() {
-    console.log("make leaderboard called");
     for (artist in weightData) {
         leaderboardData[artist] = {};
         for (album in weightData[artist]) {
@@ -28,11 +27,11 @@ function makeLeaderboardJSON() {
             for (song in weightData[artist][album].songs) {
                 const songName = weightData[artist][album].songs[song];
                 console.log("songName", songName);
-                leaderboardData[artist][album][songName] = [{"name": "NUL", "points": 0}] 
+                leaderboardData[artist][album][songName] = getEmptyLeaderboard();
             }
         } 
     }
-    console.log(leaderboardData);
+    console.log("makeLeaderboardJSON() finished", leaderboardData);
 }
 
 async function getWeight() {
