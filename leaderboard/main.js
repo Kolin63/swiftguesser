@@ -16,6 +16,10 @@ document.getElementById('getleaderboard').addEventListener('click', function() {
     });
 });
 
+document.getElementById('makeleaderboard').addEventListener('click', function() {
+    makeLeaderboardJSON();
+});
+
 function makeLeaderboardJSON() {
     console.log("make leaderboard called");
     for (artist in configData) {
