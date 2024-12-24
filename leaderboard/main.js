@@ -5,10 +5,6 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     getLeaderboard()
-    makeLeaderboardJSON();
-
-    console.log("weight", weightData);
-    console.log("leaderboard", leaderboardData);
 }
 
 document.getElementById('getleaderboard').addEventListener('click', function() {
@@ -39,16 +35,17 @@ async function getWeight() {
     return weightData;
 }
 
-async function getLeaderboard() {
+async function fetchLeaderboard() {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
-        console.log("getLeaderboard(): ", data);
+        console.log("fetchLeaderboard() finished: ", data);
         leaderboardData = data;
+        makeLeaderboardJSON();
     });
 }
 
-async function setLeaderboard(updatedLeaderboard) {
+async function updateLeaderboard(updatedLeaderboard) {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json', {
         method: 'POST',
         headers: {
