@@ -51,7 +51,7 @@ function getLeaderboard() {
     });
 }
 
-function setLeaderboard(newLeaderboard) {
+function setLeaderboard(updatedLeaderboard) {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json', {
         method: 'POST',
         headers: {
