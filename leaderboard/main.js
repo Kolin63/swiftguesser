@@ -26,7 +26,6 @@ function makeLeaderboardJSON() {
             leaderboardData[artist][album] = {};
             for (song in weightData[artist][album].songs) {
                 const songName = weightData[artist][album].songs[song];
-                console.log("songName", songName);
                 leaderboardData[artist][album][songName] = getEmptyLeaderboard();
             }
         } 
