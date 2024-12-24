@@ -13,6 +13,7 @@ document.getElementById('getleaderboard').addEventListener('click', function() {
     .then(data => {
         console.log('Leaderboard:', data);
         // Display leaderboard on the page
+        leaderboardData = data;
     });
 });
 
