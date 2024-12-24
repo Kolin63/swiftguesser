@@ -5,7 +5,7 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     leaderboardData = await getLeaderboard();
-    console.log(await getLeaderboard());
+    console.log("direct", await getLeaderboard());
     makeLeaderboardJSON();
 
     console.log("weight", weightData);
