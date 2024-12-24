@@ -1,4 +1,5 @@
 let configData;
+let leaderboardData;
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
@@ -19,13 +20,25 @@ function makeLeaderboardJSON() {
     for (artist in configData) {
         if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
-
+            leaderboardData[artist][album] = getEmptyLeaderboard();
         } 
     }
+    console.log(leaderboardData);
 }
 
 async function getConfig() {
     const response = await fetch('config.json');
     const configData = await response.json();
     return configData;
+}
+
+function getEmptyLeaderboard() {
+    let emptyLeaderboard = [];
+    for (let i = 0; i < 10; i++) {
+        emptyLeaderboard[i] = {
+            "name": "NUL",
+            "points": 0
+        }
+    }
+    return emptyLeaderboard;
 }
