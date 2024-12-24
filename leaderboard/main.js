@@ -37,7 +37,7 @@ function makeLeaderboardJSON() {
 }
 
 async function getConfig() {
-    const response = await fetch('config.json');
+    const response = await fetch('../config.json');
     const configData = await response.json();
     return configData;
 }
