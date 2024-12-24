@@ -17,6 +17,7 @@ document.getElementById('getleaderboard').addEventListener('click', function() {
 });
 
 function makeLeaderboardJSON() {
+    console.log("make leaderboard called");
     for (artist in configData) {
         if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
