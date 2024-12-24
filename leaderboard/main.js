@@ -5,6 +5,9 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     configData = getConfig();
     makeLeaderboardJSON();
+
+    console.log("config", configData);
+    console.log("leaderboard", leaderboardData);
 }
 
 document.getElementById('getleaderboard').addEventListener('click', function() {
