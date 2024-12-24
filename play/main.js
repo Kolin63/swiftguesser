@@ -172,6 +172,7 @@ async function getSong() {
 
     let songIndex = 1;
     for (artist in configData) {
+        if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
             // skip if the album is disabled in config
             if (!configData[artist][album])
@@ -195,6 +196,7 @@ async function getTotalSongs() {
     let totalSongs = 0;
 
     for (artist in configData) {
+        if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
             // skip if the album is disabled in config
             if (!configData[artist][album])
@@ -211,6 +213,7 @@ async function getTotalSongs() {
 function getSongList() {
     let list = [];
     for (let artist in configData) {
+        if (artist == "version" || artist == "parameters") continue;
         for (let album in configData[artist]) {
             if (configData[artist][album]) {
                 list = list.concat(weightData[artist][album].songs);
@@ -224,6 +227,7 @@ function getSongList() {
 function getSongListAlbums() {
     let albums = [];
     for (let artist in configData) {
+        if (artist == "version" || artist == "parameters") continue;
         for (let album in configData[artist]) {
             if (configData[artist][album]) {
                 const albumSongs = weightData[artist][album].songs;

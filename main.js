@@ -5,8 +5,7 @@ let configData;
 // Function called when page is loaded
 document.addEventListener('DOMContentLoaded', init);
 async function init() {
-    configData = JSON.parse(localStorage.getItem('config'));
-    // configData = await getConfig();
+    await fetchConfig();
     console.log("config", configData);
 
     buildConfig();
@@ -14,6 +13,8 @@ async function init() {
 
 function buildConfig() {
     for (artist in configData) {
+        if (artist == "version") continue;
+
         // Creates header for each artist / category
         const headercheck = document.createElement("input");
         headercheck.type = "checkbox";
@@ -52,31 +53,26 @@ function buildConfig() {
             bullet.appendChild(label);
 
             configBox.appendChild(bullet);  
+
+            // Adds event listeners to checks
+            check.addEventListener('change', function() {
+                configData[check.artist][check.album] = check.checked;
+                headercheck.checked = orArtist(configData[check.artist]);
+                storeConfig();
+            });
         }
-    }
-
-
-    // Adds event listeners to checks
-    Array.from(document.getElementsByClassName("headercheck")).forEach(element => {
-        element.addEventListener('change', function() {
-            for (album in configData[artist]) {
-                const check = document.getElementById("check" + element.artist + album);
-                check.checked = element.checked;
-                configData[artist][album] = element.checked;
+        // Adds event listeners to header check
+        headercheck.addEventListener('change', function() {
+            for (album in configData[headercheck.artist]) {
+                const check = document.getElementById("check" + headercheck.artist + album);
+                check.checked = headercheck.checked;
+                configData[headercheck.artist][album] = headercheck.checked;
                 storeConfig();
             }
         });
-    });
 
-    Array.from(document.getElementsByClassName("albumcheck")).forEach(element => {
-        element.addEventListener('change', function() {
-            const headercheck = document.getElementById("check" + artist);
-
-            configData[element.artist][element.album] = element.checked;
-            headercheck.checked = orArtist(configData[artist]);
-            storeConfig();
-        });
-    });
+        configBox.appendChild(document.createElement("br"));
+    }
 }
 
 async function getConfig() {
@@ -105,6 +101,15 @@ function storeConfig() {
     localStorage.setItem('config', JSON.stringify(configData));
 }
 
-function fetchConfig() {
+async function fetchConfig() {
+    const currentConfig = await getConfig();
     configData = JSON.parse(localStorage.getItem('config'));
+    if (configData.version != currentConfig.version)
+        configData = currentConfig;
+}
+
+function genLeaderboardDir() {
+    for (artist in config) {
+
+    }
 }

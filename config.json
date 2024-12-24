@@ -1,4 +1,9 @@
 {
+    "version": 4,
+    "parameters":
+    {
+        "comingsoon!": true
+    },
     "taylorswift": 
     {
         "taylorswift": true,
