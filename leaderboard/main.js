@@ -4,7 +4,7 @@ let leaderboardData = {};
 addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
-    getLeaderboard()
+    fetchLeaderboard()
 }
 
 document.getElementById('getleaderboard').addEventListener('click', function() {
