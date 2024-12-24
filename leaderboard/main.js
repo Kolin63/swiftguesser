@@ -20,18 +20,13 @@ document.getElementById('makeleaderboard').addEventListener('click', function() 
 });
 
 function makeLeaderboardJSON() {
-    console.log("make leaderboard called", leaderboardData);
+    console.log("make leaderboard called");
     for (artist in weightData) {
         for (album in weightData[artist]) {
             for (song in weightData[artist][album].songs) {
                 const songName = weightData[artist][album].songs[song];
-                leaderboardData[artist][album] = {
-                    "name": "NUL",
-                    "points": 0
-                }
-                console.log(leaderboardData);
+                leaderboardData[artist][album][songName] = getEmptyLeaderboard();
             }
-            console.log(artist, album);
         } 
     }
     console.log(leaderboardData);
