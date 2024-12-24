@@ -5,6 +5,8 @@ const search = document.getElementById("search");
 const searchBackground = document.getElementById("search-background");
 let searchResultBoxes = document.getElementsByClassName("search-result");
 const albumCovers = Array.from(document.getElementsByClassName("album-cover")); // Convert to array
+const pointsDisplay = document.getElementById('points');
+let points = 1000;
 
 let stopwatchMS = 0;
 let playing = false;
@@ -35,6 +37,8 @@ async function init() {
     songList = getSongList();
     songListAlbums = getSongListAlbums();
     randomSong = await getSong();
+
+    pointsDisplay.textContent = points;
     
     audio.src = randomSong; 
     audio.load();
@@ -87,7 +91,7 @@ search.addEventListener('input', function () {
             if (boxSong == "" || stopwatchMS == 0) return;
 
             if (boxSong == randomSongName) {
-                alert("Correct!");
+                alert("Correct, the song was " + randomSongName + "\nPoints: " + points);
             }
             else {
                 alert("Incorrect! The correct song was " + randomSongName);
@@ -112,7 +116,9 @@ function togglePlay() {
             stopwatchMS = audio.currentTime * 1000; // Update stopwatch with audio's current time in milliseconds
             const seconds = (stopwatchMS / 1000).toFixed(1);
             stopwatch.textContent = makeTimeCode();
-        }, 1); // Update every 100ms
+            points = Math.ceil(Math.max(-10 * Math.pow(seconds, 10) + 1000, 0));
+            pointsDisplay.textContent = points;
+        }, 1); // Update every 1ms
     } else {
         // Pause playback and save position
         audio.pause();

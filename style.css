@@ -26,6 +26,11 @@
     cursor: default;
 }
 
+#points {
+    padding: 0;
+    margin-top: .3in;
+}
+
 .flex-container {
     display: flex;
     justify-content: center;
