@@ -42,7 +42,7 @@ async function getWeight() {
     return weightData;
 }
 
-async function fetchLeaderboard() {
+function fetchLeaderboard() {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
@@ -52,7 +52,7 @@ async function fetchLeaderboard() {
     });
 }
 
-async function updateLeaderboard(updatedLeaderboard) {
+function updateLeaderboard(updatedLeaderboard) {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json', {
         method: 'POST',
         headers: {
@@ -62,7 +62,7 @@ async function updateLeaderboard(updatedLeaderboard) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data.message);
+        console.log("Leaderboard Updated", data.message);
     });
 }
 
