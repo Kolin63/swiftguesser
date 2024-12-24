@@ -27,6 +27,7 @@ function makeLeaderboardJSON() {
         if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
             leaderboardData[artist][album] = getEmptyLeaderboard();
+            console.log(artist, album);
         } 
     }
     console.log(leaderboardData);
