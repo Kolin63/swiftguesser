@@ -41,6 +41,7 @@ function getLeaderboard() {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
+        console.log("getLeaderboard(): ", data);
         return data;
     });
 }
