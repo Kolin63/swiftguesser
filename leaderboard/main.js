@@ -38,13 +38,7 @@ async function getConfig() {
 }
 
 function getLeaderboard() {
-    fetch('http://localhost:3000/api/leaderboard', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedLeaderboard)
-    })
+    fetch('http://localhost:3000/api/leaderboard')
     .then(response => response.json())
     .then(data => {
         return data;
