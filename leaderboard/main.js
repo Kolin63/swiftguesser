@@ -37,7 +37,7 @@ async function getConfig() {
     return configData;
 }
 
-function getLeaderboard() {
+async function getLeaderboard() {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
@@ -46,7 +46,7 @@ function getLeaderboard() {
     });
 }
 
-function setLeaderboard(updatedLeaderboard) {
+async function setLeaderboard(updatedLeaderboard) {
     fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json', {
         method: 'POST',
         headers: {
