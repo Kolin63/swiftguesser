@@ -5,15 +5,50 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     fetchLeaderboard()
+    buildSelectionBar();
 }
 
-document.getElementById('getleaderboard').addEventListener('click', function() {
-    console.log(leaderboardData);
-});
+const artistSelect = document.getElementById('select-artist');
+const albumSelect = document.getElementById('select-album');
+const songSelect = document.getElementById('select-song');
+// artistSelect.addEventListener('change', artistSelectChange());
+// albumSelect.addEventListener('change', albumSelectChange());
+// songSelect.addEventListener('change', songSelectChange());
+artistSelect.onchange = (event) => {artistSelectChange()};
+albumSelect.onchange = (event) => {albumSelectChange()};
+songSelect.onchange = (event) => {};
 
-document.getElementById('makeleaderboard').addEventListener('click', function() {
-    makeLeaderboardJSON();
-});
+function buildSelectionBar() {
+    artistSelect.innerHTML = '';
+    for (artist in weightData) {
+        // Create a new object for the artist
+        const artistOption = document.createElement("option");
+        artistOption.textContent = artist;
+        artistSelect.appendChild(artistOption);
+    }
+    artistSelectChange();
+}
+
+function artistSelectChange() {
+    albumSelect.innerHTML = '';
+    for (album in weightData[artistSelect.value]) {
+        // Create a new object for the album
+        const albumOption = document.createElement("option");
+        albumOption.textContent = album;
+        albumSelect.appendChild(albumOption); 
+    } 
+    albumSelectChange(); 
+}
+
+function albumSelectChange() {
+    songSelect.innerHTML = '';
+    for (song in weightData[artistSelect.value][albumSelect.value].songs) {
+        // Create a new object for the song
+        const songOption = document.createElement("option");
+        songOption.textContent = weightData[artistSelect.value][albumSelect.value].songs[song];
+        songSelect.appendChild(songOption);
+    }
+}
 
 // This function is here for developer purposes
 function makeLeaderboardJSON() {
