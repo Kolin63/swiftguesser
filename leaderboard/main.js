@@ -4,6 +4,7 @@ let leaderboardData;
 addEventListener('DOMContentLoaded', init);
 async function init() {
     configData = await getConfig();
+    leaderboardData = getLeaderboard();
     makeLeaderboardJSON();
 
     console.log("config", configData);
@@ -11,13 +12,7 @@ async function init() {
 }
 
 document.getElementById('getleaderboard').addEventListener('click', function() {
-    fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json')
-    .then(response => response.json())
-    .then(data => {
-        console.log('Leaderboard:', data);
-        // Display leaderboard on the page
-        leaderboardData = data;
-    });
+    console.log(leaderboardData);
 });
 
 document.getElementById('makeleaderboard').addEventListener('click', function() {
@@ -40,6 +35,34 @@ async function getConfig() {
     const response = await fetch('../config.json');
     const configData = await response.json();
     return configData;
+}
+
+function getLeaderboard() {
+    fetch('http://localhost:3000/api/leaderboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedLeaderboard)
+    })
+    .then(response => response.json())
+    .then(data => {
+        return data;
+    });
+}
+
+function setLeaderboard(newLeaderboard) {
+    fetch('https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedLeaderboard)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+    });
 }
 
 function getEmptyLeaderboard() {
