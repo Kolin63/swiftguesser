@@ -4,7 +4,7 @@ let leaderboardData;
 addEventListener('DOMContentLoaded', init);
 async function init() {
     configData = await getConfig();
-    leaderboardData = getLeaderboard();
+    leaderboardData = await getLeaderboard();
     makeLeaderboardJSON();
 
     console.log("config", configData);
