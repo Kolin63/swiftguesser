@@ -16,7 +16,7 @@ app.use(express.json());
 const leaderboardPath = path.join(__dirname, 'leaderboard.json');
 
 // Endpoint to get leaderboard data
-app.get('/api/leaderboard', (req, res) => {
+app.get('/leaderboard', (req, res) => {
     fs.readFile(leaderboardPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading leaderboard file:', err);
@@ -27,7 +27,7 @@ app.get('/api/leaderboard', (req, res) => {
 });
 
 // Endpoint to update leaderboard data
-app.post('/api/leaderboard', (req, res) => {
+app.post('/leaderboard', (req, res) => {
     const newData = req.body; // Data sent from the frontend
     fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
         if (err) {
