@@ -5,7 +5,8 @@ let configData;
 // Function called when page is loaded
 document.addEventListener('DOMContentLoaded', init);
 async function init() {
-    configData = await getConfig();
+    configData = JSON.parse(localStorage.getItem('config'));
+    // configData = await getConfig();
     console.log("config", configData);
 
     buildConfig();
@@ -62,6 +63,7 @@ function buildConfig() {
                 const check = document.getElementById("check" + element.artist + album);
                 check.checked = element.checked;
                 configData[artist][album] = element.checked;
+                storeConfig();
             }
         });
     });
@@ -72,8 +74,7 @@ function buildConfig() {
 
             configData[element.artist][element.album] = element.checked;
             headercheck.checked = orArtist(configData[artist]);
-
-            console.log("config", configData);
+            storeConfig();
         });
     });
 }
@@ -93,7 +94,17 @@ function orArtist(artist) {
     return or;
 }
 
-document.getElementById('playbutton').addEventListener('click', async function() {
+Array.from(document.getElementsByClassName('playbutton')).forEach(element => {
+    element.addEventListener('click', async function() {
+        storeConfig();
+        window.location.href = '/play';
+    });
+})
+
+function storeConfig() {
     localStorage.setItem('config', JSON.stringify(configData));
-    window.location.href = '/play';
-});
+}
+
+function fetchConfig() {
+    configData = JSON.parse(localStorage.getItem('config'));
+}

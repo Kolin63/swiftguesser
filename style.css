@@ -11,6 +11,11 @@
     align-items: center;
 }
 
+.playbuttonbig {
+    margin-top: .5in;
+    padding: 0;
+}
+
 .stopwatch {
     color: #EEE;
     font-size: .75in;
