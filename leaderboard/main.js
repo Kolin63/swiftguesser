@@ -1,13 +1,13 @@
-let configData;
+let weightData;
 let leaderboardData;
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
-    configData = await getConfig();
+    weightData = await getWeight();
     leaderboardData = await getLeaderboard();
     makeLeaderboardJSON();
 
-    console.log("config", configData);
+    console.log("weight", weightData);
     console.log("leaderboard", leaderboardData);
 }
 
@@ -20,21 +20,27 @@ document.getElementById('makeleaderboard').addEventListener('click', function() 
 });
 
 function makeLeaderboardJSON() {
-    console.log("make leaderboard called");
-    for (artist in configData) {
-        if (artist == "version" || artist == "parameters") continue;
-        for (album in configData[artist]) {
-            leaderboardData[artist][album] = getEmptyLeaderboard();
+    console.log("make leaderboard called", leaderboardData);
+    for (artist in weightData) {
+        for (album in weightData[artist]) {
+            for (song in weightData[artist][album].songs) {
+                const songName = weightData[artist][album].songs[song];
+                leaderboardData[artist][album] = {
+                    "name": "NUL",
+                    "points": 0
+                }
+                console.log(leaderboardData);
+            }
             console.log(artist, album);
         } 
     }
     console.log(leaderboardData);
 }
 
-async function getConfig() {
-    const response = await fetch('../config.json');
-    const configData = await response.json();
-    return configData;
+async function getWeight() {
+    const response = await fetch('../weight.json');
+    const weightData = await response.json();
+    return weightData;
 }
 
 async function getLeaderboard() {
