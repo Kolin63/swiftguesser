@@ -7,7 +7,7 @@ async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
     buildSelectionBar();
-    fetchLeaderboard();
+    await fetchLeaderboard();
     makeLeaderboardJSON();
 }
 
@@ -111,9 +111,6 @@ async function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
     });
-
-    // leaderboardData = (await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json")).json;
-    // console.log("fetchLeaderboard(): ", leaderboardData);
 }
 
 async function updateLeaderboard() {
