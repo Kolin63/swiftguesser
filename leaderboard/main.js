@@ -6,7 +6,8 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
-    fetchLeaderboard();
+    fetchLeaderboard()
+        .then(makeLeaderboardJSON());
     buildSelectionBar();
 }
 
@@ -103,7 +104,6 @@ function fetchLeaderboard() {
     .then(data => {
         console.log("fetchLeaderboard() finished: ", data);
         leaderboardData = data;
-        makeLeaderboardJSON();
     });
 }
 
@@ -119,6 +119,7 @@ async function updateLeaderboard(updatedLeaderboard) {
     const response = await rawResponse.json();
 
     console.log("updateLeaderboard(): ", response);
+    fetchLeaderboard();
 
     // fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json",
     //     {
