@@ -6,9 +6,9 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
-    fetchLeaderboard()
-        .then(makeLeaderboardJSON());
     buildSelectionBar();
+    await fetchLeaderboard();
+    makeLeaderboardJSON();
 }
 
 const artistSelect = document.getElementById('select-artist');
@@ -98,7 +98,7 @@ async function getWeight() {
     return weightData;
 }
 
-function fetchLeaderboard() {
+async function fetchLeaderboard() {
     fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => response.json())
     .then(data => {
