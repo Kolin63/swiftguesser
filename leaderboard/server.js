@@ -23,6 +23,7 @@ app.get('/leaderboard/leaderboard.json', (req, res) => {
             console.error('Error reading leaderboard file:', err);
             return res.status(500).json({ error: 'Failed to read leaderboard data' });
         }
+        res.send(JSON.parse(data));
         res.json(JSON.parse(data));
     });
 });
