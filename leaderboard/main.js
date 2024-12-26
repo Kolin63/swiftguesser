@@ -83,7 +83,7 @@ function makeLeaderboardJSON() {
                 if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = {};
 
                 // Create a new object for the selected parameters
-                if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] = getEmptyLeaderboard();
+                if (leaderboardData[artist][album][songName].parameters == undefined) leaderboardData[artist][album][songName].parameters = getEmptyLeaderboard();
             }
         } 
     }
