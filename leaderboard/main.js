@@ -6,7 +6,7 @@ addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
-    fetchLeaderboard()
+    fetchLeaderboard();
     buildSelectionBar();
 }
 
