@@ -89,7 +89,7 @@ function makeLeaderboardJSON() {
         } 
     }
     console.log("makeLeaderboardJSON() finished", leaderboardData);
-    updateLeaderboard(leaderboardData);
+    updateLeaderboard();
 }
 
 async function getWeight() {
@@ -107,7 +107,7 @@ async function fetchLeaderboard() {
     });
 }
 
-async function updateLeaderboard(updatedLeaderboard) {
+async function updateLeaderboard() {
     const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json", {
         method: "POST",
         headers: {
