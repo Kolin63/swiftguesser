@@ -104,7 +104,7 @@ document.getElementById("refresh-leaderboard").addEventListener("click", functio
 });
 
 async function fetchLeaderboard() {
-    fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json:3000')
+    fetch('https://swiftguesser.kolin63.com:3000/leaderboard/leaderboard.json')
     .then(response => {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
@@ -119,7 +119,7 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json:3000", {
+    const rawResponse = await fetch("https://swiftguesser.kolin63.com:3000/leaderboard/leaderboard.json", {
         method: "POST",
         headers: {
             "Accept": "application/json",
