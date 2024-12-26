@@ -111,6 +111,7 @@ async function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
     });
+    return;
 }
 
 async function updateLeaderboard() {
