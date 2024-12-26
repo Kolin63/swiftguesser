@@ -104,7 +104,8 @@ document.getElementById("refresh-leaderboard").addEventListener("click", functio
 });
 
 async function fetchLeaderboard() {
-    fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
+    // fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
+    fetch('/leaderboard/leaderboard.json')
     .then(response => {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
@@ -119,7 +120,8 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json", {
+    // const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json", {
+    const rawResponse = await fetch("/leaderboard/leaderboard.json", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -130,15 +132,6 @@ async function updateLeaderboard() {
     const response = await rawResponse.json();
 
     console.log("updateLeaderboard(): ", response);
-
-    // fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json",
-    //     {
-    //         method: "POST",
-    //         body: leaderboardData
-    //     }
-    // )
-
-    // console.log("Leaderboard Updated");
 }
 
 function getEmptyLeaderboard() {

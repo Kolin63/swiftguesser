@@ -16,7 +16,7 @@ app.use(express.json());
 const leaderboardPath = "~/leaderboard/leaderboard.json";
 
 // Endpoint to get leaderboard data
-app.get('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json', (req, res) => {
+app.get('/leaderboard/leaderboard.json', (req, res) => {
     fs.readFile(leaderboardPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading leaderboard file:', err);
@@ -27,7 +27,7 @@ app.get('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json', (req, r
 });
 
 // Endpoint to update leaderboard data
-app.post('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json', (req, res) => {
+app.post('/leaderboard/leaderboard.json', (req, res) => {
     const newData = req.body; // Data sent from the frontend
     fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
         if (err) {
