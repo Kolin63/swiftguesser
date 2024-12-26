@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Path to the leaderboard JSON file
-const leaderboardPath = "/leaderboard/leaderboard.json";
+const leaderboardPath = "leaderboard.json";
 
 // Endpoint to get leaderboard data
 app.get('/leaderboard/leaderboard.json', (req, res) => {
