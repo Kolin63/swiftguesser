@@ -98,6 +98,11 @@ async function getWeight() {
     return weightData;
 }
 
+document.getElementById("refresh-leaderboard").addEventListener("click", function () {
+    console.log("Refreshing leaderboard");
+    fetchLeaderboard();
+});
+
 async function fetchLeaderboard() {
     fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
     .then(response => {
@@ -147,4 +152,3 @@ function getEmptyLeaderboard() {
     return emptyLeaderboard;
 }
 
-document.getElementById("refresh-leaderboard").addEventListener("click", fetchLeaderboard());
