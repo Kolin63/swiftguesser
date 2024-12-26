@@ -5,7 +5,7 @@ let leaderboardData = {};
 addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
-    configData = await getConfig();
+    configData = JSON.parse(localStorage.getItem('config'));
     fetchLeaderboard()
     buildSelectionBar();
 }
@@ -91,12 +91,6 @@ async function getWeight() {
     const response = await fetch('../weight.json');
     const weightData = await response.json();
     return weightData;
-}
-
-async function getConfig() {
-    const response = await fetch('../config.json');
-    const configData = await response.json();
-    return configData;
 }
 
 function fetchLeaderboard() {
