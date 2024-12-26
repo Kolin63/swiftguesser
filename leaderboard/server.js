@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Path to the leaderboard JSON file
-const leaderboardPath = path.join(__dirname, 'leaderboard.json');
+const leaderboardPath = "~/leaderboard/leaderboard.json";
 
 // Endpoint to get leaderboard data
 app.get('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json', (req, res) => {
