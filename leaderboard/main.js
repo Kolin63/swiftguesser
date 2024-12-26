@@ -81,6 +81,9 @@ function makeLeaderboardJSON() {
                 // Create a new object for the song
                 const songName = weightData[artist][album].songs[song];
                 if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = {};
+
+                // Create a new object for the selected parameters
+                if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] = getEmptyLeaderboard();
             }
         } 
     }
