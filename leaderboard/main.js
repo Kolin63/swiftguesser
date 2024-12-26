@@ -7,7 +7,7 @@ async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
     buildSelectionBar();
-    await fetchLeaderboard();
+    fetchLeaderboard();
     makeLeaderboardJSON();
 }
 
