@@ -11,12 +11,9 @@ async function init() {
 const artistSelect = document.getElementById('select-artist');
 const albumSelect = document.getElementById('select-album');
 const songSelect = document.getElementById('select-song');
-// artistSelect.addEventListener('change', artistSelectChange());
-// albumSelect.addEventListener('change', albumSelectChange());
-// songSelect.addEventListener('change', songSelectChange());
 artistSelect.onchange = (event) => {artistSelectChange()};
 albumSelect.onchange = (event) => {albumSelectChange()};
-songSelect.onchange = (event) => {};
+songSelect.onchange = (event) => {songSelctChange()};
 
 function buildSelectionBar() {
     artistSelect.innerHTML = '';
@@ -48,10 +45,27 @@ function albumSelectChange() {
         songOption.textContent = weightData[artistSelect.value][albumSelect.value].songs[song];
         songSelect.appendChild(songOption);
     }
+    songSelectChange();
+}
+
+function songSelectChange() {
+    const container = document.getElementById("leaderboard-container");
+    for (i in document.getElementsByClassName("lb-result"))
+        container.removeChild(i);
+
 }
 
 // This function is here for developer purposes
 function makeLeaderboardJSON() {
+    // Make a string representing enabled parameters
+    let parameters = "";
+    for (parameter in configData[parameters])
+    {
+        if (parameter)
+            parameters = parameters.concat(parameter);
+    }
+    console.log("parameters: ", parameters);
+
     for (artist in weightData) {
         // Create a new object for the artist
         if (leaderboardData[artist] == undefined) leaderboardData[artist] = {};
@@ -63,7 +77,7 @@ function makeLeaderboardJSON() {
             for (song in weightData[artist][album].songs) {
                 // Create a new object for the song
                 const songName = weightData[artist][album].songs[song];
-                if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = getEmptyLeaderboard();
+                if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = {};
             }
         } 
     }

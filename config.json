@@ -1,8 +1,9 @@
 {
-    "version": 7,
+    "version": 9,
     "parameters":
     {
-        "comingsoon!": true
+        "nopuase": false,
+        "timedpause": false
     },
     "taylorswift": 
     {
