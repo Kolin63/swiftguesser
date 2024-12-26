@@ -7,8 +7,7 @@ async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
     buildSelectionBar();
-    await fetchLeaderboard();
-    makeLeaderboardJSON();
+    fetchLeaderboard();
 }
 
 const artistSelect = document.getElementById('select-artist');
@@ -111,7 +110,7 @@ async function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
     });
-    return;
+    makeLeaderboardJSON();
 }
 
 async function updateLeaderboard() {
