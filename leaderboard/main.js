@@ -107,7 +107,7 @@ async function fetchLeaderboard() {
     //     leaderboardData = data;
     // });
 
-    leaderboardData = fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json");
+    leaderboardData = (await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json")).json;
     console.log("fetchLeaderboard(): ", leaderboardData);
 }
 
