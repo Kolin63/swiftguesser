@@ -53,8 +53,9 @@ function albumSelectChange() {
 
 function songSelectChange() {
     const container = document.getElementById("leaderboard-container");
-    for (i in document.getElementsByClassName("lb-result"))
-        container.removeChild(i);
+    for (i in document.getElementsByClassName("lb-result")) {
+        // container.removeChild(i);
+    }
 
 }
 
