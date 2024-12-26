@@ -63,7 +63,7 @@ function makeLeaderboardJSON() {
     let parameters = "";
     for (parameter in configData["parameters"])
     {
-        if (parameter)
+        if (configData["parameters"][parameter] == true)
             parameters = parameters.concat(parameter);
     }
     console.log("parameters: ", parameters);
