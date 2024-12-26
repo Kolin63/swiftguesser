@@ -104,6 +104,6 @@ function storeConfig() {
 async function fetchConfig() {
     const currentConfig = await getConfig();
     configData = JSON.parse(localStorage.getItem('config'));
-    if (configData.version != currentConfig.version)
+    if (configData == null || configData == undefined || configData.version != currentConfig.version)
         configData = currentConfig;
 }
