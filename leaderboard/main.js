@@ -89,7 +89,6 @@ function makeLeaderboardJSON() {
         } 
     }
     console.log("makeLeaderboardJSON() finished", leaderboardData);
-    updateLeaderboard();
 }
 
 async function getWeight() {
