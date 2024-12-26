@@ -108,26 +108,26 @@ function fetchLeaderboard() {
 }
 
 async function updateLeaderboard(updatedLeaderboard) {
-    // const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json", {
-    //     method: "POST",
-    //     headers: {
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(leaderboardData)
-    // });
-    // const response = await rawResponse.json();
+    const rawResponse = await fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(leaderboardData)
+    });
+    const response = await rawResponse.json();
 
-    // console.log("updateLeaderboard(): ", response);
+    console.log("updateLeaderboard(): ", response);
 
-    fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json",
-        {
-            method: "POST",
-            body: leaderboardData
-        }
-    )
+    // fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json",
+    //     {
+    //         method: "POST",
+    //         body: leaderboardData
+    //     }
+    // )
 
-    console.log("Leaderboard Updated");
+    // console.log("Leaderboard Updated");
 }
 
 function getEmptyLeaderboard() {
