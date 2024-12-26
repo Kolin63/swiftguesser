@@ -66,6 +66,7 @@ function makeLeaderboardJSON() {
         if (configData["parameters"][parameter] == true)
             parameters = parameters.concat(parameter);
     }
+    if (parameters == "") parameters = "none";
     console.log("parameters: ", parameters);
 
     for (artist in weightData) {
