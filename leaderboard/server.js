@@ -4,11 +4,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
-const https = require('https');
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/swiftguesser.kolin63.com/privkey.pem');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/swiftguesser.kolin63.com/fullchain.pem');
 
-const credentials = { key: privateKey, cert: certificate };
 const app = express();
 const PORT = 3000;
 
@@ -44,9 +40,7 @@ app.post('/leaderboard/leaderboard.json', (req, res) => {
     });
 });
 
-const httpsServer = https.createServer(credentials, app);
-
 // Start the server
-httpsServer.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
