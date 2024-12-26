@@ -88,6 +88,7 @@ function makeLeaderboardJSON() {
             }
         } 
     }
+    updateLeaderboard();
     console.log("makeLeaderboardJSON() finished", leaderboardData);
 }
 
@@ -124,7 +125,6 @@ async function updateLeaderboard() {
     const response = await rawResponse.json();
 
     console.log("updateLeaderboard(): ", response);
-    fetchLeaderboard();
 
     // fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json",
     //     {
