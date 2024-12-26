@@ -109,8 +109,8 @@ async function fetchLeaderboard() {
     .then(json => {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
+        makeLeaderboardJSON();
     });
-    makeLeaderboardJSON();
 }
 
 async function updateLeaderboard() {
@@ -146,3 +146,5 @@ function getEmptyLeaderboard() {
     }
     return emptyLeaderboard;
 }
+
+document.getElementById("refresh-leaderboard").addEventListener("click", fetchLeaderboard);
