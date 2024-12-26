@@ -15,7 +15,7 @@ const albumSelect = document.getElementById('select-album');
 const songSelect = document.getElementById('select-song');
 artistSelect.onchange = (event) => {artistSelectChange()};
 albumSelect.onchange = (event) => {albumSelectChange()};
-songSelect.onchange = (event) => {songSelctChange()};
+songSelect.onchange = (event) => {songSelectChange()};
 
 function buildSelectionBar() {
     artistSelect.innerHTML = '';
@@ -104,7 +104,6 @@ function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", data);
         leaderboardData = data;
         makeLeaderboardJSON();
-        updateLeaderboard(leaderboardData);
     });
 }
 
