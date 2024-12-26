@@ -1,8 +1,8 @@
 {
-    "version": 9,
+    "version": 10,
     "parameters":
     {
-        "nopuase": false,
+        "nopause": false,
         "timedpause": false
     },
     "taylorswift": 
