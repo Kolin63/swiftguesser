@@ -61,7 +61,7 @@ function songSelectChange() {
 function makeLeaderboardJSON() {
     // Make a string representing enabled parameters
     let parameters = "";
-    for (parameter in configData[parameters])
+    for (parameter in configData["parameters"])
     {
         if (parameter)
             parameters = parameters.concat(parameter);
