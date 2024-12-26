@@ -105,5 +105,18 @@ async function fetchConfig() {
     const currentConfig = await getConfig();
     configData = JSON.parse(localStorage.getItem('config'));
     if (configData == null || configData == undefined || configData.version != currentConfig.version)
+    {
+        const oldConfig = configData;
         configData = currentConfig;
+
+        for (artist in oldConfig)
+        {
+            for (album in oldConfig[artist])
+            {
+                const x = currentConfig[artist][album];
+                if (x != undefined && x != null)
+                    currentConfig[artist][album] = oldConfig[artist][album];
+            }
+        }
+    }
 }
