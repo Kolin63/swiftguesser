@@ -100,12 +100,15 @@ async function getWeight() {
 }
 
 async function fetchLeaderboard() {
-    fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
-    .then(response => response.json())
-    .then(data => {
-        console.log("fetchLeaderboard() finished: ", data);
-        leaderboardData = data;
-    });
+    // fetch('https://swiftguesser.kolin63.com/leaderboard/leaderboard.json')
+    // .then(response => response.json())
+    // .then(data => {
+    //     console.log("fetchLeaderboard() finished: ", data);
+    //     leaderboardData = data;
+    // });
+
+    leaderboardData = fetch("https://swiftguesser.kolin63.com/leaderboard/leaderboard.json");
+    console.log("fetchLeaderboard(): ", leaderboardData);
 }
 
 async function updateLeaderboard() {
