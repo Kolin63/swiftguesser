@@ -147,4 +147,4 @@ function getEmptyLeaderboard() {
     return emptyLeaderboard;
 }
 
-document.getElementById("refresh-leaderboard").addEventListener("click", fetchLeaderboard);
+document.getElementById("refresh-leaderboard").addEventListener("click", fetchLeaderboard());
