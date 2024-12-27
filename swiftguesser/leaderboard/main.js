@@ -121,17 +121,17 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    const rawResponse = await fetch(leaderboardPath, {
-        method: "POST",
+    fetch(leaderboardPath, {
+        method: 'POST',
         headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
-        body: leaderboardData
+        body: JSON.stringify(leaderboardData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
     });
-    const response = await rawResponse.json();
-
-    console.log("updateLeaderboard(): ", response);
 }
 
 function getEmptyLeaderboard() {
