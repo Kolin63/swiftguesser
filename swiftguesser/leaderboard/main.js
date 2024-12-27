@@ -85,7 +85,7 @@ function makeLeaderboardJSON() {
 
                 // Create a new object for the selected parameters
                 if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] =
-                    ["NULNULNULNULNULNULNULNULNULNUL", "0000000000000000000000000000000000000000"];
+                    "NULNULNULNULNULNULNULNULNULNUL0000000000000000000000000000000000000000";
             }
         } 
     }
