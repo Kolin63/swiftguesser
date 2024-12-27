@@ -104,7 +104,7 @@ document.getElementById("refresh-leaderboard").addEventListener("click", functio
 });
 
 async function fetchLeaderboard() {
-    fetch('/leaderboard/leaderboard.json')
+    fetch('/leaderboard')
     .then(response => {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
@@ -119,7 +119,7 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    const rawResponse = await fetch("/leaderboard/leaderboard.json", {
+    const rawResponse = await fetch("/leaderboard", {
         method: "POST",
         headers: {
             "Accept": "application/json",
