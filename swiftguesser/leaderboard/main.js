@@ -111,11 +111,10 @@ async function fetchLeaderboard() {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
         }
-        console.log("fetchLeaderboard(): ", JSON.parse(response.json()));
         return response.json();
     }) 
     .then(json => {
-        console.log("fetchLeaderboard() finished: ", json);
+        console.log("fetchLeaderboard() finished: ", JSON.parse(json));
         leaderboardData = json;
         makeLeaderboardJSON();
     });
