@@ -1,9 +1,9 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors');
+var express = require('express');
+var fs = require('fs');
+var path = require('path');
+var cors = require('cors');
 
-const app = express();
+var app = express();
 const PORT = 3000;
 
 // Middleware
