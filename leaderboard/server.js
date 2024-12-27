@@ -10,18 +10,19 @@ const PORT = 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+// app.use(express.json());
 
 // Path to the leaderboard JSON file
-const leaderboardPath = "https://www.swiftguesser.kolin63.com/leaderboard/leaderboard.json";
+const leaderboardPath = "/leaderboard/leaderboard.json";
 
 // Endpoint to get leaderboard data
-app.get(leaderboardPath, (req, res) => {
+app.get("/leaderboard", (req, res) => {
     res.send("GET request");
+    res.json({ "colin": 63 });
 });
 
 // Endpoint to update leaderboard data
-app.post(leaderboardPath, (req, res) => {
+app.post("/leaderboard", (req, res) => {
     res.send("POST request");
 });
 
