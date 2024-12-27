@@ -127,7 +127,7 @@ async function updateLeaderboard() {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(leaderboardData)
+        body: leaderboardData
     });
     const response = await rawResponse.json();
 
