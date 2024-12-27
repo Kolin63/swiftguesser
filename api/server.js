@@ -11,22 +11,29 @@ app.use(cors());
 app.use(express.json());
 
 // Path to the leaderboard JSON file
-const leaderboardPath = "leaderboard.json";
+const leaderboardPath = path.join(__dirname, 'leaderboard.json');
 
 // Endpoint to get leaderboard data
-app.get("/", (req, res) => {
-    fs.readFile(leaderboardPath, function (err, data) {
-        if (err) throw err;
-        res.json(data);
+app.get('/', (req, res) => {
+    fs.readFile(leaderboardPath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading leaderboard file:', err);
+            return res.status(500).json({ error: 'Failed to read leaderboard data' });
+        }
+        res.json(JSON.parse(data));
     });
 });
 
 // Endpoint to update leaderboard data
-app.post("/", (req, res) => {
-    fs.writeFile(leaderboardPath, req, function (err) {
-        if (err) throw err;
-        res.json({ "msg": "Leaderboard Updated!" });
-    })
+app.post('/', (req, res) => {
+    const newData = req.body; // Data sent from the frontend
+    fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
+        if (err) {
+            console.error('Error writing to leaderboard file:', err);
+            return res.status(500).json({ error: 'Failed to save leaderboard data' });
+        }
+        res.json({ message: 'Leaderboard updated successfully!' });
+    });
 });
 
 // Start the server
