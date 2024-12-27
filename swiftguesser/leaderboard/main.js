@@ -111,6 +111,7 @@ async function fetchLeaderboard() {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
         }
+        console.log("fetchLeaderboard(): ", response.json());
         return response.json();
     }) 
     .then(json => {
