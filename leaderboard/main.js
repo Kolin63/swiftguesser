@@ -103,8 +103,10 @@ document.getElementById("refresh-leaderboard").addEventListener("click", functio
     fetchLeaderboard();
 });
 
+const leaderboardPath = "http://localhost:3000/leaderboard/leaderboard.json";
+
 async function fetchLeaderboard() {
-    fetch('/leaderboard/leaderboard.json')
+    fetch(leaderboardPath)
     .then(response => {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
@@ -119,7 +121,7 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    const rawResponse = await fetch("/leaderboard/leaderboard.json", {
+    const rawResponse = await fetch(leaderboardPath, {
         method: "POST",
         headers: {
             "Accept": "application/json",
