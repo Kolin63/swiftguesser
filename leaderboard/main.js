@@ -103,7 +103,7 @@ document.getElementById("refresh-leaderboard").addEventListener("click", functio
     fetchLeaderboard();
 });
 
-const leaderboardPath = "https://www.swiftguesser.kolin63.com/leaderboard/api";
+const leaderboardPath = "/leaderboard/api";
 
 async function fetchLeaderboard() {
     fetch(leaderboardPath)
