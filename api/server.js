@@ -18,13 +18,13 @@ const leaderboardPath = "leaderboard.json";
 app.get("/", (req, res) => {
     fs.readFile(leaderboardPath, function (err, data) {
         if (err) throw err;
-        res.json(stringify(data));
+        res.json(JSON.stringify(data));
     });
 });
 
 // Endpoint to update leaderboard data
 app.post("/", (req, res) => {
-    fs.writeFile(leaderboardPath, stringify(req), function (err) {
+    fs.writeFile(leaderboardPath, req, function (err) {
         if (err) throw err;
         res.json({ "msg": "Leaderboard Updated!" });
     })
