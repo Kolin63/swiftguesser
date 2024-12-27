@@ -18,7 +18,7 @@ const leaderboardPath = "leaderboard.json";
 app.get("/", (req, res) => {
     fs.readFile(leaderboardPath, function (err, data) {
         if (err) throw err;
-        res.json(JSON.parse(data));
+        res.json(data);
     });
 });
 
