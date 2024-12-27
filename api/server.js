@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var cors = require('cors');
+const bodyParser = require('body-parser');
 
 var app = express();
 const PORT = 3000;
@@ -9,6 +10,8 @@ const PORT = 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json({limit: '1000mb'}));
+app.use(bodyParser.urlencoded({limit: '1000mb', extended: true}));
 
 // Path to the leaderboard JSON file
 const leaderboardPath = path.join(__dirname, 'leaderboard.json');
