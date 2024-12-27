@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var cors = require('cors');
+const bodyParser = require('body-parser');
 
 var app = express();
 const PORT = 3000;
