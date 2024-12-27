@@ -116,7 +116,7 @@ async function fetchLeaderboard() {
     .then(json => {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
-        // makeLeaderboardJSON();
+        makeLeaderboardJSON();
     });
 }
 

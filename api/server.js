@@ -11,15 +11,21 @@ app.use(cors());
 app.use(express.json());
 
 // Path to the leaderboard JSON file
-const leaderboardPath = "/leaderboard/api/leaderboard.json";
+const leaderboardPath = "leaderboard.json";
 
 // Endpoint to get leaderboard data
 app.get("/", (req, res) => {
-    res.json({ "colin": 63 });
+    fs.readFile(leaderboardPath, function (err, data) {
+        res.json(data);
+    });
 });
 
 // Endpoint to update leaderboard data
 app.post("/", (req, res) => {
+    fs.writeFile(leaderboardPath, req, function (err) {
+        if (err) throw err;
+        res.json({ "msg": "Leaderboard Updated!" });
+    })
 });
 
 // Start the server
