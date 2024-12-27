@@ -84,7 +84,8 @@ function makeLeaderboardJSON() {
                 if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = {};
 
                 // Create a new object for the selected parameters
-                if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] = getEmptyLeaderboard();
+                if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] =
+                    ["NULNULNULNULNULNULNULNULNULNUL", "0000000000000000000000000000000000000000"];
             }
         } 
     }
@@ -133,15 +134,3 @@ async function updateLeaderboard() {
         console.log(data.message);
     });
 }
-
-function getEmptyLeaderboard() {
-    let emptyLeaderboard = [];
-    for (let i = 0; i < 10; i++) {
-        emptyLeaderboard[i] = {
-            "name": "NUL",
-            "points": 0
-        }
-    }
-    return emptyLeaderboard;
-}
-
