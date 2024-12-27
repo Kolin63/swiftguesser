@@ -15,13 +15,11 @@ const leaderboardPath = "/leaderboard/api/leaderboard.json";
 
 // Endpoint to get leaderboard data
 app.get("/", (req, res) => {
-    res.send("GET request");
     res.json({ "colin": 63 });
 });
 
 // Endpoint to update leaderboard data
 app.post("/", (req, res) => {
-    res.send("POST request");
 });
 
 // Start the server
