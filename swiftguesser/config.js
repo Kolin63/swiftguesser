@@ -11,6 +11,10 @@ function buildConfig() {
         headercheck.className = "headercheck";
         headercheck.artist = artist;
         headercheck.checked = orArtist(configData[artist]);
+        if (artist == "parameters") {
+            headercheck.checked = false;
+            headercheck.disabled = true;
+        }
         configBox.appendChild(headercheck);
 
 
@@ -28,7 +32,10 @@ function buildConfig() {
             check.className = "albumcheck";
             check.artist = artist;
             check.album = album;
-            check.checked = configData[artist][album];
+            if (artist == "parameters")
+                check.checked = configData[artist][album].value;
+            else
+                check.checked = configData[artist][album];
 
 
             const label = document.createElement("label");
@@ -43,9 +50,43 @@ function buildConfig() {
             configBox.appendChild(bullet);  
 
             // Adds event listeners to checks
-            check.addEventListener('change', function() {
-                configData[check.artist][check.album] = check.checked;
-                headercheck.checked = orArtist(configData[check.artist]);
+            check.addEventListener('change', function () {
+                if (check.artist == "parameters")
+                {
+                    const incomps = configData[check.artist][check.album]["incomp"];
+                    if (incomps["nand"] != undefined)
+                    {
+                        for (nand in incomps["nand"])
+                        {
+                            const elem = document.getElementById("check" + check.artist + incomps["nand"][nand]);
+                            if (check.checked && elem.checked) {
+                                elem.checked = !check.checked;
+                                configData[elem.artist][elem.album].value = elem.checked;
+                            }
+                        }
+                    }
+
+                    if (incomps["xor"] != undefined)
+                    {
+                        for (xor in incomps["xor"]) {
+                            const elem = document.getElementById("check" + check.artist + incomps["xor"][xor]);
+                            if (check.checked && elem.checked) {
+                                elem.checked = !check.checked;
+                                configData[elem.artist][elem.album].value = elem.checked;
+                            }
+                        }
+
+                        if (!check.checked) check.checked = true;
+                    }
+
+                    configData[check.artist][check.album].value = check.checked;
+                }
+                else
+                {
+                    configData[check.artist][check.album] = check.checked;
+                    headercheck.checked = orArtist(configData[check.artist]);
+                }
+                console.log(configData);
                 storeConfig();
             });
         }

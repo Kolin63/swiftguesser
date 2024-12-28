@@ -42,8 +42,20 @@ async function fetchConfig() {
             {
                 const x = currentConfig[artist][album];
                 if (x != undefined && x != null)
-                    currentConfig[artist][album] = oldConfig[artist][album];
+                    configData[artist][album] = oldConfig[artist][album];
+
+                if (artist == "parameters")
+                {
+                    configData[artist][album] = currentConfig[artist][album];
+                    configData[artist][album].value = oldConfig[artist][album].value;
+                }
             }
         }
     }
 }
+
+document.getElementById('reset-config').addEventListener('click', async function () {
+    configData = await getConfig();
+    storeConfig();
+    location.reload();
+})

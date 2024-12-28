@@ -1,11 +1,39 @@
 {
-    "version": 11,
+    "version": 15,
     "parameters":
     {
-        "nopause": false,
-        "timedpause": false,
-        "allswift": true,
-        "cherrypick": false
+        "nopause": {
+            "value": false,
+            "incomp": {
+                "nand": [
+                    "timedpause"
+                ]
+            }
+        },
+        "timedpause": {
+            "value": false,
+            "incomp": {
+                "nand": [
+                    "nopause"
+                ]
+            }
+        },
+        "allswift": {
+            "value": true,
+            "incomp": {
+                "xor": [
+                    "cherrypick"
+                ]
+            }
+        },
+        "cherrypick": {
+            "value": false,
+            "incomp": {
+                "xor": [
+                    "allswift"
+                ]
+            }
+        }
     },
     "taylorswift": 
     {
