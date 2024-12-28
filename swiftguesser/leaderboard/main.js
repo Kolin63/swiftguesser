@@ -100,7 +100,7 @@ function makeLeaderboardJSON() {
     let parameters = "";
     for (parameter in configData["parameters"])
     {
-        if (configData["parameters"][parameter] == true)
+        if (configData["parameters"][parameter].value == true)
             parameters = parameters.concat(parameter).concat(',');
     }
     if (parameters == "") parameters = "none";
