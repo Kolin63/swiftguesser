@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <a href="../"><img src="../art/icon-wide-space.svg" style="width: 5in;display:inline-block;padding:.1in;margin-bottom: .5in;"></a>
+
+    <div class="flex-container">
+
+        <div class="lb-config">
+            <div id="lb-config" style="margin-left: .25in;margin-top: .25in;"></div>
+        </div>
+
+
+
+        <div class="flex-col flex-container" style="max-width: 7in;width: 100%;">
+
+            <div class="flex-container" id="select-bar">
+                <select id="select-artist"></select>
+                <select id="select-album"></select>
+                <select id="select-song"></select>
+            </div>
+
+            <div class="flex-container leaderboard leaderboard-background">
+                <div class="flex-container flex-col" id="leaderboard-container"></div>
+            </div>
+        
+        </div>
+
+    </div>
+
+</body>
+<script src="main.js"></script>
+<script src="../config.js"></script>
+</html>

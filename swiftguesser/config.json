@@ -1,0 +1,52 @@
+{
+    "version": 15,
+    "parameters":
+    {
+        "nopause": {
+            "value": false,
+            "incomp": {
+                "nand": [
+                    "timedpause"
+                ]
+            }
+        },
+        "timedpause": {
+            "value": false,
+            "incomp": {
+                "nand": [
+                    "nopause"
+                ]
+            }
+        },
+        "allswift": {
+            "value": true,
+            "incomp": {
+                "xor": [
+                    "cherrypick"
+                ]
+            }
+        },
+        "cherrypick": {
+            "value": false,
+            "incomp": {
+                "xor": [
+                    "allswift"
+                ]
+            }
+        }
+    },
+    "taylorswift": 
+    {
+        "taylorswift": true,
+        "fearless": true,
+        "speaknow": true,
+        "red": true,
+        "1989": true,
+        "reputation": true,
+        "lover": true,
+        "folklore": true,
+        "evermore": true,
+        "midnights": true,
+        "tpd": true
+    }
+}

@@ -43,6 +43,83 @@
     text-align: center;
 }
 
+.flex-col {
+    flex-direction: column;
+}
+
+.leaderboard {
+    background: none;
+    color: #111;
+    margin: auto;
+}
+
+.leaderboard-background {
+    background-color: #9B7EBD;
+    border-radius: .5in;
+    padding-top: .5in;
+    padding-bottom: .5in;
+    width: 100%;
+}
+
+.leaderboard .rank {
+    color: #111;
+    margin: auto;
+    width: 100%;
+}
+
+.leaderboard p {
+    color: #EEE;
+    line-height: 2em;
+    font-size: 1.5em;
+    padding: 0;
+    margin: 8%;
+}
+
+.lb-config {
+    max-width: 3in;
+    width: 100%;
+    background-color: #D4BEE4;
+    margin-top: 1.25in;
+    margin-right: .25in;
+    border-radius: .5in;
+    text-align: left;
+}
+
+.lb-config label {
+    color: #111;
+    text-align: left;
+}
+
+.lb-config ul li::marker {
+    color: #111;
+} 
+
+#leaderboard-container {
+    width: 100%;
+    height: 100%;
+}
+
+#select-bar {
+    background-color: #D4BEE4;
+    height: 1in;
+    margin: auto;
+    border-radius: .5in;
+    margin-bottom: .25in;
+    align-items: center;
+    width: 100%;
+}
+
+#select-bar select {
+    background-color: #9B7EBD;
+    height: .5in;
+    outline: none;
+    border: none;
+    border-radius: .1in;
+    margin: .05in;
+    padding: .1in;
+    overflow-y: auto;
+}
+
 .search {
     background-color: #9B7EBD;
     border-radius: .5in;
