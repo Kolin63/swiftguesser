@@ -1,13 +1,29 @@
 let weightData;
 let configData;
-let leaderboardData = {};
+let leaderboardData;
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
-    buildSelectionBar();
     fetchLeaderboard();
+}
+
+function parseLeaderboardString(s) {
+    let songLB = [];
+    // Names
+    for (let i = 0; i < 10; i++) {
+        songLB[i] = {};
+        songLB[i].name = s.slice(0, 3);
+        s = s.slice(3, s.length);
+    }
+    // Points
+    for (let i = 0; i < 10; i++) {
+        songLB[i].points = Number(s.slice(0, 3));
+        s = s.slice(3, s.length);
+    }
+
+    return songLB;
 }
 
 const artistSelect = document.getElementById('select-artist');
@@ -52,10 +68,27 @@ function albumSelectChange() {
 
 function songSelectChange() {
     const container = document.getElementById("leaderboard-container");
-    for (i in document.getElementsByClassName("lb-result")) {
-        // container.removeChild(i);
-    }
+    container.innerHTML = '';
 
+    const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value]["none"]);
+    console.log("Song Leaderboard: ", songLB);
+    for (i in songLB) {
+        const rank = document.createElement('div');
+        rank.className = "leaderboard rank";
+
+        const name = document.createElement('p');
+        name.style = "display: inline";
+        name.textContent = songLB[i]["name"];
+
+        const points = document.createElement('p');
+        points.style = "display: inline";
+        points.textContent = ('' + songLB[i]["points"]).padStart(3, '0');
+
+        rank.appendChild(name);
+        rank.appendChild(points);
+
+        container.appendChild(rank);
+    }
 }
 
 // This function is here for developer purposes
@@ -91,6 +124,7 @@ function makeLeaderboardJSON() {
     }
     updateLeaderboard();
     console.log("makeLeaderboardJSON() finished", leaderboardData);
+    buildSelectionBar();
 }
 
 async function getWeight() {

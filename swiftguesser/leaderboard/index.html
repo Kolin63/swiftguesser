@@ -6,14 +6,16 @@
 </head>
 <body>
 
-    <div class="flex-container">
+    <a href="../"><img src="../art/icon-wide-space.svg" style="width: 5in;display:inline-block;padding:.1in"></a>
+
+    <div class="flex-container" id="select-bar">
         <select id="select-artist"></select>
         <select id="select-album"></select>
         <select id="select-song"></select>
     </div>
 
-    <div class="flex-container flex-col leaderboard" id="leaderboard-container">
-        <div class="flex-container">Leaderboard</div>
+    <div class="flex-container leaderboard leaderboard-background">
+        <div class="flex-container flex-col" id="leaderboard-container"></div>
     </div>
 
     <button id="refresh-leaderboard">Refresh Leaderboard</button>

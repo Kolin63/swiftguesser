@@ -48,9 +48,35 @@
 }
 
 .leaderboard {
-    background-color: #D4BEE4;
+    background: none;
     color: #111;
-    font-size: 3em;
+    max-width: 5in;
+    margin: auto;
+}
+
+.leaderboard-background {
+    background-color: #9B7EBD;
+    border-radius: 1in;
+    padding-top: .5in;
+    padding-bottom: .5in;
+}
+
+.leaderboard .rank {
+    color: #111;
+    margin: auto;
+    width: 100%;
+}
+
+.leaderboard p {
+    color: #EEE;
+    line-height: 2em;
+    font-size: 1.5em;
+    padding: 0;
+    margin: 8%;
+}
+
+#leaderboard-container {
+    width: 100%;
 }
 
 .search {
