@@ -80,11 +80,30 @@ function buildConfig() {
                     }
 
                     configData[check.artist][check.album].value = check.checked;
+
+                    if (check.album == "allswift") {
+                        document.getElementById("checkparameterscherrypick").disabled = true;
+                        for (album in configData["taylorswift"]) {
+                            document.getElementById("checktaylorswift" + album).checked = true;
+                        }
+                        document.getElementById("checktaylorswift").checked = true;
+                    }
                 }
                 else
                 {
                     configData[check.artist][check.album] = check.checked;
                     headercheck.checked = orArtist(configData[check.artist]);
+
+                    if (check.artist == "taylorswift") {
+                        if (andArtist(configData["taylorswift"])) {
+                            document.getElementById("checkparametersallswift").click();
+                            document.getElementById("checkparameterscherrypick").disabled = true;
+                        }
+                        else {
+                            document.getElementById("checkparameterscherrypick").disabled = false;
+                            document.getElementById("checkparameterscherrypick").click();
+                        }
+                    }
                 }
                 console.log(configData);
                 storeConfig();
@@ -98,8 +117,16 @@ function buildConfig() {
                 configData[headercheck.artist][album] = headercheck.checked;
                 storeConfig();
             }
+
+            for (album in configData[headercheck.artist]) {
+                const check = document.getElementById("check" + headercheck.artist + album);
+                check.click();
+                check.click();
+                break;
+            }
         });
 
+        document.getElementById("checkparameterscherrypick").disabled = true;
         configBox.appendChild(document.createElement("br"));
     }
 }
@@ -111,6 +138,15 @@ function orArtist(artist) {
         or = or || artist[album];
     }
     return or;
+}
+
+// pass it as configData[artist]
+function andArtist(artist) {
+    let and = true;
+    for (album in artist) {
+        and = and && artist[album];
+    }
+    return and;
 }
 
 async function getConfig() {
