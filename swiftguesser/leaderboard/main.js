@@ -30,6 +30,18 @@ function parseLeaderboardString(s) {
     return songLB;
 }
 
+function makeLeaderboardString(s) {
+    let result = "";
+    // Names
+    for (i in s)
+        result = result.concat(s[i].name);
+    // Names
+    for (i in s) 
+        result = result.concat((s[i].points + "").padStart(3, '0'));
+
+    return result;
+}
+
 const artistSelect = document.getElementById('select-artist');
 const albumSelect = document.getElementById('select-album');
 const songSelect = document.getElementById('select-song');
@@ -173,3 +185,12 @@ async function updateLeaderboard() {
         console.log(data.message);
     });
 }
+
+document.getElementById("test-button").addEventListener("click", function () {
+    let songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
+    songLB[0] = { "name": "TST", "points": 987 };
+
+    leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters] = makeLeaderboardString(songLB);
+    updateLeaderboard();
+    songSelectChange();
+})
