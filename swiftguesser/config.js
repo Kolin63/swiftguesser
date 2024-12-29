@@ -82,7 +82,6 @@ function buildConfig() {
                     configData[check.artist][check.album].value = check.checked;
 
                     if (check.album == "allswift") {
-                        document.getElementById("checkparameterscherrypick").disabled = true;
                         for (album in configData["taylorswift"]) {
                             document.getElementById("checktaylorswift" + album).checked = true;
                             configData["taylorswift"][album] = true;
@@ -98,10 +97,8 @@ function buildConfig() {
                     if (check.artist == "taylorswift") {
                         if (andArtist(configData["taylorswift"])) {
                             document.getElementById("checkparametersallswift").click();
-                            document.getElementById("checkparameterscherrypick").disabled = true;
                         }
                         else {
-                            document.getElementById("checkparameterscherrypick").disabled = false;
                             document.getElementById("checkparameterscherrypick").click();
                         }
                     }
@@ -136,7 +133,6 @@ function buildConfig() {
             }
         });
 
-        document.getElementById("checkparameterscherrypick").disabled = true;
         configBox.appendChild(document.createElement("br"));
     }
 }
