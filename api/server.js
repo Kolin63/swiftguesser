@@ -34,8 +34,7 @@ app.use((req, res, next) => {
 function ensureDirectoryExistence(filePath) {
     const dirname = path.dirname(filePath);
     if (!fs.existsSync(dirname)) {
-        fs.mkdirSync(dirname);
-        ensureDirectoryExistence(dirname);
+        fs.mkdirSync(dirname, { recursive: true });
     }
     if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify({}));
