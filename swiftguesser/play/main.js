@@ -53,8 +53,8 @@ async function init() {
 
 // Event listener for the search bar being typed in
 search.addEventListener('input', function () {
-    const searchValue = search.value.toLowerCase().replace(/[^\w\s]/gi, ''); // Remove punctuation
-    const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s]/gi, '').includes(searchValue));
+    const searchValue = search.value.toLowerCase().replace(/[^\w\s-]/gi, '').replace(/-/g, ' '); // Remove punctuation and replace hyphens with spaces
+    const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s-]/gi, '').replace(/-/g, ' ').includes(searchValue));
 
     // Clear previous search result boxes
     searchResultBoxes = []; 
