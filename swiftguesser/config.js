@@ -85,6 +85,7 @@ function buildConfig() {
                         document.getElementById("checkparameterscherrypick").disabled = true;
                         for (album in configData["taylorswift"]) {
                             document.getElementById("checktaylorswift" + album).checked = true;
+                            configData["taylorswift"][album] = true;
                         }
                         document.getElementById("checktaylorswift").checked = true;
                     }
