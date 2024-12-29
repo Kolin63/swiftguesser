@@ -13,6 +13,17 @@ app.use(express.json());
 app.use(express.json({ limit: '1000mb' })); 
 app.use(express.urlencoded({ limit: '1000mb' }));
 
+app.use((req, res, next) => {
+    const allowedOrigin = "https://swiftguesser.kolin63.com";
+    const origin = req.get("origin") || req.get("referer");
+
+    if (origin && origin.startsWith(allowedOrigin)) {
+        next();
+    } else {
+        res.status(403).json({ error: "Forbidden" })
+    }
+})
+
 // Path to the leaderboard JSON file
 const leaderboardPath = path.join(__dirname, 'leaderboard.json');
 
