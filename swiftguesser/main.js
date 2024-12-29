@@ -14,7 +14,7 @@ async function init() {
 Array.from(document.getElementsByClassName('playbutton')).forEach(element => {
     element.addEventListener('click', async function() {
         storeConfig();
-        window.location.href = '/play';
+        window.location.href = './play';
     });
 })
 
