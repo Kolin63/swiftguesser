@@ -35,6 +35,7 @@ function ensureDirectoryExistence(filePath) {
     const dirname = path.dirname(filePath);
     if (!fs.existsSync(dirname)) {
         fs.mkdirSync(dirname);
+        ensureDirectoryExistence(dirname);
     }
     if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify({}));
