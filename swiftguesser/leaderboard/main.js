@@ -70,9 +70,23 @@ function albumSelectChange() {
     songSelectChange();
 }
 
+function updateParametersString() {
+    // Make a string representing enabled parameters
+    parameters = "";
+    for (parameter in configData["parameters"])
+    {
+        if (configData["parameters"][parameter].value == true)
+            parameters = parameters.concat(parameter).concat(',');
+    }
+    if (parameters == "") parameters = "none";
+    console.log("parameters: ", parameters);
+}
+
 function songSelectChange() {
     const container = document.getElementById("leaderboard-container");
     container.innerHTML = '';
+
+    updateParametersString();
 
     const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
     console.log("Song Leaderboard: ", songLB);
@@ -97,15 +111,7 @@ function songSelectChange() {
 
 // This function is here for developer purposes
 function makeLeaderboardJSON() {
-    // Make a string representing enabled parameters
-    parameters = "";
-    for (parameter in configData["parameters"])
-    {
-        if (configData["parameters"][parameter].value == true)
-            parameters = parameters.concat(parameter).concat(',');
-    }
-    if (parameters == "") parameters = "none";
-    console.log("parameters: ", parameters);
+    updateParametersString();    
 
     for (artist in weightData) {
         // Create a new object for the artist

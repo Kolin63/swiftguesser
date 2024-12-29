@@ -107,6 +107,15 @@ function buildConfig() {
                 }
                 console.log(configData);
                 storeConfig();
+
+                if (window.location.pathname == "/leaderboard/" || window.location.pathname == "/swiftguesser/leaderboard/") {
+                    try {
+                        songSelectChange();
+                    } catch {
+                        makeLeaderboardJSON();
+                        songSelectChange();
+                    }
+                }
             });
         }
         // Adds event listeners to header check
