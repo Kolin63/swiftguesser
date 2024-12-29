@@ -112,6 +112,7 @@ function updateParametersString() {
 
 function songSelectChange() {
     if (leaderboardData == undefined) return;
+    fetchLeaderboard();
 
     const container = document.getElementById("leaderboard-container");
     container.innerHTML = '';
@@ -201,10 +202,17 @@ async function updateLeaderboard() {
 }
 
 document.getElementById("test-button").addEventListener("click", function () {
-    let songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
-    songLB[0] = { "name": "TST", "points": 987 };
+    let songLB = parseLeaderboardString(leaderboardData[parameters]);
 
-    leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters] = makeLeaderboardString(songLB);
+    for (i in songLB) {
+        if (songLB[i].name == "NUL") {
+            songLB[0] = { "name": "TST", "points": 987 };
+            break;
+        }
+    }
+
+    leaderboardData[parameters] = makeLeaderboardString(songLB);
+    console.log("testbutton: ", leaderboardData);
     updateLeaderboard();
     songSelectChange();
 })
