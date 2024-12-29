@@ -92,7 +92,7 @@ search.addEventListener('input', function () {
 
             if (boxSong == randomSongName) {
                 alert("Correct, the song was " + randomSongName + "\nPoints: " + points);
-                window.location.href = '/leaderboard';
+                window.location.href = '../leaderboard';
             }
             else {
                 alert("Incorrect! The correct song was " + randomSongName);
