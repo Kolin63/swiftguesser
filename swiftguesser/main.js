@@ -5,6 +5,8 @@ let configData;
 // Function called when page is loaded
 document.addEventListener('DOMContentLoaded', init);
 async function init() {
+    localStorage.setItem('win', "");
+
     await fetchConfig();
     console.log("config", configData);
 

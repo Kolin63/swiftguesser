@@ -2,11 +2,17 @@ let weightData;
 let configData;
 let leaderboardData;
 let parameters;
+let winData;
 const configBox = document.getElementById("lb-config");
 
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
+    try { winData = JSON.parse(localStorage.getItem("win")); }
+    catch { winData = ""; }
+    localStorage.setItem("win", "");
+    console.log("Win Data:", winData);
+
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
     fetchLeaderboard();
@@ -58,6 +64,15 @@ function buildSelectionBar() {
         artistSelect.appendChild(artistOption);
     }
     artistSelectChange();
+
+    if (winData != "") {
+        artistSelect.value = winData[0];
+        artistSelectChange();
+        albumSelect.value = winData[1];
+        albumSelectChange();
+        songSelect.value = winData[2];
+        songSelectChange();
+    }
 }
 
 function artistSelectChange() {

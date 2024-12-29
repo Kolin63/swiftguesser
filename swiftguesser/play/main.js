@@ -23,14 +23,18 @@ let songList;
 let songListAlbums;
 let randomSong;
 let randomSongName;
+let randomSongAlbum;
+let randomSongArtist;
 
 let selectedIndex = -1;
 
-document.addEventListener('DOMContentLoaded', init);
 
 // This function is called when the page is loaded
 // It fetches the configuration and weight data, and initializes the song list
+document.addEventListener('DOMContentLoaded', init);
 async function init() {
+    localStorage.setItem("win", "");
+
     configData = JSON.parse(localStorage.getItem('config'));
     weightData = await getWeight();
     totalSongs = await getTotalSongs();
@@ -91,6 +95,7 @@ search.addEventListener('input', function () {
             if (boxSong == "" || stopwatchMS == 0) return;
 
             if (boxSong == randomSongName) {
+                localStorage.setItem("win", JSON.stringify([randomSongArtist, randomSongAlbum, randomSongName, points]));
                 alert("Correct, the song was " + randomSongName + "\nPoints: " + points);
                 window.location.href = '../leaderboard';
             }
@@ -182,6 +187,8 @@ async function getSong() {
             for (song in weightData[artist][album].songs) {
                 if (songIndex == randomSong) {
                     randomSongName = weightData[artist][album].songs[song];
+                    randomSongAlbum = album;
+                    randomSongArtist = artist;
                     return 'music/' + artist + '/' + album + '/' + weightData[artist][album].songs[song] + '.mp3';
                 }
 
