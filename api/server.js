@@ -38,6 +38,7 @@ function ensureDirectoryExistence(filePath) {
     }
     ensureDirectoryExistence(dirname);
     fs.mkdirSync(dirname);
+    fs.writeFileSync("leaderboard.json");
 }
 
 // Endpoint to get leaderboard data
