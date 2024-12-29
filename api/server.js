@@ -20,7 +20,7 @@ app.use((req, res, next) => {
     if (origin && origin.startsWith(allowedOrigin)) {
         next();
     } else {
-        res.status(403).json({ error: "Forbidden" });
+        // res.status(403).json({ error: "Forbidden" });
         next();
     }
 })
