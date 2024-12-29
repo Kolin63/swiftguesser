@@ -30,11 +30,21 @@ app.use((req, res, next) => {
     }
 })
 
-// Path to the leaderboard JSON file
-const leaderboardPath = path.join(__dirname, 'leaderboard.json');
+// Helper function to ensure directory exists
+function ensureDirectoryExistence(filePath) {
+    const dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+        return true;
+    }
+    ensureDirectoryExistence(dirname);
+    fs.mkdirSync(dirname);
+}
 
 // Endpoint to get leaderboard data
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
+    const leaderboardPath = path.join(__dirname, req.path, 'leaderboard.json');
+    ensureDirectoryExistence(leaderboardPath);
+
     fs.readFile(leaderboardPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading leaderboard file:', err);
@@ -45,7 +55,10 @@ app.get('/', (req, res) => {
 });
 
 // Endpoint to update leaderboard data
-app.post('/', (req, res) => {
+app.post('/*', (req, res) => {
+    const leaderboardPath = path.join(__dirname, req.path, 'leaderboard.json');
+    ensureDirectoryExistence(leaderboardPath);
+
     const newData = req.body; // Data sent from the frontend
     fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
         if (err) {

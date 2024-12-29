@@ -83,10 +83,10 @@ function buildConfig() {
 
                     if (check.album == "allswift") {
                         for (album in configData["taylorswift"]) {
-                            document.getElementById("checktaylorswift" + album).checked = true;
+                            try { document.getElementById("checktaylorswift" + album).checked = true; } catch { };
                             configData["taylorswift"][album] = true;
                         }
-                        document.getElementById("checktaylorswift").checked = true;
+                        try { document.getElementById("checktaylorswift").checked = true; } catch { };
                     }
                 }
                 else

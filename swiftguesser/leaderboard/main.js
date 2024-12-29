@@ -15,8 +15,9 @@ async function init() {
 
     weightData = await getWeight();
     configData = JSON.parse(localStorage.getItem('config'));
-    fetchLeaderboard();
     buildConfig();
+    buildSelectionBar();
+    fetchLeaderboard();
 }
 
 function parseLeaderboardString(s) {
@@ -115,6 +116,7 @@ function songSelectChange() {
 
     updateParametersString();
 
+    if (leaderboardData == undefined) return;
     const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
     console.log("Song Leaderboard: ", songLB);
     for (i in songLB) {
@@ -170,9 +172,15 @@ async function getWeight() {
     return weightData;
 }
 
-const leaderboardPath = "https://api.swiftguesser.kolin63.com";
+let leaderboardPath = undefined;
+function updateLeaderboardPath() {
+    leaderboardPath = "https://api.swiftguesser.kolin63.com/" + artistSelect.value + "/" + albumSelect.value + "/" + songSelect.value;
+    console.log("Leaderboard Path: ", leaderboardPath);
+}
 
 async function fetchLeaderboard() {
+    updateLeaderboardPath();
+
     fetch(leaderboardPath)
     .then(response => {
         if (!response.ok) {
@@ -188,6 +196,8 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
+    updateLeaderboardPath();
+
     fetch(leaderboardPath, {
         method: 'POST',
         headers: {
