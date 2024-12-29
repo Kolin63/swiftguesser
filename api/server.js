@@ -33,12 +33,11 @@ app.use((req, res, next) => {
 // Helper function to ensure directory and file existence
 function ensureDirectoryExistence(filePath) {
     const dirname = path.dirname(filePath);
-    if (!fs.existsSync(dirname)) {
-        fs.mkdirSync(dirname, { recursive: true });
+    if (fs.existsSync(dirname)) {
+        return true;
     }
-    if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, JSON.stringify({}));
-    }
+    ensureDirectoryExistence(dirname);
+    fs.mkdirSync(dirname);
 }
 
 // Endpoint to get leaderboard data
