@@ -142,25 +142,11 @@ function songSelectChange() {
 function makeLeaderboardJSON() {
     updateParametersString();    
 
-    for (artist in weightData) {
-        // Create a new object for the artist
-        if (leaderboardData[artist] == undefined) leaderboardData[artist] = {};
+    // Create a new object for the selected parameters
+    if (leaderboardData[parameters] == undefined) leaderboardData[parameters] =
+        "NULNULNULNULNULNULNULNULNULNUL000000000000000000000000000000";
+    
 
-        for (album in weightData[artist]) {
-            // Create a new object for the album
-            if (leaderboardData[artist][album] == undefined) leaderboardData[artist][album] = {};
-
-            for (song in weightData[artist][album].songs) {
-                // Create a new object for the song
-                const songName = weightData[artist][album].songs[song];
-                if (leaderboardData[artist][album][songName] == undefined) leaderboardData[artist][album][songName] = {};
-
-                // Create a new object for the selected parameters
-                if (leaderboardData[artist][album][songName][parameters] == undefined) leaderboardData[artist][album][songName][parameters] =
-                    "NULNULNULNULNULNULNULNULNULNUL000000000000000000000000000000";
-            }
-        } 
-    }
     updateLeaderboard();
     console.log("makeLeaderboardJSON() finished", leaderboardData);
     buildSelectionBar();
@@ -175,6 +161,7 @@ async function getWeight() {
 let leaderboardPath = undefined;
 function updateLeaderboardPath() {
     leaderboardPath = "https://api.swiftguesser.kolin63.com/" + artistSelect.value + "/" + albumSelect.value + "/" + songSelect.value;
+    leaderboardPath = leaderboardPath.replace(" ", "%20");
     console.log("Leaderboard Path: ", leaderboardPath);
 }
 

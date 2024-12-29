@@ -34,7 +34,6 @@ app.use((req, res, next) => {
 function ensureDirectoryExistence(filePath) {
     const dirname = path.dirname(filePath);
     if (!fs.existsSync(dirname)) {
-        ensureDirectoryExistence(dirname);
         fs.mkdirSync(dirname);
     }
     if (!fs.existsSync(filePath)) {
