@@ -1,6 +1,6 @@
 let weightData;
 let configData;
-let leaderboardData;
+let leaderboardData = undefined;
 let parameters;
 let winData;
 const configBox = document.getElementById("lb-config");
@@ -111,13 +111,14 @@ function updateParametersString() {
 }
 
 function songSelectChange() {
+    if (leaderboardData == undefined) return;
+
     const container = document.getElementById("leaderboard-container");
     container.innerHTML = '';
 
-    updateParametersString();
-
-    if (leaderboardData == undefined) return;
-    const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
+    makeLeaderboardJSON();
+    
+    const songLB = parseLeaderboardString(leaderboardData[parameters]);
     console.log("Song Leaderboard: ", songLB);
     for (i in songLB) {
         const rank = document.createElement('div');
@@ -141,15 +142,15 @@ function songSelectChange() {
 // This function is here for developer purposes
 function makeLeaderboardJSON() {
     updateParametersString();    
+    console.log("makeLeaderboardJSON() started", leaderboardData);
 
     // Create a new object for the selected parameters
-    if (leaderboardData[parameters] == undefined) leaderboardData[parameters] =
+    if (leaderboardData != undefined && leaderboardData[parameters] == undefined) leaderboardData[parameters] =
         "NULNULNULNULNULNULNULNULNULNUL000000000000000000000000000000";
     
 
     updateLeaderboard();
     console.log("makeLeaderboardJSON() finished", leaderboardData);
-    buildSelectionBar();
 }
 
 async function getWeight() {
@@ -179,6 +180,7 @@ async function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", json);
         leaderboardData = json;
         makeLeaderboardJSON();
+        songSelectChange();
     });
 }
 
