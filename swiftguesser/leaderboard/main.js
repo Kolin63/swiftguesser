@@ -1,6 +1,7 @@
 let weightData;
 let configData;
 let leaderboardData;
+let parameters;
 const configBox = document.getElementById("lb-config");
 
 
@@ -73,7 +74,7 @@ function songSelectChange() {
     const container = document.getElementById("leaderboard-container");
     container.innerHTML = '';
 
-    const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value]["none"]);
+    const songLB = parseLeaderboardString(leaderboardData[artistSelect.value][albumSelect.value][songSelect.value][parameters]);
     console.log("Song Leaderboard: ", songLB);
     for (i in songLB) {
         const rank = document.createElement('div');
@@ -97,7 +98,7 @@ function songSelectChange() {
 // This function is here for developer purposes
 function makeLeaderboardJSON() {
     // Make a string representing enabled parameters
-    let parameters = "";
+    parameters = "";
     for (parameter in configData["parameters"])
     {
         if (configData["parameters"][parameter].value == true)
