@@ -12,6 +12,11 @@ app.use(express.json());
 
 app.use(express.json({ limit: '1000mb' })); 
 app.use(express.urlencoded({ limit: '1000mb' }));
+app.use((req, res, next) => {
+    console.log(`Request URL: ${req.url}`);
+    console.log(`Content-Length: ${req.headers['content-length']}`);
+    next();
+});
 
 app.use((req, res, next) => {
     const allowedOrigin = "https://swiftguesser.kolin63.com";
