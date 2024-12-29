@@ -161,7 +161,7 @@ async function getWeight() {
 let leaderboardPath = undefined;
 function updateLeaderboardPath() {
     leaderboardPath = "https://api.swiftguesser.kolin63.com/" + artistSelect.value + "/" + albumSelect.value + "/" + songSelect.value;
-    leaderboardPath = leaderboardPath.replace(" ", "%20");
+    leaderboardPath = leaderboardPath.replaceAll(" ", "%20");
     console.log("Leaderboard Path: ", leaderboardPath);
 }
 
