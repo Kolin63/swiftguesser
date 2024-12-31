@@ -14,7 +14,7 @@ async function init() {
     console.log("Win Data:", winData);
 
     weightData = await getWeight();
-    configData = JSON.parse(localStorage.getItem('config'));
+    getConfig();
     buildConfig();
     buildSelectionBar();
     fetchLeaderboard();
