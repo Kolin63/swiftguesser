@@ -52,7 +52,6 @@ app.get('/leaderboard/*', (req, res) => {
             return res.status(500).json({ error: 'Failed to read leaderboard data' });
         }
         res.json(JSON.parse(data));
-        // res.json(data);
     });
 });
 
