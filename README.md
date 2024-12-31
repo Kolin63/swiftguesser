@@ -37,6 +37,8 @@ By Kolin63
     <li>Feel free to contribute with more artists, albums, or code!</li>
 <ul>
 
+<br><br><br>
+
 <a href="https://swiftguesser.kolin63.com" target="_blank">
     <img src="/swiftguesser/art/play-text.svg" style="width: 3in; 3in;padding: .4in;margin-top:.5in;">
 </a>
