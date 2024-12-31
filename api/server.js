@@ -41,7 +41,7 @@ function ensureDirectoryExistence(filePath) {
 }
 
 // Endpoint to get leaderboard data
-app.get('/*', (req, res) => {
+app.get('/leaderboard/*', (req, res) => {
     const leaderboardPath = path.join(__dirname, req.path, 'leaderboard.json');
     console.log(leaderboardPath);
     ensureDirectoryExistence(leaderboardPath);
