@@ -158,6 +158,7 @@ function andArtist(artist) {
 async function getConfig() {
     const response = await fetch('/config.json');
     const configData = await response.json();
+    console.log("getConfig(): ", configData);
     return configData;
 }
 
