@@ -232,11 +232,11 @@ document.getElementById("test-button").addEventListener("click", async function 
     console.trace();
     let songLB = parseLeaderboardString(leaderboardData[parameters]);
 
-    for (i in songLB.length) {
+    for (let i = 0; i < songLB.length; i++) {
         if (songLB[i].name == "NUL") {
-            songLB[0] = { "name": "TST", "points": 987 };
+            songLB[i] = { "name": "TST", "points": i };
             break;
-        } else continue;
+        } 
     }
 
     leaderboardData[parameters] = makeLeaderboardString(songLB);
