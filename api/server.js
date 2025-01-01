@@ -36,7 +36,7 @@ function ensureDirectoryExistence(filePath) {
     if (!fs.existsSync(dirname)) {
         ensureDirectoryExistence(dirname);
         fs.mkdirSync(dirname);
-        fs.writeFileSync(dirname + "/leaderboard.json", JSON.stringify("{}"));
+        fs.writeFileSync(dirname + "/leaderboard.json", "{}");
     }
 }
 
