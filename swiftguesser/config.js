@@ -50,7 +50,8 @@ function buildConfig() {
             configBox.appendChild(bullet);  
 
             // Adds event listeners to checks
-            check.addEventListener('change', function () {
+            check.addEventListener('change', function ()
+            {
                 if (check.artist == "parameters")
                 {
                     const incomps = configData[check.artist][check.album]["incomp"];
@@ -82,11 +83,22 @@ function buildConfig() {
                     configData[check.artist][check.album].value = check.checked;
 
                     if (check.album == "allswift") {
-                        for (album in configData["taylorswift"]) {
-                            try { document.getElementById("checktaylorswift" + album).checked = true; } catch { };
-                            configData["taylorswift"][album] = true;
-                        }
-                        try { document.getElementById("checktaylorswift").checked = true; } catch { };
+                        checkArtist("taylorswift", true);
+                        checkArtist("sabrinacarpenter", false);
+                    }
+                    else if (check.album == "allsabrina") {
+                        checkArtist("taylorswift", false);
+                        checkArtist("sabrinacarpenter", true);
+                    }
+                    else if (check.album == "modernsabrina") {
+                        checkArtist("taylorswift", false);
+                        checkArtist("sabrinacarpenter", false);
+                        checkAlbum("sabrinacarpenter", "emailsicantsend", true);
+                        checkAlbum("sabrinacarpenter", "shortnsweet", true);
+                    }
+                    else if (check.album == "everything") {
+                        checkArtist("taylorswift", true);
+                        checkArtist("sabrinacarpenter", true);
                     }
                 }
                 else
@@ -98,8 +110,13 @@ function buildConfig() {
                         if (andArtist(configData["taylorswift"])) {
                             document.getElementById("checkparametersallswift").click();
                         }
-                        else {
-                            document.getElementById("checkparameterscherrypick").click();
+                    }
+                    else if (check.artist == "sabrinacarpenter") {
+                        if (andArtist(configData["sabrinacarpenter"])) {
+                            document.getElementById("checkparametersallsabrina").click();
+                        }
+                        else if (numberOfBoolAlbums("sabrinacarpenter", true) == 2 && configData["sabrinacarpenter"]["emailsicantsend"] == true && configData["sabrinacarpenter"]["shortnsweet"] == true && orArtist(configData["taylorswift"]) == false) {
+                            document.getElementById("checkparametersmodernsabrina").click();
                         }
                     }
                 }
@@ -190,4 +207,34 @@ async function fetchConfig() {
             }
         }
     }
+}
+
+function checkArtist(artist, bool) {
+    for (album in configData[artist]) {
+        checkAlbum(artist, album, bool);
+    }
+    try {
+        document.getElementById("check" + artist).checked = bool;
+    } catch { };
+}
+
+function checkAlbum(artist, album, bool) {
+    try {
+        document.getElementById("check" + artist + album).checked = bool;
+    } catch { };
+    configData[artist][album] = bool;
+
+    try {
+        document.getElementById("check" + artist).checked = orArtist(artist);
+    } catch { };
+}
+
+function numberOfBoolAlbums(artist, bool) {
+    let num = 0;
+
+    for (album in configData[artist]) {
+        if (configData[artist][album] == bool) num++;
+    }
+
+    return num;
 }

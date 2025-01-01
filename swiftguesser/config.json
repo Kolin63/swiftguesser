@@ -1,5 +1,5 @@
 {
-    "version": 15,
+    "version": 18,
     "parameters":
     {
         "nopause": {
@@ -22,6 +22,42 @@
             "value": true,
             "incomp": {
                 "xor": [
+                    "allsabrina",
+                    "modernsabrina",
+                    "cherrypick",
+                    "everything"
+                ]
+            }
+        },
+        "allsabrina": {
+            "value": false,
+            "incomp": {
+                "xor": [
+                    "allswift",
+                    "modernsabrina",
+                    "everything",
+                    "cherrypick"
+                ]
+            }
+        },
+        "modernsabrina": {
+            "value": false,
+            "incomp": {
+                "xor": [
+                    "allswift",
+                    "allsabrina",
+                    "everything",
+                    "cherrypick"
+                ]
+            }
+        },
+        "everything": {
+            "value": false,
+            "incomp": {
+                "xor": [
+                    "allswift",
+                    "allsabrina",
+                    "modernsabrina",
                     "cherrypick"
                 ]
             }
@@ -30,7 +66,10 @@
             "value": false,
             "incomp": {
                 "xor": [
-                    "allswift"
+                    "allswift",
+                    "allsabrina",
+                    "modernsabrina",
+                    "everything"
                 ]
             }
         }
@@ -48,5 +87,14 @@
         "evermore": true,
         "midnights": true,
         "tpd": true
+    },
+    "sabrinacarpenter":
+    {
+        "eyeswideopen": false,
+        "evolution": false,
+        "singularact1": false,
+        "singularact2": false,
+        "emailsicantsend": false,
+        "shortnsweet": false
     }
 }

@@ -307,5 +307,110 @@
                 "Who's Afraid of Little Old Me"
             ]
         }
+    },
+    "sabrinacarpenter":
+    {
+        "eyeswideopen":
+        {
+            "amount": 12,
+            "songs": 
+            [
+                "Eyes Wide Open",
+                "Can't Blame a Girl for Trying",
+                "The Middle of Starting Over",
+                "We'll Be The Stars",
+                "Two Young Hearts",
+                "Your Love's Like",
+                "Too Young",
+                "Seamless",
+                "Right Now",
+                "Darling I'm a Mess",
+                "White Flag",
+                "Best Thing I Got"
+            ]
+        },
+        "evolution":
+        {
+            "amount": 10,
+            "songs": [
+                "On Purpose",
+                "Feels Like Loneliness",
+                "Thumbs",
+                "No Words",
+                "Run and Hide",
+                "Mirage",
+                "Don't Want It Back",
+                "Shadows",
+                "Space",
+                "All We Have Is Love"
+            ]
+        },
+        "singularact1":
+        {
+            "amount": 8,
+            "songs": [
+                "Almost Love",
+                "Paris",
+                "Hold Tight",
+                "Sue Me",
+                "prfct",
+                "Bad Time",
+                "Mona Lisa",
+                "Diamonds Are Forever"
+            ]
+        },
+        "singularact2": {
+            "amount": 9,
+            "songs": [
+                "In My Bed",
+                "Pushing 20",
+                "I Can't Stop Me",
+                "I'm Fakin",
+                "Take Off All Your Cool",
+                "Tell Em",
+                "Exhale",
+                "Take You Back",
+                "Looking at Me"
+            ]
+        },
+        "emailsicantsend": {
+            "amount": 17,
+            "songs": [
+                "emails i can’t send",
+                "Vicious",
+                "Read your Mind",
+                "Tornado Warnings",
+                "because i liked a boy",
+                "Already Over",
+                "how many things",
+                "bet u wanna",
+                "Nonsense",
+                "Fast Times",
+                "skinny dipping",
+                "Bad for Business",
+                "decode",
+                "opposite",
+                "Feather",
+                "Lonesome",
+                "things i wish you said"
+            ]
+        },
+        "shortnsweet": {
+            "amount": 12,
+            "songs": [
+                "Taste",
+                "Please Please Please",
+                "Good Graces",
+                "Sharpest Tool",
+                "Coincidence",
+                "Bed Chem",
+                "Espresso",
+                "Dumb & Poetic",
+                "Slim Pickins",
+                "Juno",
+                "Lie To Girls",
+                "Don’t Smile"
+            ]
+        } 
     }
 }
