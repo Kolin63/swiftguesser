@@ -112,7 +112,7 @@ async function songSelectChange() {
     await makeLeaderboardJSON();
 }
 
-function updateParametersString() {
+async function updateParametersString() {
     // Make a string representing enabled parameters
     parameters = "";
     for (parameter in configData["parameters"])
@@ -152,7 +152,7 @@ function updateLeaderboardList() {
 // This function is here for developer purposes
 async function makeLeaderboardJSON() {
     console.log("makeLeaderboardJSON() called:", leaderboardData);
-    updateParametersString();    
+    await updateParametersString();    
 
     // Create a new object for the selected parameters
     if (leaderboardData != undefined && leaderboardData[parameters] == undefined) leaderboardData[parameters] =
@@ -171,7 +171,7 @@ async function getWeight() {
 }
 
 let leaderboardPath = undefined;
-function updateLeaderboardPath() {
+async function updateLeaderboardPath() {
     leaderboardPath = "https://api.swiftguesser.kolin63.com/leaderboard/" + artistSelect.value + "/" + albumSelect.value + "/" + songSelect.value;
     leaderboardPath = leaderboardPath.replaceAll(" ", "%20");
     console.log("Leaderboard Path: ", leaderboardPath);
@@ -180,7 +180,7 @@ function updateLeaderboardPath() {
 async function fetchLeaderboard() {
     console.log("fetchLeaderboard() called");
 
-    updateLeaderboardPath();
+    await updateLeaderboardPath();
 
     fetch(leaderboardPath)
     .then(response => {
@@ -197,7 +197,9 @@ async function fetchLeaderboard() {
 }
 
 async function updateLeaderboard() {
-    updateLeaderboardPath();
+    console.log("updateLeaderboard() called with ", leaderboardData, JSON.stringify(leaderboardData));
+
+    await updateLeaderboardPath();
 
     fetch(leaderboardPath, {
         method: 'POST',
@@ -209,7 +211,6 @@ async function updateLeaderboard() {
     .then(response => response.json())
     .then(async data => {
         console.log("updateLeaderboard():", data.message);
-        await songSelectChange();
     });
 }
 
