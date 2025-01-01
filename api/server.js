@@ -3,6 +3,9 @@ var fs = require('fs');
 var path = require('path');
 var cors = require('cors');
 
+var path = require('path');
+var cors = require('cors');
+
 var app = express();
 const PORT = 3000;
 
@@ -36,16 +39,23 @@ function ensureDirectoryExistence(artist, album, song) {
     if (!fs.existsSync(requiredPath)) {
         fs.mkdirSync(requiredPath, { recursive: true });
     }
+}
+
+function ensureFileExistence(artist, album, song) {
+    const requiredPath = path.join(__dirname, 'leaderboard', artist, album, song);
+    const emptyLBPath = path.join(__dirname, 'emptyleaderboard.json');
     const leaderboardFilePath = path.join(requiredPath, 'leaderboard.json');
-    if (!fs.existsSync(leaderboardFilePath)) {
-        fs.writeFileSync(leaderboardFilePath, '{}');
-    }
+
+    fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
+        if (err) console.error('Error Copying Leaderboard File:', err);
+    });
 }
 
 // Endpoint to get leaderboard data
 app.get('/leaderboard/:artist/:album/:song', (req, res) => {
     const { artist, album, song } = req.params;
     ensureDirectoryExistence(artist, album, song);
+    ensureFileExistence(artist, album, song);
 
     const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
     console.log(leaderboardPath);
@@ -63,6 +73,7 @@ app.get('/leaderboard/:artist/:album/:song', (req, res) => {
 app.post('/leaderboard/:artist/:album/:song', (req, res) => {
     const { artist, album, song } = req.params;
     ensureDirectoryExistence(artist, album, song);
+    ensureFileExistence(artist, album, song);
 
     const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
     const newData = req.body; // Data sent from the frontend
