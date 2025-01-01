@@ -31,20 +31,24 @@ app.use((req, res, next) => {
 })
 
 // Helper function to ensure directory and file existence
-function ensureDirectoryExistence(filePath) {
-    const dirname = path.dirname(filePath);
-    if (!fs.existsSync(dirname)) {
-        ensureDirectoryExistence(dirname);
-        fs.mkdirSync(dirname);
-        fs.writeFileSync(dirname + "/leaderboard.json", "{}");
+function ensureDirectoryExistence(artist, album, song) {
+    const requiredPath = path.join(__dirname, 'leaderboard', artist, album, song);
+    if (!fs.existsSync(requiredPath)) {
+        fs.mkdirSync(requiredPath, { recursive: true });
+    }
+    const leaderboardFilePath = path.join(requiredPath, 'leaderboard.json');
+    if (!fs.existsSync(leaderboardFilePath)) {
+        fs.writeFileSync(leaderboardFilePath, '{}');
     }
 }
 
 // Endpoint to get leaderboard data
-app.get('/leaderboard/*', (req, res) => {
-    const leaderboardPath = path.join(__dirname, req.path, 'leaderboard.json');
+app.get('/leaderboard/:artist/:album/:song', (req, res) => {
+    const { artist, album, song } = req.params;
+    ensureDirectoryExistence(artist, album, song);
+
+    const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
     console.log(leaderboardPath);
-    ensureDirectoryExistence(leaderboardPath);
 
     fs.readFile(leaderboardPath, 'utf8', (err, data) => {
         if (err) {
@@ -56,11 +60,13 @@ app.get('/leaderboard/*', (req, res) => {
 });
 
 // Endpoint to update leaderboard data
-app.post('/*', (req, res) => {
-    const leaderboardPath = path.join(__dirname, req.path, 'leaderboard.json');
-    ensureDirectoryExistence(leaderboardPath);
+app.post('/leaderboard/:artist/:album/:song', (req, res) => {
+    const { artist, album, song } = req.params;
+    ensureDirectoryExistence(artist, album, song);
 
+    const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
     const newData = req.body; // Data sent from the frontend
+
     fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
         if (err) {
             console.error('Error writing to leaderboard file:', err);
