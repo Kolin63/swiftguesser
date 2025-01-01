@@ -5,7 +5,6 @@ let parameters;
 let winData;
 const configBox = document.getElementById("lb-config");
 
-
 addEventListener('DOMContentLoaded', init);
 async function init() {
     console.trace();
@@ -195,7 +194,7 @@ async function fetchLeaderboard() {
 
     await updateLeaderboardPath();
 
-    fetch(leaderboardPath)
+    await fetch(leaderboardPath)
     .then(response => {
         if (!response.ok) {
             throw new Error("fetchLeaderboard() error " + response.status);
@@ -207,6 +206,7 @@ async function fetchLeaderboard() {
         console.log("fetchLeaderboard() finished: ", leaderboardData);
         await makeLeaderboardJSON();
     });
+    console.log("fetchLeaderboard() returning");
 }
 
 async function updateLeaderboard() {
@@ -232,14 +232,15 @@ document.getElementById("test-button").addEventListener("click", async function 
     console.trace();
     let songLB = parseLeaderboardString(leaderboardData[parameters]);
 
-    for (i in songLB) {
+    for (i in songLB.length) {
         if (songLB[i].name == "NUL") {
             songLB[0] = { "name": "TST", "points": 987 };
             break;
-        }
+        } else continue;
     }
 
     leaderboardData[parameters] = makeLeaderboardString(songLB);
     console.log("testbutton: ", leaderboardData);
     await updateLeaderboard();
+    updateLeaderboardList();
 });
