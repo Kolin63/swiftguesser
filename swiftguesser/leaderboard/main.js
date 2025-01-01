@@ -15,8 +15,18 @@ async function init() {
 
     weightData = await getWeight();
     configData = await getConfig();
+
+    localArtistSelect = localStorage.getItem('artistSelect');
+    console.log(localArtistSelect);
+    localAlbumSelect = localStorage.getItem('albumSelect');
+    localSongSelect = localStorage.getItem('songSelect');
+
     buildConfig();
     await buildSelectionBar();
+
+    artistSelect.value = localArtistSelect;
+    albumSelect.value = localAlbumSelect;
+    songSelect.value = localSongSelect;
 }
 
 function parseLeaderboardString(s) {
@@ -91,6 +101,9 @@ async function artistSelectChange() {
         albumOption.textContent = album;
         albumSelect.appendChild(albumOption); 
     } 
+
+    localStorage.setItem('artistSelect', artistSelect.value);
+
     await albumSelectChange(); 
 }
 
@@ -105,12 +118,17 @@ async function albumSelectChange() {
         songOption.textContent = weightData[artistSelect.value][albumSelect.value].songs[song];
         songSelect.appendChild(songOption);
     }
+
+    localStorage.setItem('albumSelect', albumSelect.value);
+
     await songSelectChange();
 }
 
 async function songSelectChange() {
     console.trace();
     console.log("Song Select Changed to: ", songSelect.value);
+
+    localStorage.setItem('songSelect', songSelect.value);
 
     await fetchLeaderboard();
     if (leaderboardData == undefined) return;
