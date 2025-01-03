@@ -122,7 +122,7 @@ function togglePlay() {
             stopwatchMS = audio.currentTime * 1000; // Update stopwatch with audio's current time in milliseconds
             const seconds = (stopwatchMS / 1000).toFixed(1);
             stopwatch.textContent = makeTimeCode();
-            points = Math.ceil(Math.max(-10 * Math.pow(seconds, 10) + 1000, 0));
+            points = Math.ceil(Math.max(Math.max((seconds^4)+999, -10*seconds+850),1));
             pointsDisplay.textContent = points;
         }, 1); // Update every 1ms
     } else {
