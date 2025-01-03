@@ -6,7 +6,7 @@ const searchBackground = document.getElementById("search-background");
 let searchResultBoxes = document.getElementsByClassName("search-result");
 const albumCovers = Array.from(document.getElementsByClassName("album-cover")); // Convert to array
 const pointsDisplay = document.getElementById('points');
-let points = 1000;
+let points = 999;
 
 let stopwatchMS = 0;
 let playing = false;
@@ -122,7 +122,7 @@ function togglePlay() {
             stopwatchMS = audio.currentTime * 1000; // Update stopwatch with audio's current time in milliseconds
             const seconds = (stopwatchMS / 1000).toFixed(1);
             stopwatch.textContent = makeTimeCode();
-            points = Math.ceil(Math.max(Math.max((seconds^4)+999, -10*seconds+850),1));
+            points = Math.ceil(Math.max(Math.max(-1*(1000000*Math.pow(seconds, 6))+999, -10*seconds+850), 1))
             pointsDisplay.textContent = points;
         }, 1); // Update every 1ms
     } else {
@@ -256,7 +256,7 @@ async function getWeight() {
 // Formats stopwatch
 function makeTimeCode() {
     let minute = Math.floor(stopwatchMS / 60000);
-    let second = Math.floor(stopwatchMS / 1000);
+    let second = Math.floor((stopwatchMS / 1000) % 60);
     let millisecond = Math.floor(stopwatchMS % 1000);
 
     let formattedMinute = minute.toString().padStart(2, '0').padEnd(3, ':');
