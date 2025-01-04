@@ -4,74 +4,42 @@
     {
         "nopause": {
             "value": false,
-            "incomp": {
-                "nand": [
-                    "timedpause"
-                ]
-            }
+            "category": ["pause"],
+            "incomp": {"nand": ["pause"]}
         },
         "timedpause": {
             "value": false,
-            "incomp": {
-                "nand": [
-                    "nopause"
-                ]
-            }
+            "category": ["pause"],
+            "incomp": {"nand": ["pause"]}
         },
         "allswift": {
             "value": true,
-            "incomp": {
-                "xor": [
-                    "allsabrina",
-                    "modernsabrina",
-                    "cherrypick",
-                    "everything"
-                ]
-            }
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"artists": ["taylorswift"]}
         },
         "allsabrina": {
             "value": false,
-            "incomp": {
-                "xor": [
-                    "allswift",
-                    "modernsabrina",
-                    "everything",
-                    "cherrypick"
-                ]
-            }
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"artists": ["sabrinacarpenter"]}
         },
         "modernsabrina": {
             "value": false,
-            "incomp": {
-                "xor": [
-                    "allswift",
-                    "allsabrina",
-                    "everything",
-                    "cherrypick"
-                ]
-            }
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"albums":{"sabrinacarpenter":["emailsicantsend","shortnsweet"]}}
         },
         "everything": {
             "value": false,
-            "incomp": {
-                "xor": [
-                    "allswift",
-                    "allsabrina",
-                    "modernsabrina",
-                    "cherrypick"
-                ]
-            }
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"artists":["taylorswift","sabrinacarpenter"]}
         },
         "cherrypick": {
             "value": false,
-            "incomp": {
-                "xor": [
-                    "allswift",
-                    "allsabrina",
-                    "modernsabrina",
-                    "everything"
-                ]
-            }
+            "category": ["album"],
+            "incomp": {"xor": ["album"]}
         }
     },
     "taylorswift": 
