@@ -271,6 +271,8 @@ async function fetchConfig() {
 }
 
 function checkArtist(artist, bool) {
+    if (artist == "parameters") return;
+
     for (album in configData[artist]) {
         checkAlbum(artist, album, bool);
     }
