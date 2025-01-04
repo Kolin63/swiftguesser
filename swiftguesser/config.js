@@ -1,4 +1,5 @@
-function buildConfig() {
+function buildConfig()
+{
     for (artist in configData) {
         if (artist == "version") continue;
         if (configBox.id == "lb-config" && artist != "parameters") continue;
@@ -10,7 +11,7 @@ function buildConfig() {
         headercheck.name = "check" + artist;
         headercheck.className = "headercheck";
         headercheck.artist = artist;
-        headercheck.checked = orArtist(configData[artist]);
+        headercheck.checked = orArtist(artist);
         if (artist == "parameters") {
             headercheck.checked = false;
             headercheck.disabled = true;
@@ -47,127 +48,178 @@ function buildConfig() {
             bullet.appendChild(check);
             bullet.appendChild(label);
 
-            configBox.appendChild(bullet);  
+            configBox.appendChild(bullet);
 
             // Adds event listeners to checks
-            check.addEventListener('change', function ()
-            {
-                if (check.artist == "parameters")
-                {
-                    const incomps = configData[check.artist][check.album]["incomp"];
-                    if (incomps["nand"] != undefined)
-                    {
-                        for (nand in incomps["nand"])
-                        {
-                            const elem = document.getElementById("check" + check.artist + incomps["nand"][nand]);
-                            if (check.checked && elem.checked) {
-                                elem.checked = !check.checked;
-                                configData[elem.artist][elem.album].value = elem.checked;
-                            }
-                        }
-                    }
-
-                    if (incomps["xor"] != undefined)
-                    {
-                        for (xor in incomps["xor"]) {
-                            const elem = document.getElementById("check" + check.artist + incomps["xor"][xor]);
-                            if (check.checked && elem.checked) {
-                                elem.checked = !check.checked;
-                                configData[elem.artist][elem.album].value = elem.checked;
-                            }
-                        }
-
-                        if (!check.checked) check.checked = true;
-                    }
-
-                    configData[check.artist][check.album].value = check.checked;
-
-                    if (check.album == "allswift") {
-                        checkArtist("taylorswift", true);
-                        checkArtist("sabrinacarpenter", false);
-                    }
-                    else if (check.album == "allsabrina") {
-                        checkArtist("taylorswift", false);
-                        checkArtist("sabrinacarpenter", true);
-                    }
-                    else if (check.album == "modernsabrina") {
-                        checkArtist("taylorswift", false);
-                        checkArtist("sabrinacarpenter", false);
-                        checkAlbum("sabrinacarpenter", "emailsicantsend", true);
-                        checkAlbum("sabrinacarpenter", "shortnsweet", true);
-                    }
-                    else if (check.album == "everything") {
-                        checkArtist("taylorswift", true);
-                        checkArtist("sabrinacarpenter", true);
-                    }
-                }
-                else
-                {
-                    configData[check.artist][check.album] = check.checked;
-                    headercheck.checked = orArtist(configData[check.artist]);
-
-                    if (check.artist == "taylorswift") {
-                        if (andArtist(configData["taylorswift"])) {
-                            document.getElementById("checkparametersallswift").click();
-                        }
-                    }
-                    else if (check.artist == "sabrinacarpenter") {
-                        if (andArtist(configData["sabrinacarpenter"])) {
-                            document.getElementById("checkparametersallsabrina").click();
-                        }
-                        else if (numberOfBoolAlbums("sabrinacarpenter", true) == 2 && configData["sabrinacarpenter"]["emailsicantsend"] == true && configData["sabrinacarpenter"]["shortnsweet"] == true && orArtist(configData["taylorswift"]) == false) {
-                            document.getElementById("checkparametersmodernsabrina").click();
-                        }
-                    }
-                }
-                console.log(configData);
-                storeConfig();
-
-                if (window.location.pathname == "/leaderboard/") {
-                    try {
-                        songSelectChange();
-                    } catch {
-                        makeLeaderboardJSON();
-                        songSelectChange();
-                    }
-                }
+            check.addEventListener('change', function () {
+                albumCheckChange(check, headercheck);
             });
         }
         // Adds event listeners to header check
-        headercheck.addEventListener('change', function() {
-            for (album in configData[headercheck.artist]) {
-                const check = document.getElementById("check" + headercheck.artist + album);
-                check.checked = headercheck.checked;
-                configData[headercheck.artist][album] = headercheck.checked;
-                storeConfig();
-            }
-
-            for (album in configData[headercheck.artist]) {
-                const check = document.getElementById("check" + headercheck.artist + album);
-                check.click();
-                check.click();
-                break;
-            }
+        headercheck.addEventListener('change', function () {
+            artistCheckChange(headercheck);
         });
 
         configBox.appendChild(document.createElement("br"));
     }
 }
 
-// pass it as configData[artist]
+function albumCheckChange(check, headercheck)
+{
+    if (check.artist == "parameters")
+    {
+        updateParametersChecks(check, headercheck);
+    }
+    else
+    {
+        updateAlbumChecks(check, headercheck);
+    }
+    console.log(configData);
+    storeConfig();
+
+    if (window.location.pathname == "/leaderboard/") {
+        try {
+            songSelectChange();
+        } catch {
+            makeLeaderboardJSON();
+            songSelectChange();
+        }
+    }
+}
+
+function updateParametersChecks(check, headercheck)
+{
+    // Check Incomps
+    for (incomp in configData[check.artist][check.album]["incomp"])
+    {
+        for (incompcat in configData[check.artist][check.album]["incomp"][incomp])
+        {
+            for (exparam in configData[check.artist])
+            {
+                for (exparamcat in configData[check.artist][exparam]["category"])
+                {
+                    // If the category is the same as the certain incomp
+                    if (configData[check.artist][exparam]["category"][exparamcat] == configData[check.artist][check.album]["incomp"][incomp][incompcat] && exparam != check.album) 
+                    {
+                        const elem = document.getElementById("checkparameters" + exparam);
+
+                        if (incomp == "nand")
+                        {
+                            if (check.checked && elem.checked) {
+                                elem.checked = !check.checked;
+                                configData[elem.artist][elem.album].value = elem.checked;
+                            }    
+                        }
+                        else if (incomp == "xor")
+                        {
+                            if (check.checked && elem.checked)
+                            {
+                                elem.checked = !check.checked;
+                                configData[elem.artist][elem.album].value = elem.checked;
+                            }
+
+                            if (!check.checked) check.checked = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    configData[check.artist][check.album].value = check.checked;
+
+    // Data
+    const data = configData[check.artist][check.album]["data"];
+
+    if (configData[check.artist][check.album].category.includes("album") && check.album != "cherrypick")
+    {
+        for (artist in configData) {
+            if (artist == "parameters") continue;
+            checkArtist(artist, false);
+        }
+
+        if (data["artists"]) for (artist in data["artists"]) {
+            checkArtist(data["artists"][artist], true);
+        }
+
+        if (data["albums"]) for (artist in data["albums"]) for (album in data["albums"][artist]) {
+            checkAlbum(artist, data["albums"][artist][album], true);
+        }
+    }
+}
+
+function updateAlbumChecks(check, headercheck)
+{
+    configData[check.artist][check.album] = check.checked;
+    headercheck.checked = orArtist(check.artist);
+
+    let match = false;
+
+    for (parameter in configData["parameters"])
+    {
+        if (!configData["parameters"][parameter]["category"].includes("album")) continue;
+
+        const data = configData["parameters"][parameter]["data"];
+        let currentData = {};
+    
+        for (artist in configData)
+        {
+            if (artist == "parameters" || artist == "version") continue;
+
+            if (andArtist(artist))
+            {
+                if (currentData["artists"] == undefined) currentData["artists"] = [];
+                currentData["artists"].push(artist);
+                continue;
+            }
+
+            for (album in configData[artist])
+            {
+                if (configData[artist][album])
+                {
+                    if (currentData["albums"] == undefined) currentData["albums"] = {};
+                    if (currentData["albums"][artist] == undefined) currentData["albums"][artist] = [];
+                    currentData["albums"][artist].push(album);
+                }
+            }
+        }
+
+        if (JSON.stringify(currentData) == JSON.stringify(data))
+        {
+            document.getElementById("checkparameters" + parameter).click();
+            match = true;
+            break;
+        }
+    }
+
+    if (!match) document.getElementById("checkparameterscherrypick").click();
+}
+
+function artistCheckChange(headercheck)
+{
+    const artist = headercheck.artist;
+
+    checkArtist(artist, headercheck.checked);
+    storeConfig();
+
+    const album = (Object.keys(configData[artist])[0]);
+    const elem = document.getElementById("check" + artist + album);
+    elem.checked = !elem.checked;
+    elem.click();
+}
+
 function orArtist(artist) {
     let or = false;
-    for (album in artist) {
-        or = or || artist[album];
+    for (album in configData[artist]) {
+        or = or || configData[artist][album];
     }
     return or;
 }
 
-// pass it as configData[artist]
 function andArtist(artist) {
     let and = true;
-    for (album in artist) {
-        and = and && artist[album];
+    for (album in configData[artist]) {
+        and = and && configData[artist][album];
     }
     return and;
 }
