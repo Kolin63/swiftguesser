@@ -455,5 +455,35 @@
                 "so american"
             ]
         }
+    },
+    "chappellroan": 
+    {
+        "riseandfall": 
+        {
+            "amount": 14,
+            "songs": [
+                "Femininomenon",
+                "Red Wine Supernova",
+                "After Midnight",
+                "Coffee",
+                "Casual",
+                "Super Graphic Ultra Modern Girl",
+                "HOT TO GO!",
+                "My Kink Is Karma",
+                "Picture You",
+                "Kaleidoscope",
+                "Pink Pony Club",
+                "Naked In Manhattan",
+                "California",
+                "Guilty Pleasure"
+            ]
+        },
+        "goodluckbabe":
+        {
+            "amount": 1,
+            "songs": [
+                "Good Luck, Babe!"
+            ]
+        }
     }
 }

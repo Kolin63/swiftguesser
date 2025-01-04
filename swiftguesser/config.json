@@ -1,5 +1,5 @@
 {
-    "version": 19,
+    "version": 20,
     "parameters":
     {
         "nopause": {
@@ -36,11 +36,17 @@
             "incomp": {"xor": ["album"]},
             "data": {"artists": ["oliviarodrigo"]}
         },
+        "allchappell": {
+            "value": false,
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"artists": ["chappellroan"]}
+        },
         "everything": {
             "value": false,
             "category": ["album"],
             "incomp": {"xor": ["album"]},
-            "data": {"artists":["taylorswift","sabrinacarpenter","oliviarodrigo"]}
+            "data": {"artists":["taylorswift","sabrinacarpenter","oliviarodrigo","chappellroan"]}
         },
         "cherrypick": {
             "value": false,
@@ -75,5 +81,10 @@
     {
         "sour": false,
         "guts": false
+    },
+    "chappellroan":
+    {
+        "riseandfall": false,
+        "goodluckbabe": false
     }
 }
