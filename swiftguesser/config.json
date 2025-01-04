@@ -1,5 +1,5 @@
 {
-    "version": 18,
+    "version": 19,
     "parameters":
     {
         "nopause": {
@@ -30,11 +30,17 @@
             "incomp": {"xor": ["album"]},
             "data": {"albums":{"sabrinacarpenter":["emailsicantsend","shortnsweet"]}}
         },
+        "allrodrigo": {
+            "value": false,
+            "category": ["album"],
+            "incomp": {"xor": ["album"]},
+            "data": {"artists": ["oliviarodrigo"]}
+        },
         "everything": {
             "value": false,
             "category": ["album"],
             "incomp": {"xor": ["album"]},
-            "data": {"artists":["taylorswift","sabrinacarpenter"]}
+            "data": {"artists":["taylorswift","sabrinacarpenter","oliviarodrigo"]}
         },
         "cherrypick": {
             "value": false,
@@ -64,5 +70,10 @@
         "singularact2": false,
         "emailsicantsend": false,
         "shortnsweet": false
+    },
+    "oliviarodrigo":
+    {
+        "sour": false,
+        "guts": false
     }
 }
