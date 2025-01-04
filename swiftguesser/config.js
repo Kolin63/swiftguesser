@@ -138,12 +138,17 @@ function updateParametersChecks(check, headercheck)
             checkArtist(artist, false);
         }
 
-        if (data["artists"]) for (artist in data["artists"]) {
+        if (data && data["artists"]) for (artist in data["artists"]) {
             checkArtist(data["artists"][artist], true);
         }
 
-        if (data["albums"]) for (artist in data["albums"]) for (album in data["albums"][artist]) {
+        if (data && data["albums"]) for (artist in data["albums"]) for (album in data["albums"][artist]) {
             checkAlbum(artist, data["albums"][artist][album], true);
+        }
+
+        if (check.album == "everything") for (artist in configData) {
+            if (artist == "parameters") continue;
+            checkArtist(artist, true);
         }
     }
 }
@@ -154,6 +159,7 @@ function updateAlbumChecks(check, headercheck)
     headercheck.checked = orArtist(check.artist);
 
     let match = false;
+    let everything = true;
 
     for (parameter in configData["parameters"])
     {
@@ -172,6 +178,8 @@ function updateAlbumChecks(check, headercheck)
                 currentData["artists"].push(artist);
                 continue;
             }
+
+            everything = false;
 
             for (album in configData[artist])
             {
@@ -192,7 +200,8 @@ function updateAlbumChecks(check, headercheck)
         }
     }
 
-    if (!match) document.getElementById("checkparameterscherrypick").click();
+    if (everything) document.getElementById("checkparameterseverything").click();
+    else if (!match) document.getElementById("checkparameterscherrypick").click();
 }
 
 function artistCheckChange(headercheck)
