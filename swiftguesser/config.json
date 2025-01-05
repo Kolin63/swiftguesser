@@ -1,89 +1,171 @@
 {
-    "version": 20,
-    "parameters":
-    {
+    "version": 21,
+    "parameters": {
+        "display": {
+            "display": "Parameters"
+        },
         "nopause": {
             "value": false,
+            "display": "No Pause",
             "category": ["pause"],
             "incomp": {"nand": ["pause"]}
         },
         "timedpause": {
             "value": false,
+            "display": "Timed Pause",
             "category": ["pause"],
             "incomp": {"nand": ["pause"]}
         },
         "allswift": {
             "value": true,
+            "display": "All Swift",
             "category": ["album"],
             "incomp": {"xor": ["album"]},
             "data": {"artists": ["taylorswift"]}
         },
         "allsabrina": {
             "value": false,
+            "display": "All Sabrina",
             "category": ["album"],
             "incomp": {"xor": ["album"]},
             "data": {"artists": ["sabrinacarpenter"]}
         },
         "modernsabrina": {
             "value": false,
+            "display": "Modern Sabrina",
             "category": ["album"],
             "incomp": {"xor": ["album"]},
             "data": {"albums":{"sabrinacarpenter":["emailsicantsend","shortnsweet"]}}
         },
         "allrodrigo": {
             "value": false,
+            "display": "All Rodrigo",
             "category": ["album"],
             "incomp": {"xor": ["album"]},
             "data": {"artists": ["oliviarodrigo"]}
         },
         "allchappell": {
             "value": false,
+            "display": "All Chappell",
             "category": ["album"],
             "incomp": {"xor": ["album"]},
             "data": {"artists": ["chappellroan"]}
         },
         "everything": {
             "value": false,
+            "display": "Everything",
             "category": ["album"],
             "incomp": {"xor": ["album"]}
         },
         "cherrypick": {
             "value": false,
+            "display": "Cherry Pick",
             "category": ["album"],
             "incomp": {"xor": ["album"]}
         }
     },
-    "taylorswift": 
-    {
-        "taylorswift": true,
-        "fearless": true,
-        "speaknow": true,
-        "red": true,
-        "1989": true,
-        "reputation": true,
-        "lover": true,
-        "folklore": true,
-        "evermore": true,
-        "midnights": true,
-        "tpd": true
+    "taylorswift": {
+        "display": {
+            "display": "Taylor Swift"
+        },
+        "taylorswift": {
+            "value": true,
+            "display": "Taylor Swift"
+        },
+        "fearless": {
+            "value": true,
+            "display": "Fearless"
+        },
+        "speaknow": {
+            "value": true,
+            "display": "Speak Now"
+        },
+        "red": {
+            "value": true,
+            "display": "Red"
+        },
+        "1989": {
+            "value": true,
+            "display": "1989"
+        },
+        "reputation": {
+            "value": true,
+            "display": "Reputation"
+        },
+        "lover": {
+            "value": true,
+            "display": "Lover"
+        },
+        "folklore": {
+            "value": true,
+            "display": "Folklore"
+        },
+        "evermore": {
+            "value": true,
+            "display": "Evermore"
+        },
+        "midnights": {
+            "value": true,
+            "display": "Midnights"
+        },
+        "tpd": {
+            "value": true,
+            "display": "TPD"
+        }
     },
-    "sabrinacarpenter":
-    {
-        "eyeswideopen": false,
-        "evolution": false,
-        "singularact1": false,
-        "singularact2": false,
-        "emailsicantsend": false,
-        "shortnsweet": false
+    "sabrinacarpenter": {
+        "display": {
+            "display": "Sabrina Carpenter"
+        },
+        "eyeswideopen": {
+            "value": false,
+            "display": "Eyes Wide Open"
+        },
+        "evolution": {
+            "value": false,
+            "display": "Evolution"
+        },
+        "singularact1": {
+            "value": false,
+            "display": "Singular Act 1"
+        },
+        "singularact2": {
+            "value": false,
+            "display": "Singular Act 2"
+        },
+        "emailsicantsend": {
+            "value": false,
+            "display": "Emails I Can't Send"
+        },
+        "shortnsweet": {
+            "value": false,
+            "display": "Short n' Sweet"
+        }
     },
-    "oliviarodrigo":
-    {
-        "sour": false,
-        "guts": false
+    "oliviarodrigo": {
+        "display": {
+            "display": "Olivia Rodrigo"
+        },
+        "sour": {
+            "value": false,
+            "display": "Sour"
+        },
+        "guts": {
+            "value": false,
+            "display": "Guts"
+        }
     },
-    "chappellroan":
-    {
-        "riseandfall": false,
-        "goodluckbabe": false
+    "chappellroan": {
+        "display": {
+            "display": "Chappell Roan"
+        },
+        "riseandfall": {
+            "value": false,
+            "display": "Rise and Fall"
+        },
+        "goodluckbabe": {
+            "value": false,
+            "display": "Good Luck, Babe!"
+        }
     }
 }

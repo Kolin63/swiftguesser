@@ -20,11 +20,13 @@ function buildConfig()
 
         const header = document.createElement("label");
         header.for = "check" + artist;
-        header.textContent = artist;
+        header.textContent = configData[artist].display.display;
         configBox.appendChild(header);
 
         // Creates checks for each album
         for (album in configData[artist]) {
+            if (album == "display") continue;
+
             const check = document.createElement("input");
             check.type = "checkbox";
             check.id = "check" + artist + album;
@@ -32,15 +34,12 @@ function buildConfig()
             check.className = "albumcheck";
             check.artist = artist;
             check.album = album;
-            if (artist == "parameters")
-                check.checked = configData[artist][album].value;
-            else
-                check.checked = configData[artist][album];
+            check.checked = configData[artist][album].value;
 
 
             const label = document.createElement("label");
             label.for = "check" + artist + album;
-            label.textContent = album;
+            label.textContent = configData[artist][album].display;
 
 
             const bullet = document.createElement("li");
@@ -155,7 +154,7 @@ function updateParametersChecks(check, headercheck)
 
 function updateAlbumChecks(check, headercheck)
 {
-    configData[check.artist][check.album] = check.checked;
+    configData[check.artist][check.album].value = check.checked;
     headercheck.checked = orArtist(check.artist);
 
     let match = false;
@@ -183,7 +182,7 @@ function updateAlbumChecks(check, headercheck)
 
             for (album in configData[artist])
             {
-                if (configData[artist][album])
+                if (configData[artist][album].value)
                 {
                     if (currentData["albums"] == undefined) currentData["albums"] = {};
                     if (currentData["albums"][artist] == undefined) currentData["albums"][artist] = [];
@@ -220,7 +219,7 @@ function artistCheckChange(headercheck)
 function orArtist(artist) {
     let or = false;
     for (album in configData[artist]) {
-        or = or || configData[artist][album];
+        or = or || configData[artist][album].value;
     }
     return or;
 }
@@ -228,7 +227,7 @@ function orArtist(artist) {
 function andArtist(artist) {
     let and = true;
     for (album in configData[artist]) {
-        and = and && configData[artist][album];
+        and = and && configData[artist][album].value;
     }
     return and;
 }
@@ -260,11 +259,8 @@ async function fetchConfig() {
                 if (x != undefined && x != null)
                     configData[artist][album] = oldConfig[artist][album];
 
-                if (artist == "parameters")
-                {
-                    configData[artist][album] = currentConfig[artist][album];
-                    configData[artist][album].value = oldConfig[artist][album].value;
-                }
+                configData[artist][album] = currentConfig[artist][album];
+                configData[artist][album].value = oldConfig[artist][album].value;
             }
         }
     }
@@ -285,7 +281,7 @@ function checkAlbum(artist, album, bool) {
     try {
         document.getElementById("check" + artist + album).checked = bool;
     } catch { };
-    configData[artist][album] = bool;
+    configData[artist][album].value = bool;
 
     try {
         document.getElementById("check" + artist).checked = orArtist(artist);
@@ -296,7 +292,7 @@ function numberOfBoolAlbums(artist, bool) {
     let num = 0;
 
     for (album in configData[artist]) {
-        if (configData[artist][album] == bool) num++;
+        if (configData[artist][album].value == bool) num++;
     }
 
     return num;

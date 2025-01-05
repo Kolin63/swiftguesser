@@ -181,7 +181,7 @@ async function getSong() {
         if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
             // skip if the album is disabled in config
-            if (!configData[artist][album])
+            if (!configData[artist][album].value)
                 continue;
 
             for (song in weightData[artist][album].songs) {
@@ -207,7 +207,7 @@ async function getTotalSongs() {
         if (artist == "version" || artist == "parameters") continue;
         for (album in configData[artist]) {
             // skip if the album is disabled in config
-            if (!configData[artist][album])
+            if (!configData[artist][album].value)
                 continue;
 
             totalSongs += weightData[artist][album].amount;
@@ -223,7 +223,7 @@ function getSongList() {
     for (let artist in configData) {
         if (artist == "version" || artist == "parameters") continue;
         for (let album in configData[artist]) {
-            if (configData[artist][album]) {
+            if (configData[artist][album].value) {
                 list = list.concat(weightData[artist][album].songs);
             }
         }
@@ -237,7 +237,7 @@ function getSongListAlbums() {
     for (let artist in configData) {
         if (artist == "version" || artist == "parameters") continue;
         for (let album in configData[artist]) {
-            if (configData[artist][album]) {
+            if (configData[artist][album].value) {
                 const albumSongs = weightData[artist][album].songs;
                 const albumCoverPath = 'music/' + artist + '/' + album + '/cover.jpg';
                 albums = albums.concat(albumSongs.map(() => albumCoverPath));
