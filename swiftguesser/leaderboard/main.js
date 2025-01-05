@@ -3,7 +3,10 @@ let configData;
 let leaderboardData = undefined;
 let parameters;
 let winData;
+let initBool = true;
 const configBox = document.getElementById("lb-config");
+
+const localSelect = [localStorage.getItem("artistSelect"), localStorage.getItem("albumSelect"), localStorage.getItem("songSelect")];
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
@@ -11,23 +14,15 @@ async function init() {
     catch { winData = ""; }
     localStorage.setItem("win", "");
     console.log("Win Data:", winData);
+    if (localSelect == undefined) initBool = false;
 
     weightData = await getWeight();
     await fetchConfig();
 
-    const localArtistSelect = localStorage.getItem('artistSelect');
-    const localAlbumSelect = localStorage.getItem('albumSelect');
-    const localSongSelect = localStorage.getItem('songSelect');
-
     buildConfig();
     await buildSelectionBar();
 
-    artistSelect.value = localArtistSelect;
-    await artistSelectChange();
-    albumSelect.value = localAlbumSelect;
-    await albumSelectChange();
-    songSelect.value = localSongSelect;
-    await songSelectChange();
+    initBool = false;
 }
 
 function parseLeaderboardString(s) {
@@ -92,10 +87,19 @@ async function buildSelectionBar() {
         artistSelect.appendChild(artistOption);
     }
 
+    if (initBool) {
+        if (winData == "") {
+            artistSelect.value = localSelect[0];
+        } else {
+            artistSelect.value = winData[0];
+        }
+    }
+
     await artistSelectChange(data);
 
-    if (winData != "") {
-        addNameToLeaderboard();
+    if (winData != "" && initBool) {
+        await addNameToLeaderboard();
+        winData = "";
     } 
 }
 
@@ -104,18 +108,13 @@ async function addNameToLeaderboard() {
     const playerName = localStorage.getItem("playerName");
     const playerPoints = winData[3];
 
-    const chickenalpha = leaderboardData;
-    console.log("chicken alpha", chickenalpha);
-
     for (let i = 0; i < songLB.length; i++) {
         if (songLB[i].points < playerPoints) {
             // Shifts Leaderboard Down
             for (let j = songLB.length - 2; j >= i; j--) {
-                console.log("chicken", songLB[j].name, songLB[j].points);
                 songLB[j + 1].name = songLB[j].name;
                 songLB[j + 1].points = songLB[j].points;
             }
-            console.log("chicken:", songLB);
 
             songLB[i] = { "name": playerName, "points": playerPoints };
             console.log("addNameToLeaderboard(): Adding " + playerName + " to rank " + i + ". ", "Win Data: ", winData + ". ", "Leaderboard: ", songLB);
@@ -143,6 +142,14 @@ async function artistSelectChange(data = {}) {
         albumSelect.appendChild(albumOption); 
     } 
 
+    if (initBool) {
+        if (winData == "") {
+            albumSelect.value = localSelect[1];
+        } else {
+            albumSelect.value = winData[1];
+        }
+    }
+
     localStorage.setItem('artistSelect', artistSelect.value);
 
     await albumSelectChange(); 
@@ -157,6 +164,14 @@ async function albumSelectChange() {
         const songOption = document.createElement("option");
         songOption.textContent = weightData[artistSelect.value][albumSelect.value].songs[song];
         songSelect.appendChild(songOption);
+    }
+
+    if (initBool) {
+        if (winData == "") {
+            songSelect.value = localSelect[2];
+        } else {
+            songSelect.value = winData[2];
+        }
     }
 
     localStorage.setItem('albumSelect', albumSelect.value);
