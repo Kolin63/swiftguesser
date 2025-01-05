@@ -68,7 +68,13 @@ app.get('/leaderboard/:artist/:album/:song', async (req, res) => {
                 console.error('Error reading leaderboard file:', err);
                 return res.status(500).json({ error: 'Failed to read leaderboard data' });
             }
-            res.json(JSON.parse(data));
+            try {
+                const jsonData = JSON.parse(data);
+                res.json(jsonData);
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                res.status(500).json({ error: 'Invalid JSON format' });
+            }
         });
     } catch (error) {
         console.error('Unexpected error:', error);
