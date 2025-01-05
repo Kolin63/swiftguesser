@@ -74,17 +74,18 @@ function albumCheckChange(check, headercheck)
     {
         updateAlbumChecks(check, headercheck);
     }
-    console.log(configData);
-    storeConfig();
 
     if (window.location.pathname == "/leaderboard/") {
         try {
-            songSelectChange();
+            buildSelectionBar();
         } catch {
             makeLeaderboardJSON();
-            songSelectChange();
+            buildSelectionBar();
         }
     }
+
+    console.log(configData);
+    storeConfig();
 }
 
 function updateParametersChecks(check, headercheck)

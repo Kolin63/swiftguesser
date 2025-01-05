@@ -13,7 +13,7 @@ async function init() {
     console.log("Win Data:", winData);
 
     weightData = await getWeight();
-    configData = await getConfig();
+    await fetchConfig();
 
     const localArtistSelect = localStorage.getItem('artistSelect');
     const localAlbumSelect = localStorage.getItem('albumSelect');
@@ -64,33 +64,52 @@ const albumSelect = document.getElementById('select-album');
 const songSelect = document.getElementById('select-song');
 artistSelect.onchange = (event) => {artistSelectChange()};
 albumSelect.onchange = (event) => {albumSelectChange()};
-songSelect.onchange = (event) => {songSelectChange()};
+songSelect.onchange = (event) => { songSelectChange() };
+
+async function getAlbumParameterData() {
+    for (parameter in configData["parameters"]) {
+        const p = configData["parameters"][parameter];
+        if (p["category"].includes("album") && p.value) {
+            if (parameter == "everything" || parameter == "cherrypick") return {};
+            else return p["data"];
+        }
+    }
+}
 
 async function buildSelectionBar() {
     artistSelect.innerHTML = '';
+
+    const data = await getAlbumParameterData();
+    console.log("album parameter data", data);
+
     for (artist in weightData) {
+        if (data["artists"] && !data["artists"].includes(artist)) continue;
+        if (data["albums"] && !Object.keys(data["albums"]).includes(artist)) continue;
+
         // Create a new object for the artist
         const artistOption = document.createElement("option");
         artistOption.textContent = artist;
         artistSelect.appendChild(artistOption);
     }
-    await artistSelectChange();
+    await artistSelectChange(data);
 
     if (winData != "") {
         artistSelect.value = winData[0];
-        await artistSelectChange();
+        await artistSelectChange(data);
         albumSelect.value = winData[1];
-        await albumSelectChange();
+        await albumSelectChange(data);
         songSelect.value = winData[2];
-        await songSelectChange();
+        await songSelectChange(data);
     }
 }
 
-async function artistSelectChange() {
+async function artistSelectChange(data = {}) {
     console.log("Artist Select Changed to: ", artistSelect.value);
 
     albumSelect.innerHTML = '';
     for (album in weightData[artistSelect.value]) {
+        if (data["albums"] && !data["albums"][artistSelect.value].includes(album)) continue;
+
         // Create a new object for the album
         const albumOption = document.createElement("option");
         albumOption.textContent = album;
