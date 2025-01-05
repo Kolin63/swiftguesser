@@ -295,8 +295,44 @@ li::marker {
 }
 
 .navbar .square {
-    width: 3vw;
+    width: .75in;
     margin: 1vw;
+}
+
+#namedisplay {
+    background: none;
+    outline: none;
+    border: none;
+    height: 100%;
+    width: 1.4in;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#nametext {
+    width: 1in;
+    height: 60%;
+    padding: 0;
+    margin: .2in;
+    font-size: 2vw;
+    cursor:pointer;
+    border: 0;
+}
+
+#namechange {
+    visibility: hidden;
+    border: 0;
+    width: 1in;
+    font-size: 2vw;
+    height: 60%;
+    margin: .2in;
+    text-align: center;
+}
+
+#nametext:hover {
+    text-decoration-line: underline;
 }
 
 
