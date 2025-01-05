@@ -3,9 +3,6 @@ var fs = require('fs');
 var path = require('path');
 var cors = require('cors');
 
-var path = require('path');
-var cors = require('cors');
-
 var app = express();
 const PORT = 3000;
 
@@ -52,39 +49,55 @@ function ensureFileExistence(artist, album, song) {
 }
 
 // Endpoint to get leaderboard data
-app.get('/leaderboard/:artist/:album/:song', (req, res) => {
-    const { artist, album, song } = req.params;
-    ensureDirectoryExistence(artist, album, song);
-    ensureFileExistence(artist, album, song);
+app.get('/leaderboard/:artist/:album/:song', async (req, res) => {
+    try {
+        const { artist, album, song } = req.params;
+        ensureDirectoryExistence(artist, album, song);
+        ensureFileExistence(artist, album, song);
 
-    const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
-    console.log(leaderboardPath);
+        const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
+        console.log(leaderboardPath);
 
-    fs.readFile(leaderboardPath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading leaderboard file:', err);
-            return res.status(500).json({ error: 'Failed to read leaderboard data' });
-        }
-        res.json(JSON.parse(data));
-    });
+        fs.readFile(leaderboardPath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading leaderboard file:', err);
+                return res.status(500).json({ error: 'Failed to read leaderboard data' });
+            }
+            res.json(JSON.parse(data));
+        });
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 // Endpoint to update leaderboard data
-app.post('/leaderboard/:artist/:album/:song', (req, res) => {
-    const { artist, album, song } = req.params;
-    ensureDirectoryExistence(artist, album, song);
-    ensureFileExistence(artist, album, song);
+app.post('/leaderboard/:artist/:album/:song', async (req, res) => {
+    try {
+        const { artist, album, song } = req.params;
+        ensureDirectoryExistence(artist, album, song);
+        ensureFileExistence(artist, album, song);
 
-    const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
-    const newData = req.body; // Data sent from the frontend
+        const leaderboardPath = path.join(__dirname, 'leaderboard', artist, album, song, 'leaderboard.json');
+        const newData = req.body; // Data sent from the frontend
 
-    fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
-        if (err) {
-            console.error('Error writing to leaderboard file:', err);
-            return res.status(500).json({ error: 'Failed to save leaderboard data' });
-        }
-        res.json({ message: 'Leaderboard updated successfully!' });
-    });
+        fs.writeFile(leaderboardPath, JSON.stringify(newData, null, 2), (err) => {
+            if (err) {
+                console.error('Error writing to leaderboard file:', err);
+                return res.status(500).json({ error: 'Failed to save leaderboard data' });
+            }
+            res.json({ message: 'Leaderboard updated successfully!' });
+        });
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
 });
 
 // Start the server
