@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
                 <a href="/play" title="Play">
-                    <img src="/art/playbutton.png" class="square" style="scale: 70%;" alt="Play">
+                    <img src="/art/playbutton.png" class="square" alt="Play">
                 </a>
                 <a href="/#config" title="Config">
                     <img src="/art/config.svg" class="square" alt="Config">
