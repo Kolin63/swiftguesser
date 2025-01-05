@@ -43,9 +43,14 @@ function ensureFileExistence(artist, album, song) {
     const emptyLBPath = path.join(__dirname, 'emptyleaderboard.json');
     const leaderboardFilePath = path.join(requiredPath, 'leaderboard.json');
 
-    fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
-        if (err) console.error('Error Copying Leaderboard File:', err);
-    });
+    try {
+        fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
+            if (err) console.error('Error Copying Leaderboard File:', err);
+        });
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 // Endpoint to get leaderboard data
