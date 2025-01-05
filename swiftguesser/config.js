@@ -2,7 +2,6 @@ function buildConfig()
 {
     for (artist in configData) {
         if (artist == "version") continue;
-        if (configBox.id == "lb-config" && artist != "parameters") continue;
 
         // Creates header for each artist / category
         const headercheck = document.createElement("input");
