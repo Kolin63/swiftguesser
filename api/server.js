@@ -69,8 +69,7 @@ app.get('/leaderboard/:artist/:album/:song', async (req, res) => {
                 return res.status(500).json({ error: 'Failed to read leaderboard data' });
             }
             try {
-                const jsonData = JSON.parse(data);
-                res.json(jsonData);
+                res.json(data);
             } catch (parseError) {
                 console.error('Error parsing JSON:', parseError);
                 res.status(500).json({ error: 'Invalid JSON format' });
