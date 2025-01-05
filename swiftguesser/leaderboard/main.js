@@ -7,7 +7,6 @@ const configBox = document.getElementById("lb-config");
 
 addEventListener('DOMContentLoaded', init);
 async function init() {
-    console.trace();
     try { winData = JSON.parse(localStorage.getItem("win")); }
     catch { winData = ""; }
     localStorage.setItem("win", "");
@@ -32,7 +31,6 @@ async function init() {
 }
 
 function parseLeaderboardString(s) {
-    console.trace();
     let songLB = [];
     // Names
     for (let i = 0; i < 10; i++) {
@@ -50,7 +48,6 @@ function parseLeaderboardString(s) {
 }
 
 function makeLeaderboardString(s) {
-    console.trace();
     let result = "";
     // Names
     for (i in s)
@@ -70,9 +67,6 @@ albumSelect.onchange = (event) => {albumSelectChange()};
 songSelect.onchange = (event) => {songSelectChange()};
 
 async function buildSelectionBar() {
-    console.trace();
-    console.log("buildSelectionBar() called");
-
     artistSelect.innerHTML = '';
     for (artist in weightData) {
         // Create a new object for the artist
@@ -93,7 +87,6 @@ async function buildSelectionBar() {
 }
 
 async function artistSelectChange() {
-    console.trace();
     console.log("Artist Select Changed to: ", artistSelect.value);
 
     albumSelect.innerHTML = '';
@@ -110,7 +103,6 @@ async function artistSelectChange() {
 }
 
 async function albumSelectChange() {
-    console.trace();
     console.log("Album Select Changed to: ", albumSelect.value);
 
     songSelect.innerHTML = '';
@@ -127,7 +119,6 @@ async function albumSelectChange() {
 }
 
 async function songSelectChange() {
-    console.trace();
     console.log("Song Select Changed to: ", songSelect.value);
 
     localStorage.setItem('songSelect', songSelect.value);
@@ -139,7 +130,6 @@ async function songSelectChange() {
 }
 
 async function updateParametersString() {
-    console.trace();
     // Make a string representing enabled parameters
     parameters = "";
     for (parameter in configData["parameters"])
@@ -152,7 +142,6 @@ async function updateParametersString() {
 }
 
 function updateLeaderboardList() {
-    console.trace();
     const container = document.getElementById("leaderboard-container");
     container.innerHTML = '';
 
@@ -179,8 +168,6 @@ function updateLeaderboardList() {
 
 // This function is here for developer purposes
 async function makeLeaderboardJSON() {
-    console.trace();
-    console.log("makeLeaderboardJSON() called:", leaderboardData);
     await updateParametersString();    
 
     // Create a new object for the selected parameters
@@ -194,7 +181,6 @@ async function makeLeaderboardJSON() {
 }
 
 async function getWeight() {
-    console.trace();
     const response = await fetch('../weight.json');
     const weightData = await response.json();
     return weightData;
@@ -202,7 +188,6 @@ async function getWeight() {
 
 let leaderboardPath = undefined;
 async function updateLeaderboardPath() {
-    console.trace();
     leaderboardPath = "https://api.swiftguesser.kolin63.com/leaderboard/" + artistSelect.value + "/" + albumSelect.value + "/" + songSelect.value;
     leaderboardPath = leaderboardPath.replaceAll(" ", "%20");
     console.log("Leaderboard Path: ", leaderboardPath);
@@ -210,7 +195,6 @@ async function updateLeaderboardPath() {
 
 async function fetchLeaderboard() {
     console.trace();
-    console.log("fetchLeaderboard() called");
 
     await updateLeaderboardPath();
 
@@ -253,7 +237,6 @@ async function updateLeaderboard() {
 }
 
 document.getElementById("test-button").addEventListener("click", async function () {
-    console.trace();
     let songLB = parseLeaderboardString(leaderboardData[parameters]);
 
     for (let i = 0; i < songLB.length; i++) {
