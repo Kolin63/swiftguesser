@@ -130,6 +130,7 @@ async function addNameToLeaderboard() {
 }
 
 async function artistSelectChange(data = {}) {
+    console.log("%cArtist Select Changed to: " + artistSelect.value, "color:#F44");
     if (data = {}) data = await getAlbumParameterData();
 
     albumSelect.innerHTML = '';
@@ -148,7 +149,7 @@ async function artistSelectChange(data = {}) {
 }
 
 async function albumSelectChange() {
-    console.log("Album Select Changed to: ", albumSelect.value);
+    console.log("%cAlbum Select Changed to: " + albumSelect.value, "color:#F44");
 
     songSelect.innerHTML = '';
     for (song in weightData[artistSelect.value][albumSelect.value].songs) {
@@ -164,7 +165,7 @@ async function albumSelectChange() {
 }
 
 async function songSelectChange() {
-    console.log("Song Select Changed to: ", songSelect.value);
+    console.log("%cSong Select Changed to: " + songSelect.value, "color:#F44;");
 
     localStorage.setItem('songSelect', songSelect.value);
 
@@ -239,8 +240,6 @@ async function updateLeaderboardPath() {
 }
 
 async function fetchLeaderboard() {
-    console.trace();
-
     await updateLeaderboardPath();
 
     await fetch(leaderboardPath)
@@ -256,15 +255,13 @@ async function fetchLeaderboard() {
         } catch (err) {
             leaderboardData = {};
         }
-        console.log("fetchLeaderboard() finished: ", leaderboardData);
+        console.log("%cfetchLeaderboard() finished: " + leaderboardData, "color:#FF7");
         await makeLeaderboardJSON();
     });
-    console.log("fetchLeaderboard() returning");
 }
 
 async function updateLeaderboard() {
-    console.trace();
-    console.log("updateLeaderboard() called with ", leaderboardData, JSON.stringify(leaderboardData));
+    console.log("updateLeaderboard() called with ", leaderboardData);
 
     await updateLeaderboardPath();
 
@@ -277,6 +274,6 @@ async function updateLeaderboard() {
     })
     .then(response => response.json())
     .then(async data => {
-        console.log("updateLeaderboard():", data.message);
+        console.log("%cupdateLeaderboard() finished: " + data.message, "color:#6D6");
     });
 }
