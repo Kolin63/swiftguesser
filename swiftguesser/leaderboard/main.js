@@ -91,20 +91,46 @@ async function buildSelectionBar() {
         artistOption.textContent = artist;
         artistSelect.appendChild(artistOption);
     }
+
     await artistSelectChange(data);
 
     if (winData != "") {
-        artistSelect.value = winData[0];
-        await artistSelectChange(data);
-        albumSelect.value = winData[1];
-        await albumSelectChange(data);
-        songSelect.value = winData[2];
-        await songSelectChange(data);
+        addNameToLeaderboard();
+    } 
+}
+
+async function addNameToLeaderboard() {
+    let songLB = parseLeaderboardString(leaderboardData[parameters]);
+    const playerName = localStorage.getItem("playerName");
+    const playerPoints = winData[3];
+
+    const chickenalpha = leaderboardData;
+    console.log("chicken alpha", chickenalpha);
+
+    for (let i = 0; i < songLB.length; i++) {
+        if (songLB[i].points < playerPoints) {
+            // Shifts Leaderboard Down
+            for (let j = songLB.length - 2; j >= i; j--) {
+                console.log("chicken", songLB[j].name, songLB[j].points);
+                songLB[j + 1].name = songLB[j].name;
+                songLB[j + 1].points = songLB[j].points;
+            }
+            console.log("chicken:", songLB);
+
+            songLB[i] = { "name": playerName, "points": playerPoints };
+            console.log("addNameToLeaderboard(): Adding " + playerName + " to rank " + i + ". ", "Win Data: ", winData + ". ", "Leaderboard: ", songLB);
+
+            leaderboardData[parameters] = makeLeaderboardString(songLB);
+            await updateLeaderboard();
+            updateLeaderboardList();
+
+            break;
+        } 
     }
 }
 
 async function artistSelectChange(data = {}) {
-    console.log("Artist Select Changed to: ", artistSelect.value);
+    if (data = {}) data = await getAlbumParameterData();
 
     albumSelect.innerHTML = '';
     for (album in weightData[artistSelect.value]) {
@@ -254,19 +280,3 @@ async function updateLeaderboard() {
         console.log("updateLeaderboard():", data.message);
     });
 }
-
-document.getElementById("test-button").addEventListener("click", async function () {
-    let songLB = parseLeaderboardString(leaderboardData[parameters]);
-
-    for (let i = 0; i < songLB.length; i++) {
-        if (songLB[i].name == "NUL") {
-            songLB[i] = { "name": "TST", "points": i };
-            break;
-        } 
-    }
-
-    leaderboardData[parameters] = makeLeaderboardString(songLB);
-    console.log("testbutton: ", leaderboardData);
-    await updateLeaderboard();
-    updateLeaderboardList();
-});
