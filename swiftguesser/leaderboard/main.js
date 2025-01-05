@@ -16,17 +16,19 @@ async function init() {
     weightData = await getWeight();
     configData = await getConfig();
 
-    localArtistSelect = localStorage.getItem('artistSelect');
-    console.log(localArtistSelect);
-    localAlbumSelect = localStorage.getItem('albumSelect');
-    localSongSelect = localStorage.getItem('songSelect');
+    const localArtistSelect = localStorage.getItem('artistSelect');
+    const localAlbumSelect = localStorage.getItem('albumSelect');
+    const localSongSelect = localStorage.getItem('songSelect');
 
     buildConfig();
     await buildSelectionBar();
 
     artistSelect.value = localArtistSelect;
+    await artistSelectChange();
     albumSelect.value = localAlbumSelect;
+    await albumSelectChange();
     songSelect.value = localSongSelect;
+    await songSelectChange();
 }
 
 function parseLeaderboardString(s) {
@@ -220,7 +222,11 @@ async function fetchLeaderboard() {
         return response.json();
     }) 
     .then(async json => {
-        leaderboardData = json;
+        try {
+            leaderboardData = JSON.parse(json);
+        } catch (err) {
+            leaderboardData = {};
+        }
         console.log("fetchLeaderboard() finished: ", leaderboardData);
         await makeLeaderboardJSON();
     });
