@@ -62,8 +62,8 @@ albumSelect.onchange = (event) => {albumSelectChange()};
 songSelect.onchange = (event) => { songSelectChange() };
 
 async function getAlbumParameterData() {
-    for (parameter in configData["parameters"]) {
-        const p = configData["parameters"][parameter];
+    for (parameter in configData["parameters"]["data"]) {
+        const p = configData["parameters"]["data"][parameter];
         if (p["category"].includes("album") && p.value) {
             if (parameter == "everything" || parameter == "cherrypick") return {};
             else return p["data"];
