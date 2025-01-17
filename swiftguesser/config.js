@@ -37,14 +37,21 @@ function buildConfig()
             check.checked = configData[artist]["data"][album].value;
 
 
+            const cover = document.createElement("img");
+            cover.src = "/play/music/" + artist + "/" + album + "/cover.jpg";
+            cover.className = "config-cover " + ((configData[artist]["data"][album].value) ? "config-cover-on" : "config-cover-off");
+
+
             const label = document.createElement("label");
             label.for = "check" + artist + album;
             label.textContent = configData[artist]["data"][album].display;
+            label.className = "config-cover-label";
 
 
             const bullet = document.createElement("li");
             bullet.appendChild(check);
-            bullet.appendChild(label);
+            bullet.appendChild(cover);
+            if (window.location.pathname != "/leaderboard/") bullet.appendChild(label);
 
             configBox.appendChild(bullet);
 

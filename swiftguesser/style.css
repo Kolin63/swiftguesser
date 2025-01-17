@@ -274,6 +274,26 @@ label {
     margin-left: 1in;
 }
 
+.config-cover {
+    border-radius: 21px;
+    height: 120px;
+}
+
+.config-cover-on {
+    filter: grayscale(0%);
+}
+
+.config-cover-off {
+    filter: grayscale(100%);
+}
+
+.config-cover-label {
+    font-size: 30px;
+    bottom: 45px;
+    position: relative;
+    margin-left: 20px;
+}
+
 li::marker {
     color: #EEE;
 }
