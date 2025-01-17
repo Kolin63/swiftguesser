@@ -277,14 +277,17 @@ label {
 .config-cover {
     border-radius: 21px;
     height: 120px;
+    margin: 6px;
 }
 
 .config-cover-on {
-    filter: grayscale(0%);
+    filter: none;
 }
 
 .config-cover-off {
-    filter: grayscale(100%);
+    filter: grayscale(100%) opacity(50%);
+    scale: 75%;
+    margin: 4px;
 }
 
 .config-cover-label {

@@ -22,41 +22,33 @@ function buildConfig()
         header.for = "check" + artist;
         header.textContent = configData[artist].display.display;
         configBox.appendChild(header);
+        configBox.appendChild(document.createElement("br"));
 
         // Creates checks for each album
         for (album in configData[artist]["data"]) {
             if (album == "display") continue;
 
-            const check = document.createElement("input");
-            check.type = "checkbox";
+            const check = document.createElement("img");
             check.id = "check" + artist + album;
-            check.name = "check" + artist + album;
-            check.className = "albumcheck";
             check.artist = artist;
             check.album = album;
-            check.checked = configData[artist]["data"][album].value;
 
+            if (artist == "parameters") {
+                check.src = "/art/" + album + ".jpg";
+            }
+            else {
+                check.src = "/play/music/" + artist + "/" + album + "/cover.jpg";
+            }
+            check.onerror = function () {
+                check.src = "/art/monkey.jpg";
+            }
 
-            const cover = document.createElement("img");
-            cover.src = "/play/music/" + artist + "/" + album + "/cover.jpg";
-            cover.className = "config-cover " + ((configData[artist]["data"][album].value) ? "config-cover-on" : "config-cover-off");
+            updateCheckColor(check);
 
-
-            const label = document.createElement("label");
-            label.for = "check" + artist + album;
-            label.textContent = configData[artist]["data"][album].display;
-            label.className = "config-cover-label";
-
-
-            const bullet = document.createElement("li");
-            bullet.appendChild(check);
-            bullet.appendChild(cover);
-            if (window.location.pathname != "/leaderboard/") bullet.appendChild(label);
-
-            configBox.appendChild(bullet);
+            configBox.appendChild(check);
 
             // Adds event listeners to checks
-            check.addEventListener('change', function () {
+            check.addEventListener('click', function () {
                 albumCheckChange(check, headercheck);
             });
         }
@@ -91,6 +83,7 @@ function albumCheckChange(check, headercheck)
 
     console.log(configData);
     storeConfig();
+    updateChecks();
 }
 
 function updateParametersChecks(check, headercheck)
@@ -102,42 +95,46 @@ function updateParametersChecks(check, headercheck)
         {
             for (exparam in configData[check.artist]["data"])
             {
-                for (exparamcat in configData[check.artist]["data"][exparam]["category"])
+                for (exparamcat in configData["parameters"]["data"][exparam]["category"])
                 {
                     // If the category is the same as the certain incomp
-                    if (configData[check.artist]["data"][exparam]["category"][exparamcat] == configData[check.artist]["data"][check.album]["incomp"][incomp][incompcat] && exparam != check.album) 
-                    {
-                        const elem = document.getElementById("checkparameters" + exparam);
+                    try {
+                        if (configData[check.artist]["data"][exparam]["category"][exparamcat] == configData[check.artist]["data"][check.album]["incomp"][incomp][incompcat]) {
+                            const elem = document.getElementById("checkparameters" + exparam);
+                            if (elem == check) continue;
+                            const checkChecked = !configData[check.artist]["data"][check.album].value; // We not the value here because we don't actually change it until the end of this block
+                            const elemChecked = configData[elem.artist]["data"][elem.album].value;
 
-                        if (incomp == "nand")
-                        {
-                            if (check.checked && elem.checked) {
-                                elem.checked = !check.checked;
-                                configData[elem.artist]["data"][elem.album].value = elem.checked;
-                            }    
-                        }
-                        else if (incomp == "xor")
-                        {
-                            if (check.checked && elem.checked)
-                            {
-                                elem.checked = !check.checked;
-                                configData[elem.artist]["data"][elem.album].value = elem.checked;
+                            if (incomp == "nand") {
+                                if (checkChecked && elemChecked) {
+                                    configData[elem.artist]["data"][elem.album].value = false;
+                                    configData[check.artist]["data"][check.album].value = true;
+                                } else if (configData[check.artist]["data"][check.album].value) {
+                                    configData[check.artist]["data"][check.album].value = false;
+                                } else {
+                                    configData[check.artist]["data"][check.album].value = true;
+                                }
                             }
-
-                            if (!check.checked) check.checked = true;
+                            else if (incomp == "xor") {
+                                if (checkChecked && elemChecked) {
+                                    configData[elem.artist]["data"][elem.album].value = false;
+                                    configData[check.artist]["data"][check.album].value = true;
+                                }
+                            }
+                            updateChecks();
                         }
+                    } catch {
+                        continue;
                     }
                 }
             }
         }
     }
 
-    configData[check.artist]["data"][check.album].value = check.checked;
-
     // Data
     const data = configData[check.artist]["data"][check.album]["data"];
 
-    if (configData[check.artist]["data"][check.album].category.includes("album") && check.album != "cherrypick")
+    if (configData[check.artist]["data"][check.album]["category"].includes("album") && check.album != "cherrypick")
     {
         for (artist in configData) {
             if (artist == "parameters") continue;
@@ -161,8 +158,8 @@ function updateParametersChecks(check, headercheck)
 
 function updateAlbumChecks(check, headercheck)
 {
-    configData[check.artist]["data"][check.album].value = check.checked;
     headercheck.checked = orArtist(check.artist);
+    configData[check.artist]["data"][check.album].value = !configData[check.artist]["data"][check.album].value;
 
     let match = false;
     let everything = true;
@@ -171,7 +168,7 @@ function updateAlbumChecks(check, headercheck)
     {
         if (parameter == "display" || !configData["parameters"]["data"][parameter]["category"].includes("album")) continue;
 
-        const data = configData["parameters"]["data"][parameter];
+        const data = configData["parameters"]["data"][parameter]["data"];
         let currentData = {};
     
         for (artist in configData)
@@ -217,10 +214,11 @@ function artistCheckChange(headercheck)
     checkArtist(artist, headercheck.checked);
     storeConfig();
 
-    const album = (Object.keys(configData[artist]["data"])[0]);
-    const elem = document.getElementById("check" + artist + album);
-    elem.checked = !elem.checked;
-    elem.click();
+    // const album = (Object.keys(configData[artist]["data"])[0]);
+    // const elem = document.getElementById("check" + artist + album);
+    // elem.checked = !elem.checked;
+    // elem.click();
+    updateChecks();
 }
 
 function orArtist(artist) {
@@ -285,9 +283,6 @@ function checkArtist(artist, bool) {
 }
 
 function checkAlbum(artist, album, bool) {
-    try {
-        document.getElementById("check" + artist + album).checked = bool;
-    } catch { };
     configData[artist]["data"][album].value = bool;
 
     try {
@@ -303,4 +298,16 @@ function numberOfBoolAlbums(artist, bool) {
     }
 
     return num;
+}
+
+function updateCheckColor(check) {
+    check.className = "config-cover " + ((configData[check.artist]["data"][check.album].value) ? "config-cover-on" : "config-cover-off");
+}
+
+function updateChecks() {
+    for (artist in configData) {
+        for (album in configData[artist]["data"]) {
+            updateCheckColor(document.getElementById("check" + artist + album))
+        }
+    }
 }
