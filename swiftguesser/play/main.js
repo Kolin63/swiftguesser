@@ -113,7 +113,14 @@ playbutton.addEventListener('click', async function () {
 });
 
 function togglePlay() {
+    const shorthand = {
+        "nopause": configData["parameters"]["data"]["nopause"].value,
+        "onepause": configData["parameters"]["data"]["onepause"].value
+    }
+
     if (!playing) {
+        if (shorthand["onepause"] && stopwatchMS != 0) return;
+
         audio.play();
         playbuttontexture.src = pausetexture;
 
@@ -125,16 +132,20 @@ function togglePlay() {
             points = Math.ceil(Math.max(0-999 / 45 * seconds + 999, 1));
             pointsDisplay.textContent = points;
         }, 1); // Update every 1ms
+
+        playing = !playing;
     } else {
+        if (shorthand["nopause"]) return;
+
         // Pause playback and save position
         audio.pause();
         playbuttontexture.src = playtexture;
 
         // Stop the stopwatch
         clearInterval(stopwatchInterval);
-    }
 
-    playing = !playing; // Toggle the playing state
+        playing = !playing; 
+    }
 }
 
 document.addEventListener('keydown', event => {

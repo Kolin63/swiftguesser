@@ -11,9 +11,9 @@
                 "category": ["pause"],
                 "incomp": {"nand": ["pause"]}
             },
-            "timedpause": {
+            "onepause": {
                 "value": false,
-                "display": "Timed Pause",
+                "display": "One Pause",
                 "category": ["pause"],
                 "incomp": {"nand": ["pause"]}
             },
