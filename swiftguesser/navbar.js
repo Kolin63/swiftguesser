@@ -11,24 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
     template.innerHTML = `
         <div class="navbar">
             <a href="/#top" title="Home">
-                <img src="/art/icon-wide-space.png" class="logo" alt="Swift Guesser">
+                <img src="/art/icon-wide-space.png" class="logo" alt="Swift Guesser" id="navbarlogo">
             </a>
 
-            <div style="display:flex;justify-content:right;width:100%;align-content:center;">
+            <div style="display:flex;justify-content:right;width:100%;align-content:center;height:50px">
                 <div id="namedisplay">
                     <button id="nametext">NUL</button>
                     <input id="namechange">
                 </div>
 
-                <a href="/play" title="Play">
+                <a href="/play" title="Play" class="navbar-link">
                     <img src="/art/playbutton.png" class="square" alt="Play">
+                    <p id="navbarplay">Play</p>
                 </a>
-                <a href="/#config" title="Config">
+                <a href="/#config" title="Config" class="navbar-link">
                     <img src="/art/config.svg" class="square" alt="Config">
+                    <p id="navbarconfig">Config</p>
                 </a>
-                <a href="/leaderboard" title="Leaderboard">
+                <a href="/leaderboard" title="Leaderboard" class="navbar-link">
                     <img src="/art/leaderboard.svg" class="square" alt="Leaderboard">
+                    <p id="navbarleaderboard">Leaderboard</p>
                 </a>
+                <div style="height:0;width:50px"></div>
             </div>
         </div>
     `;
@@ -68,7 +72,33 @@ document.addEventListener("DOMContentLoaded", function () {
             nametext.style.backgroundColor = "rgb(238, 238, 238)"
         }
     }, 1000)
+
+    resizeNavbar();
 });
+
+window.onresize = resizeNavbar;
+
+function resizeNavbar() {
+    const width = window.innerWidth;
+    const logo = document.getElementById("navbarlogo");
+    const play = document.getElementById("navbarplay");
+    const config = document.getElementById("navbarconfig");
+    const leaderboard = document.getElementById("navbarleaderboard");
+
+    logo.src = "/art/icon-wide-space.png";
+    play.textContent = "Play";
+    config.textContent = "Config";
+    leaderboard.textContent = "Leaderboard";
+
+    if (width < 1060) {
+        play.textContent = "";
+        config.textContent = "";
+        leaderboard.textContent = "";
+    }
+    if (width < 860) {
+        logo.src = "/art/icon.svg";
+    }
+}
 
 function updateChangingName(nametext, namechange) {
     changingName = !changingName;
