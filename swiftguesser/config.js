@@ -93,6 +93,7 @@ function updateParametersChecks(check, headercheck)
     // Check Incomps
     for (incomp in configData[check.artist]["data"][check.album]["incomp"])
     {
+        let allOthersOff = true;
         for (incompcat in configData[check.artist]["data"][check.album]["incomp"][incomp])
         {
             for (exparam in configData[check.artist]["data"])
@@ -101,7 +102,7 @@ function updateParametersChecks(check, headercheck)
                 {
                     // If the category is the same as the certain incomp
                     try {
-                        if (configData[check.artist]["data"][exparam]["category"][exparamcat] == configData[check.artist]["data"][check.album]["incomp"][incomp][incompcat]) {
+                        if (configData["parameters"]["data"][exparam]["category"][exparamcat] == configData[check.artist]["data"][check.album]["incomp"][incomp][incompcat]) {
                             const elem = document.getElementById("checkparameters" + exparam);
                             if (elem == check) continue;
                             const checkChecked = !configData[check.artist]["data"][check.album].value; // We not the value here because we don't actually change it until the end of this block
@@ -111,11 +112,8 @@ function updateParametersChecks(check, headercheck)
                                 if (checkChecked && elemChecked) {
                                     configData[elem.artist]["data"][elem.album].value = false;
                                     configData[check.artist]["data"][check.album].value = true;
-                                } else if (configData[check.artist]["data"][check.album].value) {
-                                    configData[check.artist]["data"][check.album].value = false;
-                                } else {
-                                    configData[check.artist]["data"][check.album].value = true;
-                                }
+                                } 
+                                if (elemChecked) allOthersOff = false;
                             }
                             else if (incomp == "xor") {
                                 if (checkChecked && elemChecked) {
@@ -130,6 +128,10 @@ function updateParametersChecks(check, headercheck)
                     }
                 }
             }
+        }
+        if (incomp == "nand" && allOthersOff) {
+            console.log("very spelcial")
+            configData[check.artist]["data"][check.album].value = !configData[check.artist]["data"][check.album].value;
         }
     }
 
