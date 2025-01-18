@@ -385,8 +385,9 @@ li::marker {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar-link p:hover {
+.navbar-link:hover {
     text-decoration-line: underline;
+    color: #EEE;
 }
 
 .navbar-link .square {
