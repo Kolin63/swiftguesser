@@ -38,7 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const namechange = document.getElementById("namechange");
 
     playerName = localStorage.getItem("playerName");
-    if (playerName == undefined) playerName = "NUL";
+    if (playerName == undefined || playerName == null || !playerName) {
+        playerName = "NUL";
+        localStorage.setItem("playerName", playerName);
+    }
     nametext.textContent = playerName;
 
     nametext.style = styles[0];
