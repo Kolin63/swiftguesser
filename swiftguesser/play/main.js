@@ -54,10 +54,15 @@ async function init() {
 // Event listener for the search bar being typed in
 search.addEventListener('input', function () {
     const searchValue = search.value.toLowerCase().replace(/[^\w\s-]/gi, '').replace(/-/g, ' '); // Remove punctuation and replace hyphens with spaces
-    const searchResults = songList.filter(song => song.toLowerCase().replace(/[^\w\s-]/gi, '').replace(/-/g, ' ').includes(searchValue));
+    const searchResults = songList.map((song, index) => {
+        const normalizedSong = song.toLowerCase().replace(/[^\w\s-]/gi, '').replace(/-/g, ' ');
+        const relevance = getRelevance(normalizedSong, searchValue);
+        return { song, index, relevance };
+    }).filter(result => result.relevance > 0)
+      .sort((a, b) => b.relevance - a.relevance); // Sort by relevance
 
     // Clear previous search result boxes
-    searchResultBoxes = []; 
+    searchResultBoxes = [];
     var searchBackgroundChildren = searchBackground.children;
     for (let i = 0; i < searchBackgroundChildren.length; i++) {
         if (searchBackgroundChildren[i].className == "search-result") {
@@ -75,12 +80,12 @@ search.addEventListener('input', function () {
 
         // Create an image element for the album cover
         const img = document.createElement("img");
-        img.src = songListAlbums[songList.indexOf(searchResults[i])];
+        img.src = songListAlbums[searchResults[i].index];
         img.className = "album-cover";
         box.appendChild(img);
 
         // Create a text node for the song name
-        box.appendChild(document.createTextNode(searchResults[i]));
+        box.appendChild(document.createTextNode(searchResults[i].song));
 
         // Append the search result box to the search background
         searchResultBoxes.push(box);
@@ -106,6 +111,23 @@ search.addEventListener('input', function () {
         });
     });
 });
+
+function getRelevance(song, searchValue) {
+    let relevance = 0;
+    const searchWords = searchValue.split(' ');
+
+    searchWords.forEach(word => {
+        if (song == searchValue) {
+            relevance += 5;
+        } else if (song.startsWith(word)) {
+            relevance += 3; // Higher score for matches at the start
+        } else if (song.includes(word)) {
+            relevance += 1; // Lower score for matches elsewhere
+        }
+    });
+
+    return relevance;
+}
 
 // Event listener for the play button
 playbutton.addEventListener('click', async function () {
