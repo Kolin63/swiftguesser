@@ -367,6 +367,7 @@ li::marker {
     font-size: 2vw;
     cursor:pointer;
     border: 0;
+    background-color: #EEE;
 }
 
 #namechange {
@@ -377,6 +378,10 @@ li::marker {
     height: 60%;
     margin: .2in;
     text-align: center;
+}
+
+#namechange::placeholder {
+    color: #555;
 }
 
 #nametext:hover {

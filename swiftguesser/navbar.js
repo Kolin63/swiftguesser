@@ -1,6 +1,6 @@
 let changingName = false;
 const styles = [
-    "visibility:visible;",
+    "visibility:visible;background-color:#EEE",
     "visibility:hidden;padding:0;margin:0;height:0"
 ]
 let playerName = "NUL";
@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const nametext = document.getElementById("nametext");
     const namechange = document.getElementById("namechange");
+    namechange.setAttribute("placeholder", "Name");
 
     playerName = localStorage.getItem("playerName");
     if (playerName == undefined || playerName == null || !playerName) {
@@ -59,6 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
             updateChangingName(nametext, namechange);
         }
     })
+
+    setInterval(function () {
+        if (playerName == "NUL" && nametext.style.backgroundColor == "rgb(238, 238, 238)") {
+            nametext.style.backgroundColor = "rgb(255, 0, 0)"
+        } else {
+            nametext.style.backgroundColor = "rgb(238, 238, 238)"
+        }
+    }, 1000)
 });
 
 function updateChangingName(nametext, namechange) {
