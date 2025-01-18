@@ -95,19 +95,42 @@ search.addEventListener('input', function () {
     // Function called when a search result box is clicked
     Array.from(searchResultBoxes).forEach(box => {
         box.addEventListener('click', function () {
+            audio.pause();
+            
             const boxSong = box.textContent;
 
             if (boxSong == "" || stopwatchMS == 0) return;
 
+            document.getElementById("popup-wrapper").style.opacity = 100;
+            const popupInfo = document.getElementsByClassName("popup-info");
+            const popupTitle = document.getElementById("popup-title");
+            const popupButton = document.getElementById("popup-button");
+
+            popupInfo[0].textContent = "Song: " + randomSongName;
+            popupInfo[1].textContent = "Album: " + randomSongAlbum;
+            popupInfo[2].textContent = "Artist: " + randomSongArtist;
+            popupInfo[3].textContent = "Points: " + points;
+
             if (boxSong == randomSongName) {
                 localStorage.setItem("win", JSON.stringify([randomSongArtist, randomSongAlbum, randomSongName, points]));
-                alert("Correct, the song was " + randomSongName + "\nPoints: " + points);
-                window.location.href = '../leaderboard';
+                popupTitle.textContent = "Correct!";
+                popupButton.addEventListener("click", function () {
+                    window.location.href = '../leaderboard';
+                })
             }
             else {
-                alert("Incorrect! The correct song was " + randomSongName);
-                location.reload();
+                popupTitle.textContent = "Incorrect!";
+                popupButton.addEventListener("click", function () {
+                    location.reload();
+                })
             }
+
+            document.addEventListener("keydown", event => {
+                const key = event.key;
+                if (key == " " || key == "Enter") {
+                    popupButton.click();
+                }
+            })
         });
     });
 });

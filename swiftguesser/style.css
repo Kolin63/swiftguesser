@@ -436,7 +436,70 @@ li::marker {
     text-decoration-line: underline;
 }
 
+#popup-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
 
+#popup-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#popup {
+    margin: auto;
+    height: 400px;
+    width: 400px;
+    background-color: #9B7EBD;
+    border-radius: 21px;
+    opacity: 100%;
+    z-index: 2;
+}
+
+#popup-title {
+    margin-top: 50px;
+}
+
+.popup-info {
+    margin: 3px 20px;
+    padding: 0;
+}
+
+#popup-button {
+    margin: auto;
+    text-align: center;
+    background-color: #B49ED4;
+    padding: 0;
+    width: 250px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 21px;
+    height: 60px;
+}
+
+#popup-button p {
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    position: relative;
+    top: 15px;
+}
+
+.inline {
+    display: inline;
+}
 
 body {
     background-color: #3B1E54;
