@@ -102,6 +102,7 @@ search.addEventListener('input', function () {
             if (boxSong == "" || stopwatchMS == 0) return;
 
             document.getElementById("popup-wrapper").style.opacity = 100;
+            document.getElementById("popup-wrapper").style.zIndex = 1;
             const popupInfo = document.getElementsByClassName("popup-info");
             const popupTitle = document.getElementById("popup-title");
             const popupButton = document.getElementById("popup-button");
