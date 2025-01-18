@@ -35,6 +35,9 @@ function buildConfig()
             check.album = album;
             check.title = configData[artist]["data"][album]["display"];
 
+            const checkwrap = document.createElement("div");
+            checkwrap.className = "checkwrap";
+
             if (artist == "parameters") {
                 check.src = "/art/parameters/" + album + ".jpg";
             }
@@ -46,7 +49,15 @@ function buildConfig()
             }
 
             updateCheckColor(check);
-            artistFlex.appendChild(check);
+            checkwrap.appendChild(check);
+            if (artist == "parameters") {
+                const covername = document.createElement("p");
+                covername.className = "config-cover-name";
+                covername.textContent = check.title;
+                checkwrap.appendChild(covername);
+                checkwrap.style.height = "152px"
+            }
+            artistFlex.appendChild(checkwrap);
 
             // Adds event listeners to checks
             check.addEventListener('click', function () {
