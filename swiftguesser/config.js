@@ -56,7 +56,7 @@ function buildConfig()
                 covername.className = "config-cover-name";
                 covername.textContent = check.title;
                 checkwrap.appendChild(covername);
-                checkwrap.style.height = "152px"
+                checkwrap.style.height = "182px"
 
                 const currentCategory = configData[artist]["data"][album].category;
                 if (previousCategory != null && !arraysEqual(currentCategory, previousCategory)) {
