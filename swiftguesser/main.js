@@ -25,3 +25,12 @@ document.getElementById('reset-config').addEventListener('click', async function
     storeConfig();
     location.reload();
 })
+
+document.addEventListener('keydown', event => {
+    const key = event.key;
+
+    if (event.ctrlKey && key === ' ') {
+        // Ctrl+Space
+        window.location.href = "/play";
+    }
+});

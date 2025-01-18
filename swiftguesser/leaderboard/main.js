@@ -304,4 +304,3 @@ document.addEventListener('keydown', event => {
         window.location.href = "/play";
     }
 });
-
