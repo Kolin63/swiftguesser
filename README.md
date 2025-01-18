@@ -1,5 +1,5 @@
 <div style="display:flex;justify-content:center">
-<img src="/swiftguesser/art/icon-full.svg" alt="Swift Guesser">
+<img src="/swiftguesser/art/icon-full.png" alt="Swift Guesser">
 </div>
 By Kolin63
 
