@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome!</title>
+    <link rel="icon" href="/art/icon.svg">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="text-box" style="display:flex;flex-direction:column;align-items:center;margin-top: 15vh;" id="top">
+
+        <h1>Welcome to Swift Guesser!</h1>
+        <p>
+            This isn't the actual game, just a welcome page I made to introduce the game. <br><br>
+            Swiftguesser is a game where you have to guess the Taylor Swift song as "Swiftly" as possible. <br><br>
+            However, I assume that most of you can't identify all Taylor Swift songs within the first few seconds, so she's not the only artist on this game. <br><br>
+            The current list of artists we have is: 
+        </p>
+        <ul id="artistlist"></ul> 
+        <p>
+            However, Swift Guesser is <a href="https://github.com/Kolin63/Swiftguesser" target="_blank">open source!</a> 
+            Feel free to add your own artists (documentation coming soon)<br><br>
+            That's all! Hit the big button below to move to the game!
+        </p>
+        <a href="/" class="playbutton" style="scale: 50%; background-color: #D4BEE4; margin: 0"><img src="/art/play-text.svg"></a>
+    </div>
+</body>
+<script>
+
+    document.addEventListener("DOMContentLoaded", async function () {
+        const configData = await getConfig();
+        const artistList = document.getElementById("artistlist");
+
+        for (artist in configData) {
+            if (artist == "parameters" || artist == "version") continue;
+
+            const bullet = document.createElement("li");
+            const label = document.createElement("label");
+            label.textContent = configData[artist]["display"]["display"];
+            bullet.appendChild(label);
+            artistList.appendChild(bullet);
+        }
+    })
+
+    async function getConfig() {
+        const response = await fetch('/config.json');
+        const configData = await response.json();
+        console.log("getConfig(): ", configData);
+        return configData;
+    }
+
+</script>
+</html>
