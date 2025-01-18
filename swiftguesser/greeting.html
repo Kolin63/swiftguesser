@@ -46,10 +46,18 @@
     })
 
     const monkey = document.getElementById("monkey");
+    let monkeyrotate = 0;
     monkey.addEventListener("click", function () {
         monkey.style.opacity = 0;
         monkey.style.cursor = "help";
-        document.getElementById("playbutton").src = "/art/monkey.jpg";
+
+        const playbutton = document.getElementById("playbutton");
+        playbutton.src = "/art/monkey.jpg";
+        playbutton.style.rotate = "0deg";
+        setInterval(function () {
+            monkeyrotate++;
+            playbutton.style.rotate = monkeyrotate + "deg";
+        }, 10)
     })
 
     async function getConfig() {
