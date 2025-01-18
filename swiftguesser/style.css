@@ -445,6 +445,7 @@ li::marker {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition-duration: .2s;
 }
 
 #popup-background {
@@ -465,6 +466,7 @@ li::marker {
     border-radius: 21px;
     opacity: 100%;
     z-index: 2;
+    transition-duration: .6s;
 }
 
 #popup-title {
