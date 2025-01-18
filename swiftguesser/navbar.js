@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     template.innerHTML = `
         <div class="navbar">
             <a href="/#top" title="Home">
-                <img src="/art/icon-wide-space.svg" class="logo" alt="Swift Guesser">
+                <img src="/art/icon-wide-space.png" class="logo" alt="Swift Guesser">
             </a>
 
             <div style="display:flex;justify-content:right;width:100%;align-content:center;">
