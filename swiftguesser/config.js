@@ -26,6 +26,7 @@ function buildConfig()
         header.textContent = configData[artist].display.display;
 
         // Creates checks for each album
+        let previousCategory = null;
         for (album in configData[artist]["data"]) {
             if (album == "display") continue;
 
@@ -56,6 +57,14 @@ function buildConfig()
                 covername.textContent = check.title;
                 checkwrap.appendChild(covername);
                 checkwrap.style.height = "152px"
+
+                const currentCategory = configData[artist]["data"][album].category;
+                if (previousCategory != null && !arraysEqual(currentCategory, previousCategory)) {
+                    const flexbreak = document.createElement("div");
+                    flexbreak.className = "flex-break";
+                    artistFlex.appendChild(flexbreak);
+                }
+                previousCategory = configData[artist]["data"][album].category;
             }
             artistFlex.appendChild(checkwrap);
 
@@ -141,7 +150,6 @@ function updateParametersChecks(check, headercheck)
             }
         }
         if (incomp == "nand" && allOthersOff) {
-            console.log("very spelcial")
             configData[check.artist]["data"][check.album].value = !configData[check.artist]["data"][check.album].value;
         }
     }
@@ -325,4 +333,11 @@ function updateChecks() {
             updateCheckColor(document.getElementById("check" + artist + album))
         }
     }
+}
+
+function arraysEqual(x, y) {
+    for (let i = 0; i < x.length; i++) {
+        if (x[i] != y[i]) return false;
+    }
+    return true;
 }
