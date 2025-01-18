@@ -18,11 +18,12 @@ function buildConfig()
         configBox.appendChild(headercheck);
 
 
+        const artistFlex = document.createElement("div");
+        artistFlex.className = "artist-flex";
+
+
         const header = document.createElement("label");
-        header.for = "check" + artist;
         header.textContent = configData[artist].display.display;
-        configBox.appendChild(header);
-        configBox.appendChild(document.createElement("br"));
 
         // Creates checks for each album
         for (album in configData[artist]["data"]) {
@@ -32,9 +33,10 @@ function buildConfig()
             check.id = "check" + artist + album;
             check.artist = artist;
             check.album = album;
+            check.title = configData[artist]["data"][album]["display"];
 
             if (artist == "parameters") {
-                check.src = "/art/" + album + ".jpg";
+                check.src = "/art/parameters/" + album + ".jpg";
             }
             else {
                 check.src = "/play/music/" + artist + "/" + album + "/cover.jpg";
@@ -44,8 +46,7 @@ function buildConfig()
             }
 
             updateCheckColor(check);
-
-            configBox.appendChild(check);
+            artistFlex.appendChild(check);
 
             // Adds event listeners to checks
             check.addEventListener('click', function () {
@@ -56,8 +57,9 @@ function buildConfig()
         headercheck.addEventListener('change', function () {
             artistCheckChange(headercheck);
         });
-
-        configBox.appendChild(document.createElement("br"));
+        header.appendChild(artistFlex);
+        header.appendChild(document.createElement("br"));
+        configBox.appendChild(header);
     }
 }
 

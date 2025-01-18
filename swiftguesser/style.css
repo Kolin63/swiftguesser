@@ -81,12 +81,16 @@
 }
 
 .lb-config {
-    max-width: 3in;
+    max-width: 324px;
     width: 100%;
     background-color: #D4BEE4;
     margin-right: .25in;
     border-radius: .5in;
     text-align: left;
+}
+
+#lb-config {
+    margin: 30px;
 }
 
 .lb-config label {
@@ -270,24 +274,41 @@ label {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.config-box * {
+.config-box {
     margin-left: 1in;
+    margin-right: 1in;
+    margin-top: 0;
+    font-size: 120%;
+    padding-bottom: 1in;
+    background:none;
+}
+
+.artist-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.headerlabel {
+    text-align: left;
 }
 
 .config-cover {
     border-radius: 21px;
     height: 120px;
-    margin: 6px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .config-cover-on {
     filter: none;
+    margin: 6px;
 }
 
 .config-cover-off {
     filter: grayscale(100%) opacity(50%);
-    scale: 75%;
-    margin: 4px;
+    height: 90px;
+    margin: 21px;
 }
 
 .config-cover-label {
