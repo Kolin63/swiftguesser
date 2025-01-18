@@ -181,7 +181,6 @@ function updateParametersChecks(check, headercheck)
 
 function updateAlbumChecks(check, headercheck)
 {
-    headercheck.checked = orArtist(check.artist);
     configData[check.artist]["data"][check.album].value = !configData[check.artist]["data"][check.album].value;
 
     let match = false;
@@ -237,19 +236,14 @@ function artistCheckChange(headercheck)
     checkArtist(artist, headercheck.checked);
     storeConfig();
 
-    // const album = (Object.keys(configData[artist]["data"])[0]);
-    // const elem = document.getElementById("check" + artist + album);
-    // elem.checked = !elem.checked;
-    // elem.click();
     updateChecks();
 }
 
 function orArtist(artist) {
-    let or = false;
     for (album in configData[artist]["data"]) {
-        or = or || configData[artist]["data"][album].value;
+        if (configData[artist]["data"][album].value) return true;
     }
-    return or;
+    return false;
 }
 
 function andArtist(artist) {
@@ -332,6 +326,8 @@ function updateChecks() {
         for (album in configData[artist]["data"]) {
             updateCheckColor(document.getElementById("check" + artist + album))
         }
+
+        try { document.getElementById("check" + artist).checked = orArtist(artist) } catch {};
     }
 }
 
