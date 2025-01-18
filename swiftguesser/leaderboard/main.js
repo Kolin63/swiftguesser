@@ -193,12 +193,15 @@ async function songSelectChange() {
 async function updateParametersString() {
     // Make a string representing enabled parameters
     parameters = "";
-    for (parameter in configData["parameters"])
+    for (parameter in configData["parameters"]["data"])
     {
-        if (configData["parameters"][parameter].value == true)
+        if (configData["parameters"]["data"][parameter].value == true)
             parameters = parameters.concat(parameter).concat(',');
     }
-    if (parameters == "") parameters = "none";
+    if (parameters == "") {
+        console.error("config parameters invalid");
+        window.location.href = "/#config"; 
+    }
     console.log("parameters: ", parameters);
 }
 
