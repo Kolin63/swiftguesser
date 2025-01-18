@@ -295,3 +295,13 @@ async function updateLeaderboard() {
         console.log("%cupdateLeaderboard() finished: " + data.message, "color:#6D6");
     });
 }
+
+document.addEventListener('keydown', event => {
+    const key = event.key;
+
+    if (event.ctrlKey && key === ' ') {
+        // Ctrl+Space
+        window.location.href = "/play";
+    }
+});
+
