@@ -1,5 +1,5 @@
 # Documentation
-Swift Guesser was designed with modularity and expandability, so adding content is mostly done in JSON files.
+Swift Guesser was designed with modularity and expandability in mind, so adding content is mostly done in JSON files.
 ## Adding Artists, Albums, or Songs
 The easiest way to contribute to Swift Guesser! Most songs will be accepted, but probably won't be added to the vanilla category (meaning that it won't be included in the "Everything" parameter)
 ### Downloading Songs
@@ -16,7 +16,7 @@ First, go to `/swiftguesser/weight.json` in the game files. `weight.json` has al
 
 Follow this format to add to `weight.json`. The indentation of the braces should be the same too (Don't put a brace or bracket on the same line as the object name).
 
-Also, when you ran the Python script above, the array it outputted is the "songs" array. So, you can just copy paste that in. 
+Also, when you ran the Python script above, the array it outputted is the `"songs"` array. So, you can just copy paste that in. 
 ```
 { (these parentheses are the root JSON parentheses, they already exist)
     "taylorswift":
