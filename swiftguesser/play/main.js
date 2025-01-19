@@ -226,7 +226,7 @@ document.addEventListener('keydown', event => {
             searchResultBoxes[selectedIndex].click();
         }
     }
-    else {
+    else if (!changingName) {
         selectedIndex = -1;
         search.focus();
     }
