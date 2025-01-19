@@ -7,7 +7,7 @@ By Kolin63
 
 <h2> 📖 Rules </h2>
 <ul>
-    <li>Guess the Taylor Swift Song as quickly as possible!</li>
+    <li>Guess the Taylor Swift Song as swiftly as possible!</li>
     <li>In the game, press play to start the song (or ctrl+space)</li>
     <li>Pause it as soon as you can figure out what song it is</li>
     <li>Search for the song in the search box</li>
@@ -23,13 +23,14 @@ By Kolin63
 <h2> 🥇 Leaderboard </h2>
 <ul>
     <li>Swift Guesser features an Arcade-Style Leaderboard</li>
+    <li>Set your 3-character name to something that identifies you</li>
     <li>Try to get into the top 10 for every song!</li>
 </ul>
 
 <h2> 🫎 Credits </h2>
 <ul>
     <li>All code and assets by me</li>
-    <li>Songs by Taylor Swift</li>
+    <li>Songs not by me</li>
 </ul>
 
 <h2> 🧑‍💻 Development </h2>
