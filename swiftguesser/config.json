@@ -1,5 +1,5 @@
 {
-    "version": 21,
+    "version": 1,
     "parameters": {
         "display": {
             "display": "Parameters"
@@ -176,6 +176,25 @@
             "goodluckbabe": {
                 "value": false,
                 "display": "Good Luck, Babe!"
+            }
+        }
+    },
+    "tobyfox": {
+        "display": {
+            "display": "Toby Fox"
+        },
+        "data": {
+            "undertale": {
+                "value": false,
+                "display": "Undertale"
+            },
+            "deltarune1": {
+                "value": false,
+                "display": "Deltarune 1"
+            },
+            "deltarune2": {
+                "value": false,
+                "display": "Deltarune 2"
             }
         }
     }
