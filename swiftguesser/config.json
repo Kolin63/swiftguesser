@@ -202,5 +202,17 @@
                 "display": "Deltarune 2"
             }
         }
+    },
+    "musicals": {
+        "display": {
+            "display": "Musicals",
+            "vanilla": false
+        },
+        "data": {
+            "hamilton": {
+                "value": false,
+                "display": "Hamilton"
+            }
+        }
     }
 }
