@@ -77,13 +77,16 @@ async function buildSelectionBar() {
     const data = await getAlbumParameterData();
     console.log("album parameter data", data);
 
-    for (artist in weightData) {
-        if (data["artists"] && !data["artists"].includes(artist)) continue;
-        if (data["albums"] && !Object.keys(data["albums"]).includes(artist)) continue;
+    for (artist in configData) {
+        if (artist == "parameters" || artist == "version") continue;
+        if (orArtist(artist) == false) continue;
+        if (document.getElementById("artistselectoption" + artist)) continue;
+        console.log("orArtist " + artist + " is true");
 
         // Create a new object for the artist
         const artistOption = document.createElement("option");
         artistOption.textContent = artist;
+        artistOption.id = "artistselectoption" + artist;
         artistSelect.appendChild(artistOption);
     }
 
@@ -131,16 +134,22 @@ async function addNameToLeaderboard() {
 }
 
 async function artistSelectChange(data = {}) {
+    if (artistSelect.value == "") {
+        artistSelect.value = artistSelect.firstChild.textContent;
+    }
+
     console.log("%cArtist Select Changed to: " + artistSelect.value, "color:#F44");
     if (data = {}) data = await getAlbumParameterData();
 
     albumSelect.innerHTML = '';
-    for (album in weightData[artistSelect.value]) {
-        if (data["albums"] && !data["albums"][artistSelect.value].includes(album)) continue;
+    for (album in configData[artistSelect.value]["data"]) {
+        if (configData[artistSelect.value]["data"][album].value == false) continue;
+        if (document.getElementById("albumselectoption" + album)) continue;
 
         // Create a new object for the album
         const albumOption = document.createElement("option");
         albumOption.textContent = album;
+        albumOption.id = "albumselectoption" + album;
         albumSelect.appendChild(albumOption); 
     } 
 
@@ -160,6 +169,10 @@ async function artistSelectChange(data = {}) {
 }
 
 async function albumSelectChange() {
+    if (albumSelect.value == "") {
+        albumSelect.value = albumSelect.firstChild.textContent;
+    }
+
     console.log("%cAlbum Select Changed to: " + albumSelect.value, "color:#F44");
 
     songSelect.innerHTML = '';
@@ -186,6 +199,9 @@ async function albumSelectChange() {
 }
 
 async function songSelectChange() {
+    if (songSelect.value == "") {
+        songSelect.value = songSelect.firstChild.textContent;
+    }
     console.log("%cSong Select Changed to: " + songSelect.value, "color:#F44;");
 
     localStorage.setItem('songSelect', songSelect.value);
