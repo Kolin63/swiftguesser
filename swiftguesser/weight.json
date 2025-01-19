@@ -149,7 +149,7 @@
         "lover":
         {
             "amount": 18,
-            "songs":
+            "songs": 
             [
                 "I Forgot That You Existed",
                 "Cruel Summer",
@@ -174,7 +174,7 @@
         "reputation":
         {
             "amount": 15,
-            "songs":
+            "songs": 
             [
                 "...Ready For It",
                 "End Game",
@@ -332,7 +332,8 @@
         "evolution":
         {
             "amount": 10,
-            "songs": [
+            "songs": 
+            [
                 "On Purpose",
                 "Feels Like Loneliness",
                 "Thumbs",
@@ -348,7 +349,8 @@
         "singularact1":
         {
             "amount": 8,
-            "songs": [
+            "songs": 
+            [
                 "Almost Love",
                 "Paris",
                 "Hold Tight",
@@ -361,7 +363,8 @@
         },
         "singularact2": {
             "amount": 9,
-            "songs": [
+            "songs": 
+            [
                 "In My Bed",
                 "Pushing 20",
                 "I Can't Stop Me",
@@ -375,7 +378,8 @@
         },
         "emailsicantsend": {
             "amount": 17,
-            "songs": [
+            "songs": 
+            [
                 "emails i can't send",
                 "Vicious",
                 "Read your Mind",
@@ -397,7 +401,8 @@
         },
         "shortnsweet": {
             "amount": 12,
-            "songs": [
+            "songs":
+            [
                 "Taste",
                 "Please Please Please",
                 "Good Graces",
@@ -418,7 +423,8 @@
         "sour": 
         {
             "amount": 11,
-            "songs": [
+            "songs": 
+            [
                 "brutal",
                 "traitor",
                 "drivers license",
@@ -435,7 +441,8 @@
         "guts":
         {
             "amount": 17,
-            "songs": [
+            "songs": 
+            [
                 "all-american bitch",
                 "bad idea right-",
                 "vampire",
@@ -461,7 +468,8 @@
         "riseandfall": 
         {
             "amount": 14,
-            "songs": [
+            "songs": 
+            [
                 "Femininomenon",
                 "Red Wine Supernova",
                 "After Midnight",
@@ -481,7 +489,8 @@
         "goodluckbabe":
         {
             "amount": 1,
-            "songs": [
+            "songs": 
+            [
                 "Good Luck, Babe"
             ]
         }
@@ -491,7 +500,8 @@
         "undertale": 
         {
             "amount": 101,
-            "songs": [
+            "songs": 
+            [
                 "Once Upon a Time",
                 "Ghost Fight",
                 "MEGALOVANIA",
@@ -598,7 +608,8 @@
         "deltarune1":
         {
             "amount": 40,
-            "songs": [
+            "songs": 
+            [
                 "ANOTHER HIM",
                 "Rude Buster",
                 "Empty Town",
@@ -644,7 +655,8 @@
         "deltarune2":
         {
             "amount": 47,
-            "songs": [
+            "songs": 
+            [
                 "Faint Glow",
                 "When I Get Mad I Dance Like This",
                 "Cyber Battle (Solo)",
@@ -700,7 +712,8 @@
         "hamilton":
         {
             "amount": 46,
-            "songs": [
+            "songs": 
+            [
                 "Alexander Hamilton",
                 "Helpless",
                 "Satisfied",
@@ -752,7 +765,8 @@
         "rent":
         {
             "amount": 27,
-            "songs": [
+            "songs": 
+            [
                 "Rent",
                 "Santa Fe",
                 "I'll Cover You",
@@ -784,7 +798,8 @@
         "wicked": 
         {
             "amount": 19,
-            "songs": [
+            "songs": 
+            [
                 "No One Mourns The Wicked",
                 "A Sentimental Man",
                 "Defying Gravity",

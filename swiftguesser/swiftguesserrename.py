@@ -30,6 +30,9 @@ for file in os.listdir(directory):
 
     renFilePath = os.path.join(directory, file)
 
+    # ADD SUFFIXES HERE
+    # renFilePath = renFilePath.replace(" - Annoying Suffix", "")
+
     for attempt in range(retry_attempts):
         try:
             os.rename(filePath, renFilePath)
@@ -46,6 +49,10 @@ jsonString = json.dumps(jsonOutput)
 jsonString = jsonString.replace("\", ", "\",\n    ")
 jsonString = jsonString.replace("[", "\"songs\": [\n    ")
 jsonString = jsonString.replace("]", "\n]")
+
+# ADD SUFFIXES HERE
+# jsonString = jsonString.replace(" - Annoying Suffix", "")
+
 print("\n\n\n" + jsonString)
 
 input("\n\n\nPress any key to close. Make sure to copy the json first!")

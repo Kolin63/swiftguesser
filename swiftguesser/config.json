@@ -2,7 +2,8 @@
     "version": 1,
     "parameters": {
         "display": {
-            "display": "Parameters"
+            "display": "Parameters",
+            "contributors": "Kolin63"
         },
         "data": {
             "nopause": {
@@ -70,7 +71,8 @@
     "taylorswift": {
         "display": {
             "display": "Taylor Swift",
-            "vanilla": true
+            "vanilla": true,
+            "contributors": "Kolin63"
         },
         "data": {
             "taylorswift": {
@@ -122,7 +124,8 @@
     "sabrinacarpenter": {
         "display": {
             "display": "Sabrina Carpenter",
-            "vanilla": true
+            "vanilla": true,
+            "contributors": "Kolin63"
         },
         "data": {
             "eyeswideopen": {
@@ -154,7 +157,8 @@
     "oliviarodrigo": {
         "display": {
             "display": "Olivia Rodrigo",
-            "vanilla": true
+            "vanilla": true,
+            "contributors": "Kolin63"
         },
         "data": {
             "sour": {
@@ -170,7 +174,8 @@
     "chappellroan": {
         "display": {
             "display": "Chappell Roan",
-            "vanilla": true
+            "vanilla": true,
+            "contributors": "Kolin63"
         },
         "data": {
             "riseandfall": {
@@ -186,7 +191,8 @@
     "tobyfox": {
         "display": {
             "display": "Toby Fox",
-            "vanilla": false
+            "vanilla": false,
+            "contributors": "Kolin63"
         },
         "data": {
             "undertale": {
@@ -206,7 +212,8 @@
     "musicals": {
         "display": {
             "display": "Musicals",
-            "vanilla": false
+            "vanilla": false,
+            "contributors": "Kolin63"
         },
         "data": {
             "hamilton": {
