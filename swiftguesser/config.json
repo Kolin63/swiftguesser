@@ -1,5 +1,5 @@
 {
-    "version": 1,
+    "version": 2,
     "parameters": {
         "display": {
             "display": "Parameters",
@@ -185,6 +185,40 @@
             "goodluckbabe": {
                 "value": false,
                 "display": "Good Luck, Babe!"
+            }
+        }
+    },
+    "madisonbeer": {
+        "display": {
+            "display": "Madison Beer",
+            "vanilla": true,
+            "contributors": "Kolin63"
+        },
+        "data": {
+            "lifesupport": {
+                "value": false,
+                "display": "Life Support"
+            },
+            "silencebetweensongs": {
+                "value": false,
+                "display": "Silence Between Songs"
+            },
+            "singles": {
+                "value": false,
+                "display": "Singles"
+            }
+        }
+    },
+    "gracieabrams": {
+        "display": {
+            "display": "Gracie Abrams",
+            "vanilla": true,
+            "contributors": "Kolin63"
+        },
+        "data": {
+            "thesecretofus": {
+                "value": false,
+                "display": "The Secret of Us"
             }
         }
     },

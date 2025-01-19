@@ -821,5 +821,89 @@
                 "One Short Day"
             ]
         }
+    },
+    "madisonbeer":
+    {
+        "lifesupport":
+        {
+            "amount": 17,
+            "songs": 
+            [
+                "The Beginning",
+                "Selfish",
+                "Sour Times",
+                "BOYSHIT",
+                "Baby",
+                "Stained Glass",
+                "Emotional Bruises",
+                "Everything Happens For A Reason",
+                "Channel Surfing - The End",
+                "Good In Goodbye",
+                "Default",
+                "Follow The White Rabbit",
+                "Effortlessly",
+                "Stay Numb And Carry On",
+                "Blue",
+                "Interlude",
+                "Homesick"
+            ]
+        },
+        "silencebetweensongs":
+        {
+            "amount": 14,
+            "songs": 
+            [
+                "Spinnin",
+                "Home To Another One",
+                "Dangerous",
+                "Reckless",
+                "Silence Between Songs",
+                "King of Everything",
+                "Sweet Relief",
+                "Envy the Leaves",
+                "17",
+                "Ryder",
+                "Nothing Matters But You",
+                "I Wonder",
+                "At Your Worst",
+                "Showed Me (How I Fell In Love With You)"
+            ]
+        },
+        "singles":
+        {
+            "amount": 2,
+            "songs": 
+            [
+                "Make You Mine",
+                "15 MINUTES"
+            ]
+        }
+    },
+    "gracieabrams":
+    {
+        "thesecretofus":
+        {
+            "amount": 17,
+            "songs": 
+            [
+                "Felt Good About You",
+                "Normal Thing",
+                "Good Luck Charlie",
+                "Free Now",
+                "Close To You",
+                "Cool",
+                "That's So True",
+                "I Told You Things",
+                "Packing It Up",
+                "Risk",
+                "Blowing Smoke",
+                "I Love You, I'm Sorry",
+                "us.",
+                "Let It Happen",
+                "Tough Love",
+                "I Knew It, I Know You",
+                "Gave You I Gave You I"
+            ]
+        }
     }
 }
