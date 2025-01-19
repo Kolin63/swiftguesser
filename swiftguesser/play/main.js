@@ -42,7 +42,7 @@ async function init() {
     songListAlbums = getSongListAlbums();
     randomSong = await getSong();
 
-    pointsDisplay.textContent = points;
+    pointsDisplay.textContent = points + " points";
     
     audio.src = randomSong; 
     audio.load();
@@ -179,7 +179,7 @@ function togglePlay() {
             const seconds = (stopwatchMS / 1000).toFixed(1);
             stopwatch.textContent = makeTimeCode();
             points = Math.ceil(Math.max(0-999 / 45 * seconds + 999, 1));
-            pointsDisplay.textContent = points;
+            pointsDisplay.textContent = points + " points";
         }, 1); // Update every 1ms
 
         playing = !playing;
