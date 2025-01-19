@@ -748,6 +748,38 @@
                 "Right Hand Man",
                 "A Winter's Ball"
             ]
+        },
+        "rent":
+        {
+            "amount": 27,
+            "songs": [
+                "Rent",
+                "Santa Fe",
+                "I'll Cover You",
+                "La Vie Boheme",
+                "I Should Tell You",
+                "La Vie Boheme B",
+                "Over the Moon",
+                "Take Me Or Leave Me",
+                "Without You",
+                "I'll Cover You (Reprise)",
+                "Seasons of Love",
+                "What You Own",
+                "One Song Glory",
+                "Finale B",
+                "Halloween",
+                "Goodbye Love",
+                "Finale A",
+                "Your Eyes",
+                "Light My Candle",
+                "You'll See",
+                "Today 4 U",
+                "Tango- Maureen",
+                "Life Support",
+                "Out Tonight",
+                "Another Day",
+                "Will I"
+            ]
         }
     }
 }
