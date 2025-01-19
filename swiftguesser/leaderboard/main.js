@@ -3,7 +3,7 @@ let configData;
 let leaderboardData = undefined;
 let parameters;
 let winData;
-let initBool = true;
+let initBool = true; // false if localSelect is undefined, false when init() is done running. True while init() is running if localSelect is valid. 
 const configBox = document.getElementById("lb-config");
 
 const localSelect = [localStorage.getItem("artistSelect"), localStorage.getItem("albumSelect"), localStorage.getItem("songSelect")];
@@ -93,6 +93,8 @@ async function buildSelectionBar() {
         } else {
             artistSelect.value = winData[0];
         }
+    } else {
+        artistSelect.value = localStorage.getItem("artistSelect");
     }
 
     await artistSelectChange(data);
@@ -148,6 +150,8 @@ async function artistSelectChange(data = {}) {
         } else {
             albumSelect.value = winData[1];
         }
+    } else {
+        albumSelect.value = localStorage.getItem("albumSelect");
     }
 
     localStorage.setItem('artistSelect', artistSelect.value);
@@ -172,6 +176,8 @@ async function albumSelectChange() {
         } else {
             songSelect.value = winData[2];
         }
+    } else {
+        songSelect.value = localStorage.getItem("songSelect");
     }
 
     localStorage.setItem('albumSelect', albumSelect.value);
@@ -260,22 +266,26 @@ async function updateLeaderboardPath() {
 async function fetchLeaderboard() {
     await updateLeaderboardPath();
 
-    await fetch(leaderboardPath)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("fetchLeaderboard() error " + response.status);
-        }
-        return response.json();
-    }) 
-    .then(async json => {
-        try {
-            leaderboardData = JSON.parse(json);
-        } catch (err) {
-            leaderboardData = {};
-        }
-        console.log("%cfetchLeaderboard() finished: " + leaderboardData, "color:#FF7");
-        await makeLeaderboardJSON();
-    });
+    try {
+        await fetch(leaderboardPath)
+            .then(response => {
+                if (!response.ok) {
+                    console.error("fetchLeaderboard() error " + response.status);
+                }
+                return response.json();
+            })
+            .then(async json => {
+                try {
+                    leaderboardData = JSON.parse(json);
+                } catch (err) {
+                    leaderboardData = {};
+                }
+                console.log("%cfetchLeaderboard() finished: " + leaderboardData, "color:#FF7");
+                await makeLeaderboardJSON();
+            });
+    } catch (err) {
+        console.error("fetchLeaderboard(): " + err);
+    }
 }
 
 async function updateLeaderboard() {
@@ -283,17 +293,21 @@ async function updateLeaderboard() {
 
     await updateLeaderboardPath();
 
-    fetch(leaderboardPath, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(leaderboardData)
-    })
-    .then(response => response.json())
-    .then(async data => {
-        console.log("%cupdateLeaderboard() finished: " + data.message, "color:#6D6");
-    });
+    try {
+        fetch(leaderboardPath, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(leaderboardData)
+        })
+            .then(response => response.json())
+            .then(async data => {
+                console.log("%cupdateLeaderboard() finished: " + data.message, "color:#6D6");
+            });
+    } catch (err) {
+        console.error("updateLeaderboard(): " + err);
+    }
 }
 
 document.addEventListener('keydown', event => {
