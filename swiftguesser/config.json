@@ -69,7 +69,8 @@
    },
     "taylorswift": {
         "display": {
-            "display": "Taylor Swift"
+            "display": "Taylor Swift",
+            "vanilla": true
         },
         "data": {
             "taylorswift": {
@@ -120,7 +121,8 @@
     },
     "sabrinacarpenter": {
         "display": {
-            "display": "Sabrina Carpenter"
+            "display": "Sabrina Carpenter",
+            "vanilla": true
         },
         "data": {
             "eyeswideopen": {
@@ -151,7 +153,8 @@
     },
     "oliviarodrigo": {
         "display": {
-            "display": "Olivia Rodrigo"
+            "display": "Olivia Rodrigo",
+            "vanilla": true
         },
         "data": {
             "sour": {
@@ -166,7 +169,8 @@
     },
     "chappellroan": {
         "display": {
-            "display": "Chappell Roan"
+            "display": "Chappell Roan",
+            "vanilla": true
         },
         "data": {
             "riseandfall": {
@@ -181,7 +185,8 @@
     },
     "tobyfox": {
         "display": {
-            "display": "Toby Fox"
+            "display": "Toby Fox",
+            "vanilla": false
         },
         "data": {
             "undertale": {

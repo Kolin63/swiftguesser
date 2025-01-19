@@ -3,6 +3,14 @@ function buildConfig()
     for (artist in configData) {
         if (artist == "version") continue;
 
+        if (configData[artist]["display"].vanilla == false && !document.getElementById("othersongsheader")) {
+            const otherSongsHeader = document.createElement("h3");
+            otherSongsHeader.textContent = "Other Songs";
+            otherSongsHeader.title = "These songs won't be included in the \"Everything\" parameter";
+            otherSongsHeader.id = "othersongsheader";
+            configBox.appendChild(otherSongsHeader);
+        }
+
         // Creates header for each artist / category
         const headercheck = document.createElement("input");
         headercheck.type = "checkbox";
