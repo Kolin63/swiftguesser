@@ -101,8 +101,11 @@ search.addEventListener('input', function () {
 
             if (boxSong == "" || stopwatchMS == 0) return;
 
-            document.getElementById("popup-wrapper").style.visibility = "visible"
-            document.getElementById("popup-wrapper").style.zIndex = 1;
+            const popupWrapper = document.getElementById("popup-wrapper");
+            popupWrapper.style.visibility = "visible";
+            popupWrapper.style.opacity = 100;
+            popupWrapper.style.zIndex = 2;
+            document.getElementById("popup").style.scale = 1;
             const popupInfo = document.getElementsByClassName("popup-info");
             const popupTitle = document.getElementById("popup-title");
             const popupButton = document.getElementById("popup-button");
