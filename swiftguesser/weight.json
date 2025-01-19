@@ -780,6 +780,31 @@
                 "Another Day",
                 "Will I"
             ]
+        },
+        "wicked": 
+        {
+            "amount": 19,
+            "songs": [
+                "No One Mourns The Wicked",
+                "A Sentimental Man",
+                "Defying Gravity",
+                "Thank Goodness",
+                "Wonderful",
+                "I'm Not That Girl (Reprise)",
+                "As Long As You're Mine",
+                "No Good Deed",
+                "March Of The Witch Hunters",
+                "For Good",
+                "Finale",
+                "Dear Old Shiz",
+                "The Wizard And I",
+                "What Is This Feeling",
+                "Something Bad",
+                "Dancing Through Life",
+                "Popular",
+                "I'm Not That Girl",
+                "One Short Day"
+            ]
         }
     }
 }

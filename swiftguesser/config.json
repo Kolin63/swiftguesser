@@ -216,6 +216,10 @@
             "rent": {
                 "value": false,
                 "display": "Rent"
+            },
+            "wicked": {
+                "value": false,
+                "display": "Wicked"
             }
         }
     }
