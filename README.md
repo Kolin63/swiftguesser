@@ -43,3 +43,9 @@ By Kolin63
 <a href="https://swiftguesser.kolin63.com" target="_blank">
     <img src="/swiftguesser/art/play-text.svg" style="width: 3in; 3in;padding: .4in;margin-top:.5in;">
 </a>
+
+
+
+![Config](/swiftguesser/art/promo/config.png)
+![Play](/swiftguesser/art/promo/play.png)
+![Leaderboard](/swiftguesser/art/promo/leaderboard.png)
