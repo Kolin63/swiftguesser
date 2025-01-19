@@ -231,6 +231,9 @@ function artistCheckChange(headercheck)
     checkArtist(artist, headercheck.checked);
     storeConfig();
 
+    document.getElementById("check" + artist + Object.keys(configData[artist]["data"])[0]).click();
+    document.getElementById("check" + artist + Object.keys(configData[artist]["data"])[0]).click();
+
     updateChecks();
 }
 
@@ -318,8 +321,10 @@ function updateCheckColor(check) {
 
 function updateChecks() {
     for (artist in configData) {
+        const headercheck = document.getElementById("check" + artist);
         for (album in configData[artist]["data"]) {
-            updateCheckColor(document.getElementById("check" + artist + album))
+            const check = document.getElementById("check" + artist + album);
+            updateCheckColor(check);
         }
 
         try { document.getElementById("check" + artist).checked = orArtist(artist) } catch {};
