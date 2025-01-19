@@ -171,11 +171,6 @@ function updateParametersChecks(check, headercheck)
         if (data && data["albums"]) for (artist in data["albums"]) for (album in data["albums"][artist]) {
             checkAlbum(artist, data["albums"][artist][album], true);
         }
-
-        if (check.album == "everything") for (artist in configData) {
-            if (artist == "parameters") continue;
-            checkArtist(artist, true);
-        }
     }
 }
 
