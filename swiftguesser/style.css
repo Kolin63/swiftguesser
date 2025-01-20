@@ -108,7 +108,7 @@
 
 #select-bar {
     background-color: #D4BEE4;
-    height: 100px;
+    height: 175px;
     margin: auto;
     border-radius: 50px;
     margin-bottom: 25px;
@@ -121,10 +121,11 @@
 
 #select-bar select {
     background-color: #9B7EBD;
-    height: 50px;
+    height: 100px;
+    font-size: 15px;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 21px;
     margin: 5px;
     padding: 10px;
     overflow-y: auto;
