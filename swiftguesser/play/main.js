@@ -44,14 +44,38 @@ async function init() {
 
     pointsDisplay.textContent = points + " points";
     
-    audio.src = randomSong; 
+    audio.src = randomSong;
     audio.load();
+    let debugModeError = false;
+
+    audio.addEventListener("error", function (err) {
+        debugModeError = true;
+        window.onbeforeunload = function () {
+            return "Please submit the error before reloading the page. Thank You!";
+        }
+        console.error(err);
+        const errorMsg = document.getElementById("error-msg");
+        errorMsg.style.visibility = "visible";
+        errorMsg.innerHTML = "ERROR" + "<br>"
+            + "SRC: " + audio.src + "<br><br>"
+            + "Please submit this error message as a bug to either <a href='https://github.com/Kolin63/swiftguesser/issues' target='_blank'>GitHub</a>"
+            + " or the <a href='https://forms.gle/kGiGJaFDdGuhAuQ19' target='_blank'>Google Form</a>";
+    })
 
     console.log("song list", songList);
     console.log("config", configData);
 
     if (window.mobileCheck()) {
         document.getElementById("mobile-top-pad").style.height = "25vh";
+    }
+
+    if (false) {
+        for (let i = 0; i < 100000; i++) {
+            if (debugModeError) break;
+            audio.src = await getSong();
+            audio.load();
+            console.log(i, audio.src)
+        }
     }
 }
 
