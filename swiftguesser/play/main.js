@@ -111,8 +111,8 @@ search.addEventListener('input', function () {
             const popupButton = document.getElementById("popup-button");
 
             popupInfo[0].textContent = "Song: " + randomSongName;
-            popupInfo[1].textContent = "Album: " + randomSongAlbum;
-            popupInfo[2].textContent = "Artist: " + randomSongArtist;
+            popupInfo[1].textContent = "Album: " + configData[randomSongArtist].data[randomSongAlbum].display;
+            popupInfo[2].textContent = "Artist: " + configData[randomSongArtist].display.display;
             popupInfo[3].textContent = "Points: " + points;
 
             if (boxSong == randomSongName) {
