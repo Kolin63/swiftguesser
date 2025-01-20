@@ -57,8 +57,7 @@
                 "value": false,
                 "display": "Everything",
                 "category": ["album"],
-                "incomp": {"xor": ["album"]},
-                "data": {"artists": ["taylorswift", "sabrinacarpenter", "oliviarodrigo", "chappellroan"]}
+                "incomp": {"xor": ["album"]}
             },
             "cherrypick": {
                 "value": false,

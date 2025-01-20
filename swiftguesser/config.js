@@ -179,6 +179,11 @@ function updateParametersChecks(check, headercheck)
         if (data && data["albums"]) for (artist in data["albums"]) for (album in data["albums"][artist]) {
             checkAlbum(artist, data["albums"][artist][album], true);
         }
+
+        if (configData.parameters.data.everything.value) for (artist in configData) {
+            if (artist == "parameters" || artist == "version") continue
+            if (configData[artist].display.vanilla) checkArtist(artist, true); 
+        }
     }
 }
 
@@ -200,14 +205,26 @@ function updateAlbumChecks(check, headercheck)
         {
             if (artist == "parameters" || artist == "version") continue;
 
+            if (orArtist(artist) && configData[artist].display.vanilla == false)
+            {
+                everything = false
+                console.log(parameter, artist, "\t", false, "\t", everything)
+            }
+
             if (andArtist(artist))
             {
                 if (currentData["artists"] == undefined) currentData["artists"] = [];
                 currentData["artists"].push(artist);
+                if (configData[artist].display.vanilla) console.log(parameter, artist, "\t", true, "\t", everything)
                 continue;
             }
 
-            everything = false;
+            if (orArtist(artist))
+                everything = false;
+
+            if (!orArtist(artist) && configData[artist].display.vanilla)
+                everything = false;
+            console.log(artist, "NOT AND", everything)
 
             for (album in configData[artist]["data"])
             {
@@ -230,6 +247,8 @@ function updateAlbumChecks(check, headercheck)
 
     if (everything) document.getElementById("checkparameterseverything").click();
     else if (!match) document.getElementById("checkparameterscherrypick").click();
+
+    if (everything) console.log("EVERYTHING")
 }
 
 function artistCheckChange(headercheck)
