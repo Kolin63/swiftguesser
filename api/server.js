@@ -43,13 +43,16 @@ function ensureFileExistence(artist, album, song) {
     const leaderboardFilePath = path.join(requiredPath, 'leaderboard.json');
 
     try {
-        fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
+        try {
+            fs.copyFileSync(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL);
+        } catch (err) {
             if (err.code == 'EEXIST') {
                 // Error -17: File already exists
                 return;
+            } else {
+                console.error('Error Copying Leaderboard File:', err);
             }
-            else if (err) console.error('Error Copying Leaderboard File:', err);
-        });
+        }
     } catch (error) {
         console.error('Unexpected error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
