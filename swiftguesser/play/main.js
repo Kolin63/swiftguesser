@@ -218,7 +218,7 @@ document.addEventListener('keydown', event => {
         togglePlay();
     }
     else if (key === 'Enter' && document.getElementById("popup-wrapper").style.visibility == "hidden") {
-        // document.activeElement.blur(); // Removes focus on active element, turning off down iPhone keyboard
+        document.activeElement.blur(); // Removes focus on active element, turning off down iPhone keyboard
         // Handle Enter key to select the highlighted search result
         if (selectedIndex == -1) {
             searchResultBoxes[0].click();
