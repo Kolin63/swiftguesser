@@ -111,8 +111,8 @@ search.addEventListener('input', function () {
             const popupButton = document.getElementById("popup-button");
 
             popupInfo[0].textContent = "Song: " + randomSongName;
-            popupInfo[1].textContent = "Album: " + randomSongAlbum;
-            popupInfo[2].textContent = "Artist: " + randomSongArtist;
+            popupInfo[1].textContent = "Album: " + configData[randomSongArtist].data[randomSongAlbum].display;
+            popupInfo[2].textContent = "Artist: " + configData[randomSongArtist].display.display;
             popupInfo[3].textContent = "Points: " + points;
 
             if (boxSong == randomSongName) {
@@ -217,7 +217,7 @@ document.addEventListener('keydown', event => {
         // Ctrl+Space
         togglePlay();
     }
-    else if (key === 'Enter') {
+    else if (key === 'Enter' && document.getElementById("popup-wrapper").style.visibility == "hidden") {
         // Handle Enter key to select the highlighted search result
         if (selectedIndex == -1) {
             searchResultBoxes[0].click();
