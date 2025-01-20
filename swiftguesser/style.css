@@ -505,6 +505,20 @@ li::marker {
     top: 15px;
 }
 
+#error-msg {
+    text-align: center;
+    color: #000;
+    background-color: rgb(252, 102, 102);
+    outline: 5px solid;
+    outline-color: rgb(255, 80, 80);
+    margin: 40px;
+    border-radius: 21px;
+    visibility: hidden;
+}
+
+
+
+
 .inline {
     display: inline;
 }
