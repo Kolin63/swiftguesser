@@ -217,7 +217,7 @@ document.addEventListener('keydown', event => {
         // Ctrl+Space
         togglePlay();
     }
-    else if (key === 'Enter') {
+    else if (key === 'Enter' && document.getElementById("popup-wrapper").style.visibility == "hidden") {
         // Handle Enter key to select the highlighted search result
         if (selectedIndex == -1) {
             searchResultBoxes[0].click();
