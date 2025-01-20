@@ -116,6 +116,7 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    color: #000;
 }
 
 #select-bar select {
@@ -128,6 +129,7 @@
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    color: #000;
 }
 
 .search {
@@ -419,6 +421,7 @@ li::marker {
     cursor:pointer;
     border: 0;
     background-color: #EEE;
+    color: #000;
 }
 
 #namechange {
