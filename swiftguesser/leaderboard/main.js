@@ -334,3 +334,7 @@ document.addEventListener('keydown', event => {
         window.location.href = "/play";
     }
 });
+
+document.getElementById("playbutton").addEventListener("click", function () {
+    window.location.href = "/play";
+})
