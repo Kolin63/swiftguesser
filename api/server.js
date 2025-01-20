@@ -47,6 +47,10 @@ function ensureFileExistence(artist, album, song) {
             if (err) console.error('Error Copying Leaderboard File:', err);
         });
     } catch (error) {
+        if (error == -17) {
+            // Error -17: File already exists
+            return;
+        }
         console.error('Unexpected error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
