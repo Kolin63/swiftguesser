@@ -44,13 +44,13 @@ function ensureFileExistence(artist, album, song) {
 
     try {
         fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
-            if (err) console.error('Error Copying Leaderboard File:', err);
+            if (err.code = 'EEXIST') {
+                // Error -17: File already exists
+                return;
+            }
+            else if (err) console.error('Error Copying Leaderboard File:', err);
         });
     } catch (error) {
-        if (error == -17) {
-            // Error -17: File already exists
-            return;
-        }
         console.error('Unexpected error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
