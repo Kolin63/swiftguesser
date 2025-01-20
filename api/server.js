@@ -44,7 +44,7 @@ function ensureFileExistence(artist, album, song) {
 
     try {
         fs.copyFile(emptyLBPath, leaderboardFilePath, fs.constants.COPYFILE_EXCL, (err) => {
-            if (err.code = 'EEXIST') {
+            if (err.code == 'EEXIST') {
                 // Error -17: File already exists
                 return;
             }
