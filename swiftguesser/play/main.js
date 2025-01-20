@@ -49,6 +49,10 @@ async function init() {
 
     console.log("song list", songList);
     console.log("config", configData);
+
+    if (window.mobileCheck()) {
+        document.getElementById("mobile-top-pad").style.height = "25vh";
+    }
 }
 
 // Event listener for the search bar being typed in
