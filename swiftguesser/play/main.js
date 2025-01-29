@@ -120,6 +120,11 @@ search.addEventListener('input', function () {
         searchBackground.appendChild(box);
     }
 
+    if (searchResults.length > 0 && selectedIndex == -1) {
+        selectedIndex = 0;
+        searchResultBoxes[selectedIndex].focus();
+    }
+
     // Function called when a search result box is clicked
     Array.from(searchResultBoxes).forEach(box => {
         box.addEventListener('click', function () {
