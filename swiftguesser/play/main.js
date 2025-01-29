@@ -141,17 +141,19 @@ search.addEventListener('input', function () {
             popupInfo[0].textContent = "Song: " + randomSongName;
             popupInfo[1].textContent = "Album: " + configData[randomSongArtist].data[randomSongAlbum].display;
             popupInfo[2].textContent = "Artist: " + configData[randomSongArtist].display.display;
-            popupInfo[3].textContent = "Points: " + points;
 
             if (boxSong == randomSongName) {
                 localStorage.setItem("win", JSON.stringify([randomSongArtist, randomSongAlbum, randomSongName, points]));
                 popupTitle.textContent = "Correct!";
+                popupInfo[3].textContent = "Points: " + points;
                 popupButton.addEventListener("click", function () {
                     window.location.href = '../leaderboard';
                 })
             }
             else {
                 popupTitle.textContent = "Incorrect!";
+                points = 0;
+                popupInfo[3].textContent = "Points: 0";
                 popupButton.addEventListener("click", function () {
                     location.reload();
                 })
