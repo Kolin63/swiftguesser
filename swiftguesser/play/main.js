@@ -77,26 +77,6 @@ async function init() {
             console.log(i, audio.src)
         }
     }
-
-    getPlayCounter();
-}
-
-async function getPlayCounter()
-{
-    try {
-        await fetch("https://api.swiftguesser.kolin63.com/stat/play/get")
-            .then(response => {
-                if (!response.ok) {
-                    console.error("Error getting play counter " + response.status);
-                }
-                return response.json();
-            })
-            .then(async json => {
-                console.log("Plays: " + json.plays);
-            });
-    } catch (err) {
-        console.error("Error getting play counter (bottom) " + err);
-    }
 }
 
 async function incrementPlayCounter()
