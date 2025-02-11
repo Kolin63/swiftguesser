@@ -172,7 +172,7 @@ async function getPlayCounter()
             })
             .then(async json => {
                 const plays = json.plays;
-                const playText = "Plays (" + plays + ")"; 
+                const playText = "Play (" + plays + ")"; 
                 console.log("Plays: " + plays);
                 document.getElementById("navbarplay-link").title = playText;
                 document.getElementById("navbarplay").textContent = playText;
