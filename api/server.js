@@ -110,6 +110,54 @@ app.post('/leaderboard/:artist/:album/:song', async (req, res) => {
     }
 });
 
+function getStatistics() {
+    return new Promise((resolve, reject) => {
+        const directory = path.join(__dirname, 'stat.json');
+        fs.readFile(directory, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading statistics file:', err);
+                return reject(err);
+            }
+            try {
+                const jsonData = JSON.parse(data);
+                resolve(jsonData);
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                reject(parseError);
+            }
+        });
+    });
+}
+
+app.get('/stat/play', async (req, res) => {
+    try {
+        const data = await getStatistics();
+        res.json(data);
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.post('/stat/play', async (req, res) => {
+    try {
+        const directory = path.join(__dirname, 'stat.json');
+        const currentData = await getStatistics();
+        currentData.plays += 1;
+
+        fs.writeFile(directory, JSON.stringify(currentData, null, 2), (err) => {
+            if (err) {
+                console.error('Error writing to statistics file:', err);
+                return res.status(500).json({ error: 'Failed to save statistics data' });
+            }
+            res.json(currentData);
+        });
+    } catch (err) {
+        console.error("Error reading or writing to statistics file", err);
+        return res.status(500).json({ error: 'Failed to save statistics data' });
+    }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error('Unhandled error:', err);
