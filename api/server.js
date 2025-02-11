@@ -150,6 +150,7 @@ app.get('/stat/play/up', async (req, res) => {
                 console.error('Error writing to statistics file:', err);
                 return res.status(500).json({ error: 'Failed to save statistics data' });
             }
+            console.log("Plays:", currentData.plays);
             res.json(currentData);
         });
     } catch (err) {

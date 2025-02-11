@@ -77,6 +77,44 @@ async function init() {
             console.log(i, audio.src)
         }
     }
+
+    getPlayCounter();
+}
+
+async function getPlayCounter()
+{
+    try {
+        await fetch("https://api.swiftguesser.kolin63.com/stat/play/get")
+            .then(response => {
+                if (!response.ok) {
+                    console.error("Error getting play counter " + response.status);
+                }
+                return response.json();
+            })
+            .then(async json => {
+                console.log("Plays: " + json.plays);
+            });
+    } catch (err) {
+        console.error("Error getting play counter (bottom) " + err);
+    }
+}
+
+async function incrementPlayCounter()
+{
+    try {
+        await fetch("https://api.swiftguesser.kolin63.com/stat/play/up")
+            .then(response => {
+                if (!response.ok) {
+                    console.error("Error incrementing play counter " + response.status);
+                }
+                return response.json();
+            })
+            .then(async json => {
+                console.log("Plays:", json.plays);
+            });
+    } catch (err) {
+        console.error("Error incrementing play counter (bottom) " + err);
+    }
 }
 
 // Event listener for the search bar being typed in
@@ -148,6 +186,7 @@ search.addEventListener('input', function () {
             popupInfo[2].textContent = "Artist: " + configData[randomSongArtist].display.display;
 
             if (boxSong == randomSongName) {
+                incrementPlayCounter();
                 localStorage.setItem("win", JSON.stringify([randomSongArtist, randomSongAlbum, randomSongName, points]));
                 popupTitle.textContent = "Correct!";
                 popupInfo[3].textContent = "Points: " + points;
