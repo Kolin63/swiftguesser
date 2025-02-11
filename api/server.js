@@ -129,7 +129,7 @@ function getStatistics() {
     });
 }
 
-app.get('/stat/play', async (req, res) => {
+app.get('/stat/play/get', async (req, res) => {
     try {
         const data = await getStatistics();
         res.json(data);
@@ -139,7 +139,7 @@ app.get('/stat/play', async (req, res) => {
     }
 });
 
-app.post('/stat/play', async (req, res) => {
+app.get('/stat/play/up', async (req, res) => {
     try {
         const directory = path.join(__dirname, 'stat.json');
         const currentData = await getStatistics();
