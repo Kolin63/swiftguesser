@@ -43,6 +43,7 @@ function buildConfig()
             check.artist = artist;
             check.album = album;
             check.title = configData[artist]["data"][album]["display"];
+            check.draggable = false;
 
             const checkwrap = document.createElement("div");
             checkwrap.className = "checkwrap";

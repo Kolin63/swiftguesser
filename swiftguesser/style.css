@@ -303,6 +303,7 @@ label {
     height: 120px;
     flex-grow: 0;
     flex-shrink: 0;
+    transition-duration: .1s;
 }
 
 .config-cover-on {
@@ -326,7 +327,7 @@ label {
     margin: 0;
     font-size: 100%;
     line-height: 20px;
-    overflow-x: hidden;
+    overflow: hidden;
     text-wrap: nowrap;
 }
 
